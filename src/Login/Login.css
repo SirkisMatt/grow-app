@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+  }
+
+.login-form {
+    padding: 100px 15px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  p {
+    text-align: center;
+    line-height: 1.5;
+}
+
+  nav a {
+    float: left;
+    color: #f2f2f2;
+    padding: 1px 10px;
+    text-decoration: none;
+    font-size: 20px;
+    text-align: right;
+  }
+
+  nav,
+  footer {
+    padding: 1% 0;
+    background-color: #aaa;
+   
+  }
+  ul {
+    list-style-type: none;
+  }
+  
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
