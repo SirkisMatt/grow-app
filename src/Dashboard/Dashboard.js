@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import STORE from '../dummy-store'
+import ApiContext from '../ApiContext'
+import AddGoalType from '../AddGoalType/AddGoalType'
+import GoalListHeader from '../GoalListHeader/GoalListHeader'
+import Goal from '../Goal/Goal'
 import './Dashboard.css'
 
 
@@ -9,9 +13,20 @@ class Dashboard extends Component {
     //     super(props);
     // }
 
+    static contextType = ApiContext;
+
+    getGoalsForUser = (goals=[], userId) => (
+        (!userId)
+            ? goals
+            : goals.filter(goal => goal.user_id == userId)
+    )
+
  
   render() {
-    console.log(STORE)
+    const { goals=[] } = this.context
+    const { userId } = this.props.match.params
+    const goalsForUser = this.getGoalsForUser(goals, userId)
+    console.log(goalsForUser)
     return (
       <div className='dashboard'>
         <nav role="navigation">
@@ -31,26 +46,27 @@ class Dashboard extends Component {
             <div className="row">
                 <div className="column">
                     <header>
-                        <h2>Exercise</h2>
+                        <h2>Test Test</h2>
                     </header>
-                    <div className="task">
-                        <header>
-                            <h3>Run 15 miles this week.</h3>
-                        </header> 
-                        <div className="tree-bet">
-                            <p>2 Trees at Stake</p>
-                            <p>Complete by: Friday 11-13-2020</p>
-                        </div>
-                        <button>Completed</button>
-                        <button>Cancel</button>
-                    </div>
-                    <div>
-                        <a href="add-task.html"><button>Add another goal</button></a>
-                    </div>
+                    <ul>
+                        {goalsForUser.map(goal => 
+                            <li key={goal.id}>
+                                <Goal 
+                                id={goal.id}
+                                title={goal.title}
+                                description={goal.description}
+                                dateCreated={goal.date_created}
+                                treeBet={goal.tree_bet}
+                                treeOrg={goal.tree_org}
+                                goalTypeId={goal.goal_type_id}
+                                />
+                            </li>
+                        )}
+                    </ul>
                 </div>
                 <div className="column">
                     <header>
-                        <h2>Self Care</h2>
+                        <GoalListHeader/>
                     </header>
                     <div className="task">
                         <header>
@@ -69,9 +85,7 @@ class Dashboard extends Component {
                         <a href="add-task.html"><button>Add another goal</button></a>
                     </div>
                 </div>
-                <div className="column">
-                    <button id="add-list">+ Add goal type</button>
-                </div>
+                <AddGoalType />
             </div>
         </div>
       </div>

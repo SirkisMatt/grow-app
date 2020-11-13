@@ -2,24 +2,21 @@ export default {
     "user": [
         {
             "id": "1",
-            "firstname": "Nick",
-            "lastname": "Sea",
+            "username": "Nick Sea",
             "email": "Nick@gmail.com",
             "password": "password",
             "date_created": "2020-01-03T00:00:00.000Z"
         },
         {
             "id": "2",
-            "firstname": "Malia",
-            "lastname": "Bobia",
+            "username": "Malia Bobia",
             "email": "Malia@gmail.com",
             "password": "password",
             "date_created": "2020-03-01T00:00:00.000Z"
         },
         {
             "id": "3",
-            "firstname": "Old",
-            "lastname": "Greg",
+            "username": "Old Greg",
             "email": "Old@gmail.com",
             "password": "password",
             "date_created": "2020-04-01T00:00:00.000Z"
@@ -36,7 +33,7 @@ export default {
         },
         {
             "id": "3",
-            "title": "Don't Check the Results"
+            "title": "Diet"
         },
         {
             "id": "4",
@@ -50,10 +47,10 @@ export default {
             "description": "try to run 3 miles 5 days out of the week",
             "date_created": "2020-11-07T00:00:00.000Z",
             "tree_bet": "5",
-            "tree-org": "one-tree-planted",
+            "tree_org": "one-tree-planted",
             "complete_by": "2020-11-014T00:00:00.000Z",
             "completed": false,
-            "user_id": "1",
+            "user_id": "666ceeac-eacc-4059-b1e1-9e1d661e2e0a",
             "goal_type_id": "1"
         },
     ]

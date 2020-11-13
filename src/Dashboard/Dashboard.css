@@ -29,7 +29,7 @@ header {
     float: right;
 }
 
-#add-list {
+.add-goal-type {
     padding: 5px 15px;
     margin-top: 27px;
 }
