@@ -16,13 +16,15 @@ class App extends Component {
   state = {
     user: [],
     goal_type: [],
-    goals: []
+    goal_cards: [],
+    goal_list: []
   }
   componentDidMount = () => {
     this.setState({
       user: STORE.user,
       goal_type: STORE.goal_type,
-      goals: STORE.goals
+      goal_cards: STORE.goal_cards,
+      goal_list: STORE.goal_list
     })
   }
   
@@ -31,6 +33,15 @@ class App extends Component {
       user: [
         ...this.state.user,
         user
+      ]
+    })
+  }
+
+  handleAddGoal = goal => {
+    this.setState({
+      goal_cards: [
+        ...this.state.goal_cards,
+        goal
       ]
     })
   }
@@ -59,8 +70,10 @@ class App extends Component {
     const value = {
       user: this.state.user,
       goal_type: this.state.goal_type,
-      goals: this.state.goals,
-      addUser: this.handleAddUser
+      goal_cards: this.state.goal_cards,
+      goal_list: this.state.goal_list,
+      addUser: this.handleAddUser,
+      addGoal: this.handleAddGoal
     }
     return (
       <ApiContext.Provider value={value}>

@@ -1,4 +1,4 @@
-export default {
+{
     "user": [
         {
             "id": "1",
@@ -20,7 +20,7 @@ export default {
             "email": "Old@gmail.com",
             "password": "password",
             "date_created": "2020-04-01T00:00:00.000Z"
-        },
+        }
     ],
     "goal_type": [
         {
@@ -40,7 +40,7 @@ export default {
             "title": "Sleep"
         }
     ],
-    "goal_cards": [
+    "goals": [
         {
             "id": "1",
             "title": "Run 15 miles this week",
@@ -50,51 +50,9 @@ export default {
             "tree_org": "one-tree-planted",
             "complete_by": "2020-11-014T00:00:00.000Z",
             "completed": false,
-            "goal_list": "1",
             "user_id": "4f522993-d814-49ce-a242-4d34e9936a85",
             "goal_type_id": "1"
-        },
-        {
-            "id": "2",
-            "title": "Do some sit-ups",
-            "description": "Do the situps",
-            "date_created": "2020-14-07T00:00:00.000Z",
-            "tree_bet": "5",
-            "tree_org": "one-tree-planted",
-            "complete_by": "2020-11-014T00:00:00.000Z",
-            "completed": false,
-            "user_id": "4f522993-d814-49ce-a242-4d34e9936a85",
-            "goal_type_id": "1"
-        },
-        {
-            "id": "3",
-            "title": "30 min of meditation",
-            "description": "Just Breath",
-            "date_created": "2020-14-07T00:00:00.000Z",
-            "tree_bet": "5",
-            "tree_org": "one-tree-planted",
-            "complete_by": "2020-11-014T00:00:00.000Z",
-            "completed": false,
-            "goal_list": "1",
-            "user_id": "4f522993-d814-49ce-a242-4d34e9936a85",
-            "goal_type_id": "2"
-        },
-    ],
-    "goal_list": [
-        {
-        "user_id": "4f522993-d814-49ce-a242-4d34e9936a85",
-        "goal_type_id": "2",
-        "card_ids": ['1']
-        },
-        {
-        "user_id": "4f522993-d814-49ce-a242-4d34e9936a85",
-        "goal_type_id": "1",
-        "card_ids": ['2', '3', '1']
-        },
-        {
-        "user_id": "4f522993-d814-49ce-a242-4d34e9936a85",
-        "goal_type_id": "3",
-        "card_ids": ['1']
         }
     ]
+  
 }

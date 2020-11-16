@@ -2,31 +2,67 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import STORE from '../dummy-store'
 import ApiContext from '../ApiContext'
-import AddGoalType from '../AddGoalType/AddGoalType'
+
 import GoalListHeader from '../GoalListHeader/GoalListHeader'
+import AddGoalCard from '../AddGoalCard/AddGoalCard'
+import GoalListWrapper from '../GoalListWrapper/GoalListWrapper'
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import Goal from '../Goal/Goal'
 import './Dashboard.css'
 
 
 class Dashboard extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+  constructor(props) {
+        super(props)
+        this.state = {
+            user: [],
+            userId: "",
+            goal_type: [],
+            goal_cards: [],
+            goal_list: [],
+            showModal: false
+          }
+  }
+      
+    
 
     static contextType = ApiContext;
 
-    getGoalsForUser = (goals=[], userId) => (
+    toggleModal = () => {
+        this.setState({
+          showModal: !this.state.showModal
+        });
+      }
+
+    //Gets correct goals for user that logged in. 
+    getGoalsForUser = (goal_cards=[], userId) => (
         (!userId)
-            ? goals
-            : goals.filter(goal => goal.user_id == userId)
+            ? goal_cards
+            : goal_cards.filter(goal => goal.user_id == userId)
     )
 
+
+    //Gets goal_list based on user
+    getGoalTitleIds = (goal_list=[], userId) => (
+        (!userId)
+            ? goal_list
+            : goal_list.filter(item => item.user_id == userId)
+    )
+    
+    
  
   render() {
-    const { goals=[] } = this.context
+    const { goal_cards=[], goal_list=[], goal_type=[] } = this.context
     const { userId } = this.props.match.params
-    const goalsForUser = this.getGoalsForUser(goals, userId)
-    console.log(goalsForUser)
+
+    const goalsForUser = this.getGoalsForUser(goal_cards, userId)
+    //const goalTitle = this.findGoalTitle(goal_type, goalsForUser)
+
+    //Gets goal_list based on user
+    const goalListForUser = this.getGoalTitleIds(goal_list, userId)
+    
+    
     return (
       <div className='dashboard'>
         <nav role="navigation">
@@ -34,58 +70,33 @@ class Dashboard extends Component {
                 <li><Link to='/' className='home'>Grow</Link></li>
             </ul>
         </nav>
-        <div className="board-header">
-           <header>
-            <ul>
-                <li><a href="payment.html">Edit Payment info</a></li>
-            </ul>
-            <p>4 Trees planted this month</p>
+        <div>
+           <header className="App-header">
+                <ul>
+                    <li><a href="payment.html">Edit Payment info</a></li>
+                </ul>
+                <p className="tree-count">4 Trees planted this month</p>
+                <button className="modal_opener NavCircleButton btn" onClick={this.toggleModal}>
+                    Add New Goal!
+                </button>
+                <AddGoalCard 
+                    show={this.state.showModal}
+                    closeCallback={this.toggleModal}
+                    customClass="custom_modal_class"
+                    userId={userId}
+                />
            </header>
        </div>
         <div>
-            <div className="row">
-                <div className="column">
-                    <header>
-                        <h2>Test Test</h2>
-                    </header>
-                    <ul>
-                        {goalsForUser.map(goal => 
-                            <li key={goal.id}>
-                                <Goal 
-                                id={goal.id}
-                                title={goal.title}
-                                description={goal.description}
-                                dateCreated={goal.date_created}
-                                treeBet={goal.tree_bet}
-                                treeOrg={goal.tree_org}
-                                goalTypeId={goal.goal_type_id}
-                                />
-                            </li>
-                        )}
-                    </ul>
-                </div>
-                <div className="column">
-                    <header>
-                        <GoalListHeader/>
-                    </header>
-                    <div className="task">
-                        <header>
-                            <h3>Meditate 30min everyday.</h3>
-                        </header>
-                        <p>At the end of the week I will plant 1 tree at "WeForest" for every day that I missed.</p>
-                        <br/>
-                        <div className="tree-bet">
-                            <p>7 Trees at Stake</p>
-                            <p>Complete by: Friday 11-13-2020</p>
-                        </div>
-                        <button>Completed</button>
-                        <button>Cancel</button>
-                    </div>
-                    <div>
-                        <a href="add-task.html"><button>Add another goal</button></a>
-                    </div>
-                </div>
-                <AddGoalType />
+            <div className="App-list">
+                {goalListForUser.map(list => 
+                    <GoalListWrapper
+                        key={list.goal_type_id}
+                        id={list.goal_type_id}
+                        header={goal_type.filter(item => item.id == list.goal_type_id)}
+                        goal={list.card_ids.map(id => goalsForUser[id - 1])}
+                    />
+                )}
             </div>
         </div>
       </div>

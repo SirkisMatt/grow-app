@@ -7,7 +7,7 @@ export default class AddGoalType extends Component {
         const { goal_type=[] } = this.context
         return (
             <form className="add-goal-type">
-                <label for="GoalOptions">Choose a Goal Type:</label>
+                <label htmlFor="GoalOptions">Choose a Goal Type:</label>
                 <select name="GoalOptions" id="GoalOptions">
                     {goal_type.map(goal_type =>
                         <option key={goal_type.id}>

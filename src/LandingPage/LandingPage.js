@@ -13,26 +13,26 @@ class LandingPage extends Component {
                 <li><Link to='/signup' className="sign-up">Sign Up</Link></li>
             </ul>
         </nav>
-        <header>
+        <header className='landing-header'>
           <h1>Grow</h1>
           <h3>Better You Better Planet</h3>
         </header>
-        <section>
-          <header>
+        <section className='landing-section'>
+          <header className='landing-header'>
               <h3>Set goals for yourself</h3>
           </header>
           <p>[<em>placeholder for screenshot of goal setting interface</em>]</p>
           <p>Grow lets you set goals for yourself and keeps you accountable.</p>
         </section>
-        <section>
-          <header>
+        <section className='landing-section'>
+          <header className='landing-header'>
               <h3>Plant trees if you fall short on tasks you set for yourself</h3>
           </header>
           <p>[<em>placeholder for screenshot of tree planting outcomes</em>]</p>
           <p>Succeed whether you meet your goals or not. You are either benefitting yourself or the planet! Set how many trees you will donate if you don't complete your goal.</p>
         </section>
-        <section>
-          <header>
+        <section className='landing-section'>
+          <header className='landing-header'>
               <h3>How does the tree planting service work?</h3>
           </header>
           <p>[<em>placeholder for screenshot Raas</em>]</p>

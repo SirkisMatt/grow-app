@@ -1,4 +1,5 @@
 import React from 'react'
+import './Goal.css'
 
 
 export default class Goal extends React.Component {
@@ -7,7 +8,7 @@ export default class Goal extends React.Component {
     render() {
         const { id, title, description, dateCreated, treeBet, treeOrg, goalTypeId } = this.props
         return (
-            <div className="task">
+            <div className="Card">
                 <header>
                     <h3>{title}</h3>
                 </header> 
