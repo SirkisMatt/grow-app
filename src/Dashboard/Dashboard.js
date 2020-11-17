@@ -65,28 +65,14 @@ class Dashboard extends Component {
     
     return (
       <div className='dashboard'>
-        <nav role="navigation">
-            <ul>
-                <li><Link to='/' className='home'>Grow</Link></li>
-            </ul>
-        </nav>
-        <div>
            <header className="App-header">
                 <ul>
-                    <li><a href="payment.html">Edit Payment info</a></li>
+                    <li>
+                        <a href="payment.html" className="btn">Edit Payment info</a>
+                    </li>
                 </ul>
                 <p className="tree-count">4 Trees planted this month</p>
-                <button className="modal_opener NavCircleButton btn" onClick={this.toggleModal}>
-                    Add New Goal!
-                </button>
-                <AddGoalCard 
-                    show={this.state.showModal}
-                    closeCallback={this.toggleModal}
-                    customClass="custom_modal_class"
-                    userId={userId}
-                />
            </header>
-       </div>
         <div>
             <div className="App-list">
                 {goalListForUser.map(list => 
@@ -97,6 +83,15 @@ class Dashboard extends Component {
                         goal={list.card_ids.map(id => goalsForUser[id - 1])}
                     />
                 )}
+                <button className="NavCircleButton" onClick={this.toggleModal}>
+                        add new goal +
+                </button>
+                <AddGoalCard 
+                    show={this.state.showModal}
+                    closeCallback={this.toggleModal}
+                    customClass="custom_modal_class"
+                    userId={userId}
+                />
             </div>
         </div>
       </div>

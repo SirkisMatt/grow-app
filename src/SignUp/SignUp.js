@@ -80,7 +80,7 @@ class SignUp extends Component {
     const emailError = this.validateEmail()
     return (
         <div>
-            <nav role="navigation">
+            <nav role="navigation" className="signup-nav">
                 <ul>
                     <li><Link to='/' className='home'>Grow</Link></li>
                     <li><Link to='/login' className='login'>Login</Link></li>

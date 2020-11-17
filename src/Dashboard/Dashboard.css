@@ -1,60 +1,120 @@
 
-.App-header h1 {
-  margin: 0;
-  color: #f6f6f6;
-  font-size: 20px;
+.dashboard-nav {
+  text-decoration: none;
+  font-size: 1.2em;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
 
-header {
-  padding: 25px 15px;
-  margin-top: 20px;
+.dashboard nav li{
+  text-decoration: none;
 }
+
+.App-header {
+  list-style-type: none;
+  margin-top: 20px;
+  font-size: 20px;
+  /* background-color: rgba(0,136,169,1); */
+  color: beige;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.App-header li {
+  display: inline-block;
+  padding: 0px 5px;
+}
+
+.App-header li a {
+  transition: all 0.3s ease 0s;
+  text-decoration: none;
+}
+
+.App-header li a:hover {
+  color: #0088a9
+}
+
+.App-header p {
+  margin-right: auto;
+}
+
 
 .App-list {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.tree-count {
-  font-size: 20px;
-  text-align: right;
+.App-list .NavCircleButton {
+  color: beige;
 }
 
-/* .NavCircleButton {
-  box-sizing: border-box;
-  background-color: #cacaca;
-  border-radius: 30px;
-  border: 0;
-  color: black;
-  display: block;
-  font-size: 12px;
-  font-weight: bold;
-  height: 60px;
-  padding: 8px;
-  text-align: center;
-  text-decoration: none;
-  width: 60px;
-}
-
-
-.NavCircleButton:hover {
-  cursor: pointer;
-} */
-
-.btn {
-  display: flex;
-  justify-content: right;
-  align-items: right;
+.NavCircleButton {
+  margin-left: 10px;
+  color: rgb(240, 240, 229);
   font: inherit;
-  background: none;
+  background-color: rgba(154, 196, 171, 0.4);
   border: none;
   color: inherit;
-  padding: 6px;
+  padding: 9px;
+  padding-left: 15px;
+  padding-right: 100px;
   cursor: pointer;
-  background-color: #cce9dd34;
-    border-radius: 0.6rem;
-    transition: background-color 150ms;
+  border-radius: 0.6rem;
+  transition: all 0.3s ease 0s;
+}
+
+.NavCircleButton:hover {
+  background-color: rgba(59, 119, 57, 0.8);
+}
+/* .tree-count {
+  font-size: 20px;
+  text-align: right;
+} */
+
+
+.btn {
+  font: inherit;
+  background-color: rgba(0,136,169,1);
+  border: none;
+  color: inherit;
+  padding: 9px 25px;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  transition: all 0.3s ease 0s;
+}
+
+.btn:hover {
+  background-color: rgba(0,136,169,0.8);
 }
 
 :focus {
   outline-color: #fa0;
 }
+
+@media all and (min-width: 600px) {
+
+  .dashboard nav {
+    font-size: 2em;  
+  }
+
+  .App-list {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+}
+
+
+/* @media all and (min-width: 800px) {
+
+  .App-list {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+} */

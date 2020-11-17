@@ -5,6 +5,7 @@ import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
+import DashboardNav from './DashboardNav/DashboardNav'
 import AddPayment from './AddPayment/AddPayment'
 import AddGoalType from './AddGoalType/AddGoalType'
 import ApiContext from './ApiContext'
@@ -62,6 +63,18 @@ class App extends Component {
         path="/add-goal-type"
         component={AddGoalType}
         />
+        <Route 
+        path="/signup" 
+        component={SignUp}
+        />
+        <Route 
+        path="/add-payment"
+        component={AddPayment}
+        />
+        <Route 
+        path="/login"
+        component={Login}
+        />
       </>
     )
   }
@@ -78,18 +91,7 @@ class App extends Component {
     return (
       <ApiContext.Provider value={value}>
         <div className='App'>
-          <Route 
-          path="/signup" 
-          component={SignUp}
-          />
-          <Route 
-          path="/add-payment"
-          component={AddPayment}
-          />
-          <Route 
-          path="/login"
-          component={Login}
-          />
+         <DashboardNav />
       
           <main className="App_Main">{this.renderMainRoutes()}</main>
         </div>

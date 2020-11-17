@@ -9,17 +9,22 @@
   }
 
   
-  nav,
+  .landing-page nav {
+    padding: 1% 0;
+    background-color: #aaa;
+   
+  }
+
   footer {
     padding: 1% 0;
     background-color: #aaa;
    
   }
-  ul {
+  .landing-page ul {
     list-style-type: none;
   }
   
-  nav {
+  .landing-page nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,21 +48,21 @@
     background-color: #ddd;
   }
   
-  p {
+  .landing-page p {
     margin: 0 auto;
     max-width: 650px;
   }
   
-  p + p {
+  .landing-page p + p {
     margin-top: 15px;
   }
   
 
-  nav a {
+   nav a {
     float: left;
     color: #f2f2f2;
-    padding: 1px 10px;
+    padding: 1px 8px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 30px;
     text-align: right;
   }

@@ -7,12 +7,12 @@
 }
 
 
-  p {
+  .signup-form p {
     text-align: center;
     line-height: 1.5;
 }
 
-  nav a {
+  .signup-nav nav a {
     float: left;
     color: #f2f2f2;
     padding: 1px 10px;
@@ -21,17 +21,17 @@
     text-align: right;
   }
 
-  nav,
+  .signup-nav nav,
   footer {
     padding: 1% 0;
     background-color: #aaa;
    
   }
-  ul {
+  .signup-nav ul {
     list-style-type: none;
   }
   
-  nav {
+  .signup-nav nav {
     position: fixed;
     top: 0;
     left: 0;

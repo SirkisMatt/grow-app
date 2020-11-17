@@ -53,7 +53,7 @@ class Login extends Component {
       const emailError = this.ValidateEmail();
     return (
         <div>
-        <nav role="navigation">
+        <nav role="navigation" className="login-nav">
             <ul>
             <li><Link to='/' className='home'>Grow</Link></li>
             </ul>
