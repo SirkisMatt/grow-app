@@ -25,7 +25,8 @@ class App extends Component {
       user: STORE.user,
       goal_type: STORE.goal_type,
       goal_cards: STORE.goal_cards,
-      goal_list: STORE.goal_list
+      goal_list: STORE.goal_list,
+      loggedIn: false
     })
   }
   
@@ -34,7 +35,8 @@ class App extends Component {
       user: [
         ...this.state.user,
         user
-      ]
+      ],
+      loggedIn: true
     })
   }
 
@@ -44,6 +46,38 @@ class App extends Component {
         ...this.state.goal_cards,
         goal
       ]
+    })
+  }
+
+  handleAddGoalType = goalList => {
+    // const getUser = this.state.user.map(user => {
+    //   if (user.id === goalList.user_id) {
+
+    //   }
+    // })
+
+    const newList = this.state.goal_list.map(list => {
+      if (list.goal_type_id === goalList.goal_type_id && list.user_id === goalList.user_id) {
+        return {
+          ...list,
+          card_ids: [...list.card_ids, goalList.card_ids],
+        }
+      } else if (list.goal_type_id === goalList.goal_type_id && list.user_id !== goalList.user_id){
+        return {
+          ...list,
+          card_ids: [...list.card_ids, goalList.card_ids],
+          user_id: goalList.user_id,
+          goal_type_id: goalList.goal_type_id
+        }
+      } else {
+        return list
+      }
+      
+      
+    })
+
+    this.setState({
+      goal_list: newList
     })
   }
 
@@ -86,12 +120,15 @@ class App extends Component {
       goal_cards: this.state.goal_cards,
       goal_list: this.state.goal_list,
       addUser: this.handleAddUser,
-      addGoal: this.handleAddGoal
+      addGoal: this.handleAddGoal,
+      addGoalType: this.handleAddGoalType
     }
     return (
       <ApiContext.Provider value={value}>
         <div className='App'>
-         <DashboardNav />
+         <DashboardNav
+         loggedIn= {this.state.loggedIn}
+         />
       
           <main className="App_Main">{this.renderMainRoutes()}</main>
         </div>

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import STORE from '../dummy-store'
 import ApiContext from '../ApiContext'
-
 import GoalListHeader from '../GoalListHeader/GoalListHeader'
 import AddGoalCard from '../AddGoalCard/AddGoalCard'
 import GoalListWrapper from '../GoalListWrapper/GoalListWrapper'
@@ -24,10 +23,18 @@ class Dashboard extends Component {
             showModal: false
           }
   }
-      
+    
     
 
     static contextType = ApiContext;
+
+    componentDidMount = () => {
+      this.setState({
+        goal_list: this.context.goal_list.filter(item => item.user_id == this.props.match.params.userId)
+      })
+      
+    }
+    
 
     toggleModal = () => {
         this.setState({
@@ -49,29 +56,34 @@ class Dashboard extends Component {
             ? goal_list
             : goal_list.filter(item => item.user_id == userId)
     )
+
     
     
  
   render() {
     const { goal_cards=[], goal_list=[], goal_type=[] } = this.context
-    const { userId } = this.props.match.params
+    const userId = 1234
+    // const { userId } = this.props.match.params
 
     const goalsForUser = this.getGoalsForUser(goal_cards, userId)
-    //const goalTitle = this.findGoalTitle(goal_type, goalsForUser)
-
+    
     //Gets goal_list based on user
     const goalListForUser = this.getGoalTitleIds(goal_list, userId)
+  
+
     
     
     return (
       <div className='dashboard'>
            <header className="App-header">
                 <ul>
-                    <li>
-                        <a href="payment.html" className="btn">Edit Payment info</a>
-                    </li>
+                  <li className="tree-count">
+                      <p><span id="tree-number"> 4 </span>Trees planted this month</p>
+                  </li>
+                  <li>
+                      <Link to="/add-payment" className="btn">Edit Payment info</Link>
+                  </li>
                 </ul>
-                <p className="tree-count">4 Trees planted this month</p>
            </header>
         <div>
             <div className="App-list">
@@ -86,7 +98,15 @@ class Dashboard extends Component {
                 <button className="NavCircleButton" onClick={this.toggleModal}>
                         add new goal +
                 </button>
+                {(goalListForUser.length === 0) && <AddGoalCard 
+                    firstGoal= {true}
+                    show= {true}
+                    closeCallback={this.toggleModal}
+                    customClass="custom_modal_class"
+                    userId={userId}
+                />}
                 <AddGoalCard 
+                    firstGoal= {false}
                     show={this.state.showModal}
                     closeCallback={this.toggleModal}
                     customClass="custom_modal_class"

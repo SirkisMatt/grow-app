@@ -1,39 +1,56 @@
-
-
-.login-form {
-    padding: 100px 15px;
-    text-align: center;
-    line-height: 1.5;
-  }
-
-.login-form p {
-    text-align: center;
-    line-height: 1.5;
+.login-wrap {
+  max-width: 350px;
+  border-radius: 20px;
+  margin: auto;
+  background: rgba(0,0,0,0.8);
+  box-sizing: border-box;
+  padding: 40px;
+  color: #fff;
+  margin-top: 100px;
 }
 
-.login-nav nav a {
-    float: left;
-    color: #f2f2f2;
-    padding: 1px 10px;
-    text-decoration: none;
-    font-size: 20px;
-    text-align: right;
-  }
+.login-wrap h2 {
+  text-align: center;
+}
 
-  .login-nav,
-  .login-nav footer {
-    padding: 1% 0;
-    background-color: #aaa;
-   
-  }
-  .login-nav ul {
-    list-style-type: none;
-  }
-  
-  .login-nav nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-  }
+.login-wrap input[type=text], input[type=password] {
+  width:100%;
+  box-sizing: border-box;
+  padding: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background: rgba(0,0,0,0.10);
+  outline: none;
+  border: none;
+  border-bottom: .5px dotted #fff;
+  color: #fff;
+  border-radius: 5px;
+  margin: 5px;
+  font-weight: bold;
+}
+
+.login-wrap button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 30px;
+  outline: none;
+  border: none;
+  background: #177236;
+  opacity: 0.7;
+  border-radius: 20px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.login-wrap button:hover {
+  background-color: rgba(59, 119, 57, 0.8);
+} 
+
+.login-wrap a {
+  text-decoration: underline;
+  color: beige;
+}
+
+.login-wrap a:hover {
+  color: #fff;
+}

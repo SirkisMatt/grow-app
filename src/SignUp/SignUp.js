@@ -69,7 +69,7 @@ class SignUp extends Component {
       
         //Adds newUser to dummy-store
         this.context.addUser(newUser)
-        this.props.history.push(`/dashboard/${newUser.id}`)
+        this.props.history.push(`/dashboard/1234`)
       
         
     }
@@ -79,28 +79,13 @@ class SignUp extends Component {
     //validate email before submit
     const emailError = this.validateEmail()
     return (
-        <div>
-            <nav role="navigation" className="signup-nav">
-                <ul>
-                    <li><Link to='/' className='home'>Grow</Link></li>
-                    <li><Link to='/login' className='login'>Login</Link></li>
-                </ul>
-            </nav>
+        <div className="signup-wrap">
+            <h2>Sign up Here</h2>
             <form className='signup-form' onSubmit={this.handleSubmit}>
-                <div>
-                    <label htmlFor="user-name">User Name</label>
                     <input placeholder='User Name' type="text" name='user-name' id='user-name' />
-                </div>
-                <div>
-                    <label htmlFor="username">Email</label>
-                    <input type="text" name='email' id='email' onChange={e => this.handleEmailChange(e)} />
+                    <input placeholder='Email' type="text" name='email' id='email' onChange={e => this.handleEmailChange(e)} />
                     {this.state.email.touched && <ValidationError message={emailError} />}
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name='password' id='password' onChange={e => this.handlePasswordChange(e)}/>
-                </div>
-                <Link to='/dashboard' className='dashboard'>Short Cut</Link>
+                    <input placeholder='Password' type="password" name='password' id='password' onChange={e => this.handlePasswordChange(e)}/>
                     <button 
                     type='submit'
                     disabled={

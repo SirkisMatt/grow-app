@@ -43,15 +43,15 @@ export default {
     "goal_cards": [
         {
             "id": "1",
-            "title": "Run 15 miles this week",
-            "description": "try to run 3 miles 5 days out of the week",
+            "title": "Sleep 8 hours a night",
+            "description": "try to get in bed by 10pm",
             "date_created": "2020-11-07T00:00:00.000Z",
-            "tree_bet": "5",
+            "tree_bet": "4",
             "tree_org": "one-tree-planted",
             "complete_by": "2020-11-014T00:00:00.000Z",
             "completed": false,
             "goal_list": "1",
-            "user_id": "16396c0f-f1dc-4988-8764-e92fe787923e",
+            "user_id": "1234",
             "goal_type_id": "1"
         },
         {
@@ -63,7 +63,7 @@ export default {
             "tree_org": "one-tree-planted",
             "complete_by": "2020-11-014T00:00:00.000Z",
             "completed": false,
-            "user_id": "16396c0f-f1dc-4988-8764-e92fe787923e",
+            "user_id": "1234",
             "goal_type_id": "1"
         },
         {
@@ -76,26 +76,58 @@ export default {
             "complete_by": "2020-11-014T00:00:00.000Z",
             "completed": false,
             "goal_list": "1",
-            "user_id": "16396c0f-f1dc-4988-8764-e92fe787923e",
+            "user_id": "1234",
+            "goal_type_id": "2"
+        },
+        {
+            "id": "4",
+            "title": "Only buy coffee twice this week.",
+            "description": "Just make it at home!",
+            "date_created": "2020-14-07T00:00:00.000Z",
+            "tree_bet": "3",
+            "tree_org": "one-tree-planted",
+            "complete_by": "2020-11-014T00:00:00.000Z",
+            "completed": false,
+            "goal_list": "1",
+            "user_id": "1234",
+            "goal_type_id": "2"
+        },
+        {
+            "id": "5",
+            "title": "Do one nice thing for someone else",
+            "description": "Stay aware of others reality",
+            "date_created": "2020-14-07T00:00:00.000Z",
+            "tree_bet": "2",
+            "tree_org": "one-tree-planted",
+            "complete_by": "2020-11-014T00:00:00.000Z",
+            "completed": false,
+            "goal_list": "1",
+            "user_id": "1234",
             "goal_type_id": "2"
         },
     ],
     "goal_list": [
         {
-        "user_id": "16396c0f-f1dc-4988-8764-e92fe787923e",
-        "goal_type_id": "2",
-        "card_ids": ['1']
-        },
-        {
-        "user_id": "16396c0f-f1dc-4988-8764-e92fe787923e",
+        "user_id": "1234",
         "goal_type_id": "1",
-        "card_ids": ['2', '3', '1', '3']
+        "card_ids": ["2", ]
         },
         {
-        "user_id": "16396c0f-f1dc-4988-8764-e92fe787923e",
-        "goal_type_id": "3",
-        "card_ids": ['1']
+        "user_id": "1234",
+        "goal_type_id": "2",
+        "card_ids": ["3", "5"]
         },
+        {
+        "user_id": "1234",
+        "goal_type_id": "3",
+        "card_ids": ["4"]
+        },
+        {
+        "user_id": "1234",
+        "goal_type_id": "4",
+        "card_ids": ["1"]
+        },
+
         
     ]
 }

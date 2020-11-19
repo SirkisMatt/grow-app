@@ -1,32 +1,25 @@
 
-.dashboard-nav {
-  text-decoration: none;
-  font-size: 1.2em;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-}
-
-.dashboard nav li{
-  text-decoration: none;
-}
-
 .App-header {
-  list-style-type: none;
-  margin-top: 20px;
-  font-size: 20px;
-  /* background-color: rgba(0,136,169,1); */
+  font-size: 1em;
   color: beige;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-top: 20px;
+  border-radius: 10px;
+  padding: 0px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.App-header ul {
+  padding: 0px 5px;
+  list-style: none;
 }
 
 .App-header li {
   display: inline-block;
-  padding: 0px 5px;
+
 }
 
 .App-header li a {
@@ -38,9 +31,16 @@
   color: #0088a9
 }
 
-.App-header p {
-  margin-right: auto;
+.tree-count {
+  margin-right: 4em;
+  align-self: flex-end;
 }
+
+#tree-number {
+  margin-right: .6em;
+  font-weight: bold;
+}
+
 
 
 .App-list {
@@ -59,7 +59,6 @@
   font: inherit;
   background-color: rgba(154, 196, 171, 0.4);
   border: none;
-  color: inherit;
   padding: 9px;
   padding-left: 15px;
   padding-right: 100px;
@@ -71,36 +70,37 @@
 .NavCircleButton:hover {
   background-color: rgba(59, 119, 57, 0.8);
 }
-/* .tree-count {
-  font-size: 20px;
-  text-align: right;
-} */
 
 
 .btn {
   font: inherit;
-  background-color: rgba(0,136,169,1);
+  font-size: .8em;
+  background-color: rgba(154, 196, 171, 0.4);
   border: none;
-  color: inherit;
+  color: beige;
   padding: 9px 25px;
   cursor: pointer;
-  border-radius: 0.6rem;
+  border-radius: 0.7rem;
   transition: all 0.3s ease 0s;
 }
 
 .btn:hover {
-  background-color: rgba(0,136,169,0.8);
+  background-color: rgba(59, 119, 57, 0.8);
+  color: beige;
 }
 
 :focus {
   outline-color: #fa0;
 }
 
+
 @media all and (min-width: 600px) {
 
-  .dashboard nav {
-    font-size: 2em;  
+  .App-header {
+    font-size: 1.3em;
+    justify-content: flex-start;
   }
+
 
   .App-list {
     flex-direction: row;
@@ -109,12 +109,8 @@
 
 }
 
+.App-header {
+  font-size: 1.3em;
+  
+}
 
-/* @media all and (min-width: 800px) {
-
-  .App-list {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-} */

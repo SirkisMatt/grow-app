@@ -1,31 +1,21 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+import './AddPayment.css'
 
 class AddPayment extends Component {
     render() {
         return (
+          <div className="payment-wrap">
+            <h2>Add method of payment to donate trees!</h2>
             <form className='payment-form'>
-            <div>
-              <label htmlFor="first-name">First name on Card</label>
               <input placeholder='First Name' type="text" name='first-name' id='first-name' />
-            </div>
-            <div>
-              <label htmlFor="last-name">Last name on Card</label>
-              <input type="text" name='last-name' id='last-name' placeholder='Last Name' />
-            </div>
-            <div>
-              <label htmlFor="card-number">Card Number</label>
-              <input type="number" name='card-number' id='card-number' />
-            </div>
-            <div>
-              <label htmlFor="expiry-date">Expiry Date</label>
-              <input type="number" name='expiry-date' id='expiry-date' />
-            </div>
-            <div>
-                <label htmlFor="cv">CV</label>
-                <input type="number" name='cv' id='cv' />
-              </div>
-            <a type='submit' href="user-dashboard.html">Add Card</a>
-        </form>
+              <input placeholder='Last Name' type="text" name='last-name' id='last-name'  />
+              <input placeholder='Card Number' type="password" name='card-number' id='card-number' />
+              <input placeholder='Expiry Date' type="text" name='expiry-date' id='expiry-date' />
+              <input placeholder='CV' type="text" name='cv' id='cv' />
+              <button><Link to='/dashboard/1234' href="user-dashboard.html">Add Card</Link></button>
+            </form>
+          </div>
         )
     }
 }

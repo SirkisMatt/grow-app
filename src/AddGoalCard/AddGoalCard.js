@@ -9,6 +9,7 @@ export default class AddGoalCard extends Component {
         children: <div>Empty Modal</div>,
         customClass: '',
         show: false,
+        firstGoal: false,
         closeCallback: () => (false),
         userId: ""
       };
@@ -20,7 +21,7 @@ export default class AddGoalCard extends Component {
 
         //format new user to add to dummy-store
         const newGoal = {
-            id: uuidv4(),
+            id: 5,
             title: e.target['goal-title'].value,
             description: e.target['description'].value,
             date_created: new Date().toString(),
@@ -32,44 +33,60 @@ export default class AddGoalCard extends Component {
             goal_type_id: e.target['GoalOptions'].value
         }
 
+        const goalType = {
+            user_id: this.props.userId,
+            goal_type_id: e.target['GoalOptions'].value,
+            card_ids: newGoal.id 
+        }
+
+
         this.context.addGoal(newGoal)
-        console.log(newGoal)
+        this.context.addGoalType(goalType)
+    
         //this.props.history.push(`/dashboard/${this.props.userId}`)
     }
 
     render() {
-        const { customClass, show, closeCallback } = this.props
+        const { customClass, show, closeCallback, firstGoal } = this.props
         const { goal_type=[] } = this.context
         return (
             <div className={`modal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
                 <div className="overlay" onClick={closeCallback}>></div>
                     <div className="modal_content">
+                        {firstGoal && <h3>Lets Get Started!</h3>}
                         <form className="add-goal" onSubmit={this.handleSubmit}>
-                            <div>
-                                <input htmlFor="goal-title" placeholder='Whats your goal?' type="text" name='goal-title' id='goal-title' />
-                            </div>
-                                <br/>
-                            <textarea name="description" rows="10" cols="30" placeholder='description'/>
-                            <label htmlFor="tree-bet">How many trees do you bet you'll make your goal?</label>
-                            <input type="number" id="tree_bet" name="tree_bet" min="1"/>
-                                <br/>
-                            <label htmlFor="tree-org">Choose an organization</label>
-                            <select id="tree_org" name="tree_org">
-                                <option value="one-tree-planted">one-tree-planted</option>
-                                <option value="WebForest">WebForest</option>
-                                <option value="TIST">TIST</option>
+                            <label htmlFor="goal-type">What type of goal is this?</label>
+                            <select name="GoalOptions" id="GoalOptions">
+                                {goal_type.map(goal_type =>
+                                    <option value={goal_type.id}key={goal_type.id}>
+                                        {goal_type.title}
+                                    </option>
+                                )}
                             </select>
+                            <br/>
+                                <input htmlFor="goal-title" placeholder='Whats your goal?' type="text" name='goal-title' id='goal-title' />
                                 <br/>
-                            <label htmlFor="due-date">Goal complete by:</label>
-                            <input type="date" id="complete_by" name="complete_by"/>
-                                <br/>
-                                <select name="GoalOptions" id="GoalOptions">
-                                    {goal_type.map(goal_type =>
-                                        <option key={goal_type.id}>
-                                            {goal_type.title}
-                                        </option>
-                                    )}
+                            <textarea className="description" name="description" rows="10" cols="30" placeholder='description'/>
+                            <br/>
+                            <div>
+                                <label htmlFor="tree-bet">Tree bet: </label>
+                                <input placeholder="1" type="number" id="tree_bet" name="tree_bet" min="1"/>
+                            </div>
+                            <br/>
+                            <div>
+                                <label htmlFor="tree-org">Choose an organization: </label>
+                                <select id="tree_org" name="tree_org">
+                                    <option value="one-tree-planted">one-tree-planted</option>
+                                    <option value="WebForest">WebForest</option>
+                                    <option value="TIST">TIST</option>
                                 </select>
+                            </div>
+                            <br/>
+                            <div>
+                                <label htmlFor="due-date">Goal complete by: </label>
+                                <input type="date" id="complete_by" name="complete_by"/>
+                            </div>
+                            <br/>
                             <button onClick={closeCallback}>Add Goal!</button>
                         </form>
                             <button title="Close" className="close_modal" onClick={closeCallback}>

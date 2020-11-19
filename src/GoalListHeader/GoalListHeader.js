@@ -9,7 +9,6 @@ export default class GoalListHeader extends Component {
 
     render() {
         const { goal_type } = this.context
-        //console.log(goal_type[1].title)
         return (
         <div>
             <h2></h2>

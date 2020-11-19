@@ -27,10 +27,16 @@
     overflow: auto;
     background: #fff;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 30px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.7);
     border-radius: 4px;
-    width: 520px; /* This just a default width */
+    max-width: 500px;
+    border-radius: 10px;
+    margin: auto;
+    background: rgba(0,0,0,0.8);
+    box-sizing: border-box;
+    color: #fff;
+    
   }
   
   .modal .modal_content > h2 {
@@ -50,6 +56,7 @@
     top: 10px;
     cursor: pointer;
     font-size: 18px;
+    color: beige;
     opacity: 0.5;
     background: none;
     border: none;
@@ -59,3 +66,19 @@
   .modal .close_modal:hover {
     opacity: 0.9;
   }
+
+  .modal_content input[type=text] {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  .description {
+    margin-bottom: 2em;
+  }
+
+  br {
+    margin: 2em;
+  }
+
+
+  

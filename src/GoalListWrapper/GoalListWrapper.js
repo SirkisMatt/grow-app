@@ -6,8 +6,7 @@ function GoalListWrapper(props) {
     // static defaultProps = {
 
     // }
-    console.log(props)
-    console.log(props.goal.map(goals => goals))
+
     return (
         <section className="List">
             <header className="List-header">

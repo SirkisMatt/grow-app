@@ -48,35 +48,23 @@ class Login extends Component {
         return ("You have entered an invalid email address!")
     }
 
+    
+
 
   render() {
       const emailError = this.ValidateEmail();
     return (
-        <div>
-        <nav role="navigation" className="login-nav">
-            <ul>
-            <li><Link to='/' className='home'>Grow</Link></li>
-            </ul>
-        </nav>
-        <main>
+        <div className="login-wrap">
+            <h2>Login Here</h2>
             <form className='login-form' onSubmit={this.handleSubmit}>
-                <div>
-                    <label htmlFor="username">
-                        Email
-                    </label>
-                  <input type="text" name='email' id='email' onChange={e => this.handleEmailChange(e)} />
+                  <input placeholder="Email" type="text" name='email' id='email' onChange={e => this.handleEmailChange(e)} />
                   {this.state.email.touched && <ValidationError message={emailError}/>}
-                </div>
-                <div>
-                    <label htmlFor="password"> 
-                        Password
-                    </label>
-                    <input type="password" name='password' id='password' onChange={e => this.handlePasswordChange(e)}/>
-                </div>
-                <a href="user-dashboard.html">Sign In</a>
+                    <input placeholder="Password" type="password" name='password' id='password' onChange={e => this.handlePasswordChange(e)}/>
+                    <button type='submit'>
+                        Sign In
+                    </button>
             </form>
             <p>Don't have an account? <Link to='/signup' className="sign-up">Sign Up</Link></p>
-        </main>
     </div>
     );
   }

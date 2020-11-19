@@ -2,51 +2,44 @@
   .landing-page {
     font-family: "Open Sans",
     sans-serif;
-    font-size: 20px;
-    color: #444;
+    /* font-size: 20px; */
+    color: beige;
     text-align: center;
     line-height: 1.5;
   }
 
   
-  .landing-page nav {
-    padding: 1% 0;
-    background-color: #aaa;
-   
+  .landing-main-header {
+    padding: 20px 15px;
+    margin-top: 50px;
   }
 
-  footer {
-    padding: 1% 0;
-    background-color: #aaa;
-   
+  .landing-main-header h1 {
+    font-size: 2em;
   }
-  .landing-page ul {
-    list-style-type: none;
-  }
-  
-  .landing-page nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
+  .landing-main-header h3 {
+    font-size: 1.2em;
   }
   
   .landing-header {
-    padding: 45px 15px;
-    margin-top: 100px;
+    padding: 10px 15px;
+    margin-top: 50px;
   }
 
   
   .landing-section {
     min-height: 200px;
-    padding: 30px 15px;
-    background-color: #bbb;
+    padding: 10px 15px;
+ 
+  }
+
+  .landing-page hr {
+    width: 30%;
+    margin-top: 40px;
+    margin-bottom: 5px;
   }
   
-  .landing-section:nth-child(even) {
-    background-color: #ddd;
-  }
+ 
   
   .landing-page p {
     margin: 0 auto;
@@ -54,15 +47,26 @@
   }
   
   .landing-page p + p {
-    margin-top: 15px;
+    margin-top: 10px;
   }
   
+  .landing-footer {
+    margin-top: 100px;
+  }
 
-   nav a {
-    float: left;
-    color: #f2f2f2;
-    padding: 1px 8px;
-    text-decoration: none;
-    font-size: 30px;
-    text-align: right;
+  @media all and (min-width: 400px) {
+
+    .landing-main-header h1 {
+      font-size: 2.7em;
+    }
+
+    .landing-main-header h3 {
+      font-size: 1.6em;
+    }
+  
+    .App-list {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  
   }
