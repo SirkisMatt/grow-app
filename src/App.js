@@ -50,12 +50,7 @@ class App extends Component {
   }
 
   handleAddGoalType = goalList => {
-    // const getUser = this.state.user.map(user => {
-    //   if (user.id === goalList.user_id) {
-
-    //   }
-    // })
-
+   
     const newList = this.state.goal_list.map(list => {
       if (list.goal_type_id === goalList.goal_type_id && list.user_id === goalList.user_id) {
         return {
