@@ -7,10 +7,13 @@ function GoalListWrapper(props) {
 
     // }
 
+
+    //console.log(props)
     return (
         <section className="List">
             <header className="List-header">
                 <h2>{props.header[0].title}</h2>
+                <h2>Hello</h2>
             </header>
             <div className="List-cards">
                 {props.goal.map((goals) =>

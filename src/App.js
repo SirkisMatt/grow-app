@@ -5,7 +5,7 @@ import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
-import DashboardNav from './DashboardNav/DashboardNav'
+import LandingNav from './LandingNav/LandingNav'
 import AddPayment from './AddPayment/AddPayment'
 import AddGoalType from './AddGoalType/AddGoalType'
 import ApiContext from './ApiContext'
@@ -121,7 +121,7 @@ class App extends Component {
     return (
       <ApiContext.Provider value={value}>
         <div className='App'>
-         <DashboardNav
+         <LandingNav
          loggedIn= {this.state.loggedIn}
          />
       

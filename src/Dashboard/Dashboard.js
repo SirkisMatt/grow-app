@@ -15,11 +15,11 @@ class Dashboard extends Component {
   constructor(props) {
         super(props)
         this.state = {
-            user: [],
-            userId: "",
+            user: {},
+            userId: 1234,
             goal_type: [],
             goal_cards: [],
-            goal_list: [],
+            goal_list: {},
             showModal: false
           }
   }
@@ -29,10 +29,27 @@ class Dashboard extends Component {
     static contextType = ApiContext;
 
     componentDidMount = () => {
+      let user = STORE.user[0]
+      let goalType = {}
+      let goalCards = STORE.goal_cards.filter(goal => goal.user_id == user.id)
+
+
+      goalCards.map(goal => { 
+        if (!goalType[goal.goal_type_id]) {
+          goalType[goal.goal_type_id] = [goal.id]
+        } else {
+          goalType[goal.goal_type_id].push(goal.id)
+        }
+       })
+
+   
       this.setState({
-        goal_list: this.context.goal_list.filter(item => item.user_id == this.props.match.params.userId)
+        user: user,
+        goal_type: STORE.goal_type,
+        goal_cards: goalCards,
+        goal_list: goalType,
       })
-      
+     
     }
     
 
@@ -42,36 +59,20 @@ class Dashboard extends Component {
         });
       }
 
-    //Gets correct goals for user that logged in. 
-    getGoalsForUser = (goal_cards=[], userId) => (
-        (!userId)
-            ? goal_cards
-            : goal_cards.filter(goal => goal.user_id == userId)
-    )
 
 
-    //Gets goal_list based on user
-    getGoalTitleIds = (goal_list=[], userId) => (
-        (!userId)
-            ? goal_list
-            : goal_list.filter(item => item.user_id == userId)
-    )
-
-    
-    
+  
  
   render() {
-    const { goal_cards=[], goal_list=[], goal_type=[] } = this.context
-    const userId = 1234
-    // const { userId } = this.props.match.params
-
-    const goalsForUser = this.getGoalsForUser(goal_cards, userId)
     
-    //Gets goal_list based on user
-    const goalListForUser = this.getGoalTitleIds(goal_list, userId)
-  
-
     
+    const goalType = Object.keys(this.state.goal_list)
+    console.log(this.state.goal_list)
+    console.log(goalType)
+    
+    goalType.map(goalTypeId => { 
+      console.log(goalTypeId)
+    })
     
     return (
       <div className='dashboard'>
@@ -87,32 +88,33 @@ class Dashboard extends Component {
            </header>
         <div>
             <div className="App-list">
-                {goalListForUser.map(list => 
+                {goalType.map(goalTypeId => {
                     <GoalListWrapper
-                        key={list.goal_type_id}
-                        id={list.goal_type_id}
-                        header={goal_type.filter(item => item.id == list.goal_type_id)}
-                        goal={list.card_ids.map(id => goalsForUser[id - 1])}
-                    />
-                )}
+                        key={goalTypeId}
+                        id={goalTypeId}
+                        header={this.state.goal_type.filter(item => item.id == goalTypeId)}
+                        goal={this.state.goal_cards.filter(goal => this.state.goal_list[goalTypeId].includes(goal.id))}
+                    /> 
+                })}
                 <button className="NavCircleButton" onClick={this.toggleModal}>
                         add new goal +
                 </button>
-                {(goalListForUser.length === 0) && <AddGoalCard 
+                {(this.state.goal_cards.length === 0) && <AddGoalCard 
                     firstGoal= {true}
                     show= {true}
                     closeCallback={this.toggleModal}
                     customClass="custom_modal_class"
-                    userId={userId}
+                    userId={this.state.user.id}
                 />}
                 <AddGoalCard 
                     firstGoal= {false}
                     show={this.state.showModal}
                     closeCallback={this.toggleModal}
                     customClass="custom_modal_class"
-                    userId={userId}
+                    userId={this.state.user.id}
                 />
             </div>
+            
         </div>
       </div>
     );

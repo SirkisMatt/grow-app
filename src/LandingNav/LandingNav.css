@@ -1,0 +1,46 @@
+.landing-nav {
+    text-decoration: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 1.5em;  
+}
+
+.landing-nav li {
+    float: left;
+    color: #f2f2f2;
+    padding: 1px 8px;
+    text-decoration: none;
+    /* font-size: 30px; */
+    text-align: right;
+  }
+
+.landing-nav ul {
+    text-decoration: none;
+    list-style-type: none;
+    padding: 0%;
+    margin-top: 0%;
+}
+
+.landing-nav a {
+    text-decoration: none;
+    color: beige;
+}
+
+.landing-nav .not-loggedin {
+    float: right;
+}
+
+.account-details {
+    float: right;
+}
+
+
+@media all and (min-width: 400px) {
+
+    .landing-nav  {
+      font-size: 2em;  
+    }
+  
+  }

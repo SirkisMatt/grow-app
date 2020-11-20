@@ -69,7 +69,7 @@ class SignUp extends Component {
       
         //Adds newUser to dummy-store
         this.context.addUser(newUser)
-        this.props.history.push(`/dashboard/1234`)
+        this.props.history.push(`/add-payment/1234`)
       
         
     }
