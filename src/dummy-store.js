@@ -52,7 +52,7 @@ export default {
             "completed": false,
             "goal_list": "1",
             "user_id": "1",
-            "goal_type_id": "3"
+            "goal_type_id": "4"
         },
         {
             "id": "2",
@@ -64,7 +64,7 @@ export default {
             "complete_by": "2020-11-014T00:00:00.000Z",
             "completed": false,
             "user_id": "1",
-            "goal_type_id": "3"
+            "goal_type_id": "1"
         },
         {
             "id": "3",
@@ -90,7 +90,7 @@ export default {
             "completed": false,
             "goal_list": "1",
             "user_id": "1",
-            "goal_type_id": "2"
+            "goal_type_id": "3"
         },
         {
             "id": "5",

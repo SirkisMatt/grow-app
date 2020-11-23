@@ -11,6 +11,7 @@ export default class AddGoalCard extends Component {
         show: false,
         firstGoal: false,
         closeCallback: () => (false),
+        goalTypes: [],
         userId: ""
       };
 
@@ -21,7 +22,7 @@ export default class AddGoalCard extends Component {
 
         //format new user to add to dummy-store
         const newGoal = {
-            id: 5,
+            id: uuidv4(),
             title: e.target['goal-title'].value,
             description: e.target['description'].value,
             date_created: new Date().toString(),
@@ -33,22 +34,15 @@ export default class AddGoalCard extends Component {
             goal_type_id: e.target['GoalOptions'].value
         }
 
-        const goalType = {
-            user_id: this.props.userId,
-            goal_type_id: e.target['GoalOptions'].value,
-            card_ids: newGoal.id 
-        }
 
 
-        this.context.addGoal(newGoal)
-        this.context.addGoalType(goalType)
+        this.props.addGoal(newGoal)
     
-        //this.props.history.push(`/dashboard/${this.props.userId}`)
     }
 
     render() {
         const { customClass, show, closeCallback, firstGoal } = this.props
-        const { goal_type=[] } = this.context
+        const { goalTypes } = this.props
         return (
             <div className={`modal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
                 <div className="overlay" onClick={closeCallback}>></div>
@@ -57,7 +51,7 @@ export default class AddGoalCard extends Component {
                         <form className="add-goal" onSubmit={this.handleSubmit}>
                             <label htmlFor="goal-type">What type of goal is this?</label>
                             <select name="GoalOptions" id="GoalOptions">
-                                {goal_type.map(goal_type =>
+                                {goalTypes.map(goal_type =>
                                     <option value={goal_type.id}key={goal_type.id}>
                                         {goal_type.title}
                                     </option>

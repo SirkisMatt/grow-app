@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import STORE from './dummy-store'
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
+import DashboardNav from './DashboardNav/DashboardNav'
+import AccountDetails from './AccountDetails/AccountDetails'
 import LandingNav from './LandingNav/LandingNav'
 import AddPayment from './AddPayment/AddPayment'
 import AddGoalType from './AddGoalType/AddGoalType'
@@ -49,32 +51,26 @@ class App extends Component {
     })
   }
 
-  handleAddGoalType = goalList => {
-   
-    const newList = this.state.goal_list.map(list => {
-      if (list.goal_type_id === goalList.goal_type_id && list.user_id === goalList.user_id) {
-        return {
-          ...list,
-          card_ids: [...list.card_ids, goalList.card_ids],
-        }
-      } else if (list.goal_type_id === goalList.goal_type_id && list.user_id !== goalList.user_id){
-        return {
-          ...list,
-          card_ids: [...list.card_ids, goalList.card_ids],
-          user_id: goalList.user_id,
-          goal_type_id: goalList.goal_type_id
-        }
-      } else {
-        return list
-      }
-      
-      
-    })
+  renderNavRoutes() {
+    return (
+        <>
+            {['/', '/signup', 'add-payment', 'login'].map(path => (
+                <Route
+                    exact
+                    key={path}
+                    path={path}
+                    component={LandingNav}
+                />
+            ))}
+            <Route 
+              path="/dashboard/:userId"
+              component={DashboardNav}
+            />
 
-    this.setState({
-      goal_list: newList
-    })
-  }
+        </>
+    );
+}
+
 
   renderMainRoutes() {
     return (
@@ -104,6 +100,10 @@ class App extends Component {
         path="/login"
         component={Login}
         />
+        <Route 
+        path="/account/:userId"
+        component={AccountDetails}
+        />
       </>
     )
   }
@@ -116,14 +116,11 @@ class App extends Component {
       goal_list: this.state.goal_list,
       addUser: this.handleAddUser,
       addGoal: this.handleAddGoal,
-      addGoalType: this.handleAddGoalType
     }
     return (
       <ApiContext.Provider value={value}>
         <div className='App'>
-         <LandingNav
-         loggedIn= {this.state.loggedIn}
-         />
+       {this.renderNavRoutes()}
       
           <main className="App_Main">{this.renderMainRoutes()}</main>
         </div>

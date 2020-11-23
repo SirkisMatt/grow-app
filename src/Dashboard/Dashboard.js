@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 import STORE from '../dummy-store'
 import ApiContext from '../ApiContext'
-import GoalListHeader from '../GoalListHeader/GoalListHeader'
 import AddGoalCard from '../AddGoalCard/AddGoalCard'
 import GoalListWrapper from '../GoalListWrapper/GoalListWrapper'
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import Goal from '../Goal/Goal'
 import './Dashboard.css'
 
 
@@ -16,7 +12,6 @@ class Dashboard extends Component {
         super(props)
         this.state = {
             user: {},
-            userId: 1234,
             goal_type: [],
             goal_cards: [],
             goal_list: {},
@@ -31,7 +26,7 @@ class Dashboard extends Component {
     componentDidMount = () => {
       let user = STORE.user[0]
       let goalType = {}
-      let goalCards = STORE.goal_cards.filter(goal => goal.user_id == user.id)
+      let goalCards = STORE.goal_cards.filter(goal => goal.user_id === user.id)
 
 
       goalCards.map(goal => { 
@@ -51,6 +46,28 @@ class Dashboard extends Component {
       })
      
     }
+
+    handleAddGoal = goal => {
+      const goalType = this.state.goal_list
+   
+      if (!goalType[goal.goal_type_id]) {
+        goalType[goal.goal_type_id] = [goal.id]
+      } else {
+        goalType[goal.goal_type_id].push(goal.id)
+      }
+     
+      this.setState({
+        goal_cards: [
+          ...this.state.goal_cards,
+          goal
+        ],
+        //goal_list: goalType
+      })
+
+    }
+
+   
+  
     
 
     toggleModal = () => {
@@ -64,47 +81,31 @@ class Dashboard extends Component {
   
  
   render() {
-    
-    
-    const goalType = Object.keys(this.state.goal_list)
-    console.log(this.state.goal_list)
-    console.log(goalType)
-    
-    goalType.map(goalTypeId => { 
-      console.log(goalTypeId)
-    })
-    
+    const goalType = Object.keys(this.state.goal_list)  
     return (
       <div className='dashboard'>
-           <header className="App-header">
-                <ul>
-                  <li className="tree-count">
-                      <p><span id="tree-number"> 4 </span>Trees planted this month</p>
-                  </li>
-                  <li>
-                      <Link to="/add-payment" className="btn">Edit Payment info</Link>
-                  </li>
-                </ul>
-           </header>
-        <div>
-            <div className="App-list">
-                {goalType.map(goalTypeId => {
-                    <GoalListWrapper
-                        key={goalTypeId}
-                        id={goalTypeId}
-                        header={this.state.goal_type.filter(item => item.id == goalTypeId)}
-                        goal={this.state.goal_cards.filter(goal => this.state.goal_list[goalTypeId].includes(goal.id))}
-                    /> 
-                })}
-                <button className="NavCircleButton" onClick={this.toggleModal}>
+           <header className="dashboard-header">
+           <button className="add-goal-button" onClick={this.toggleModal}>
                         add new goal +
                 </button>
+           </header>
+        <div>
+            <div className="dashboard-list">
+                {goalType.map(goalTypeId => 
+                    <GoalListWrapper
+                    key={goalTypeId}
+                    id={goalTypeId}
+                    header={this.state.goal_type.filter(item => item.id === goalTypeId)}
+                    goal={this.state.goal_cards.filter(goal => this.state.goal_list[goalTypeId].includes(goal.id))}
+                    /> 
+                )}
                 {(this.state.goal_cards.length === 0) && <AddGoalCard 
                     firstGoal= {true}
                     show= {true}
                     closeCallback={this.toggleModal}
                     customClass="custom_modal_class"
                     userId={this.state.user.id}
+
                 />}
                 <AddGoalCard 
                     firstGoal= {false}
@@ -112,6 +113,8 @@ class Dashboard extends Component {
                     closeCallback={this.toggleModal}
                     customClass="custom_modal_class"
                     userId={this.state.user.id}
+                    goalTypes={this.state.goal_type}
+                    addGoal={this.handleAddGoal}
                 />
             </div>
             

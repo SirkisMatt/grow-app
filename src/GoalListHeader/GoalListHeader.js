@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import ApiContext from '../ApiContext'
+// import React, { Component } from 'react'
+// import ApiContext from '../ApiContext'
 
-export default class GoalListHeader extends Component {
+// export default class GoalListHeader extends Component {
 
-    static contextType = ApiContext;
+//     static contextType = ApiContext;
 
-    //Work in Progress obvi!
+//     //Work in Progress obvi!
 
-    render() {
-        const { goal_type } = this.context
-        return (
-        <div>
-            <h2></h2>
-        </div>
-        )
-    }
-}
+//     render() {
+//         
+//         return (
+//         <div>
+//             <h2></h2>
+//         </div>
+//         )
+//     }
+// }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 import ApiContext from '../ApiContext'
 import { v4 as uuidv4 } from 'uuid';
 import ValidationError from '../ValidationError'
@@ -69,7 +68,8 @@ class SignUp extends Component {
       
         //Adds newUser to dummy-store
         this.context.addUser(newUser)
-        this.props.history.push(`/add-payment/1234`)
+        let userId = newUser.id
+        this.props.history.push(`/add-payment/${userId}`)
       
         
     }

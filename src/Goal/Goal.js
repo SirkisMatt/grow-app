@@ -6,7 +6,7 @@ export default class Goal extends React.Component {
 
 
     render() {
-        const { id, title, description, dateCreated, treeBet, treeOrg, goalTypeId } = this.props
+        const { title, description, dateCreated, treeBet, treeOrg} = this.props
         return (
             <div className="Card">
                 <header>

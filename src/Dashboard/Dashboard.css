@@ -1,5 +1,9 @@
+.dashboard {
+  width: 100%;
+}
 
-.App-header {
+
+.dashboard-header {
   font-size: 1em;
   color: beige;
   display: flex;
@@ -12,49 +16,37 @@
   flex-wrap: wrap;
 }
 
-.App-header ul {
+.dashboard-header ul {
   padding: 0px 5px;
   list-style: none;
 }
 
-.App-header li {
+.dashboard-header li {
   display: inline-block;
 
 }
 
-.App-header li a {
+.dashboard-header li a {
   transition: all 0.3s ease 0s;
   text-decoration: none;
 }
 
-.App-header li a:hover {
+.dashboard-header li a:hover {
   color: #0088a9
 }
 
-.tree-count {
-  margin-right: 4em;
-  align-self: flex-end;
-}
 
-#tree-number {
-  margin-right: .6em;
-  font-weight: bold;
-}
-
-
-
-.App-list {
+.dashboard-list {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.App-list .NavCircleButton {
+.dashboard-list .add-goal-button {
   color: beige;
 }
 
-.NavCircleButton {
-  margin-left: 10px;
+.add-goal-button {
   color: rgb(240, 240, 229);
   font: inherit;
   background-color: rgba(154, 196, 171, 0.4);
@@ -62,12 +54,14 @@
   padding: 9px;
   padding-left: 15px;
   padding-right: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
   border-radius: 0.6rem;
   transition: all 0.3s ease 0s;
 }
 
-.NavCircleButton:hover {
+.add-goal-button:hover {
   background-color: rgba(59, 119, 57, 0.8);
 }
 
@@ -96,20 +90,20 @@
 
 @media all and (min-width: 600px) {
 
-  .App-header {
+  .dashboard-header {
     font-size: 1.3em;
     justify-content: flex-start;
   }
 
 
-  .App-list {
+  .dashboard-list {
     flex-direction: row;
     align-items: flex-start;
   }
 
 }
 
-.App-header {
+.dashboard-header {
   font-size: 1.3em;
   
 }

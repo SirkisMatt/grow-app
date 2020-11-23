@@ -4,7 +4,6 @@ import './LandingNav.css'
 
 export default function LandingNav(props) {
     return (
-        
         <nav role="navigation" className="landing-nav">
             <ul>
                 <li><Link to='/' className='home'>Grow</Link></li>

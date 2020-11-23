@@ -6,5 +6,4 @@ export default React.createContext({
     goals: [],
     addUser: () => {},
     addGoal: () => {},
-    addGoalType: () => {}
 })
