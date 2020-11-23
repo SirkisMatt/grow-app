@@ -13,7 +13,6 @@ export default class Goal extends React.Component {
                     <h3>{title}</h3>
                 </header> 
                 {description}
-                {dateCreated}
                 <div className="tree-bet">
                     <p>{treeBet} Trees at Stake</p>
                     <p>Donate to: {treeOrg}</p>

@@ -61,7 +61,6 @@ class Dashboard extends Component {
           ...this.state.goal_cards,
           goal
         ],
-        //goal_list: goalType
       })
 
     }
