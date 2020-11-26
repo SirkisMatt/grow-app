@@ -10,6 +10,8 @@ import AccountDetails from './AccountDetails/AccountDetails'
 import LandingNav from './LandingNav/LandingNav'
 import AddPayment from './AddPayment/AddPayment'
 import AddGoalType from './AddGoalType/AddGoalType'
+import GoalsCompleted from './GoalsCompleted/GoalsCompleted'
+//I would wrap context in index.js
 import ApiContext from './ApiContext'
 import './App.css'
 
@@ -22,6 +24,7 @@ class App extends Component {
     goal_cards: [],
     goal_list: []
   }
+
   componentDidMount = () => {
     this.setState({
       user: STORE.user,
@@ -31,7 +34,7 @@ class App extends Component {
       loggedIn: false
     })
   }
-  
+
   handleAddUser = user => {
     this.setState({
       user: [
@@ -62,9 +65,11 @@ class App extends Component {
                     component={LandingNav}
                 />
             ))}
-            <Route 
+            <Route
               path="/dashboard/:userId"
               component={DashboardNav}
+
+          
             />
 
         </>
@@ -75,34 +80,38 @@ class App extends Component {
   renderMainRoutes() {
     return (
       <>
-         <Route 
+         <Route
         exact
         path="/"
         component={LandingPage}
         />
-        <Route 
+        <Route
         path="/dashboard/:userId"
         component={Dashboard}
         />
-        <Route 
+        <Route
         path="/add-goal-type"
         component={AddGoalType}
         />
-        <Route 
-        path="/signup" 
+        <Route
+        path="/signup"
         component={SignUp}
         />
-        <Route 
+        <Route
         path="/add-payment"
         component={AddPayment}
         />
-        <Route 
+        <Route
         path="/login"
         component={Login}
         />
-        <Route 
+        <Route
         path="/account/:userId"
         component={AccountDetails}
+        />
+        <Route 
+        path='/goals-completed/:userId'
+        component={GoalsCompleted}
         />
       </>
     )
@@ -121,7 +130,7 @@ class App extends Component {
       <ApiContext.Provider value={value}>
         <div className='App'>
        {this.renderNavRoutes()}
-      
+
           <main className="App_Main">{this.renderMainRoutes()}</main>
         </div>
       </ApiContext.Provider>

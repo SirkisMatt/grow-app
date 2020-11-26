@@ -48,6 +48,14 @@ class Login extends Component {
         return ("You have entered an invalid email address!")
     }
 
+
+    handleSubmit = (e) => {
+        e.preventDefault(e)
+
+        this.props.history.push(`/dashboard/1234`)
+    }
+   
+
     
 
 
