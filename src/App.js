@@ -11,6 +11,7 @@ import LandingNav from './LandingNav/LandingNav'
 import AddPayment from './AddPayment/AddPayment'
 import AddGoalType from './AddGoalType/AddGoalType'
 import GoalsCompleted from './GoalsCompleted/GoalsCompleted'
+import config from './config'
 //I would wrap context in index.js
 import ApiContext from './ApiContext'
 import './App.css'
@@ -26,6 +27,13 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+
+    Promise.all([
+      fetch(`${config.API_ENDPOINT}/api/notes`)
+    ])
+
+
+    //if this.state.loggedIn fetch api notes based on user that is logged in 
     this.setState({
       user: STORE.user,
       goal_type: STORE.goal_type,
