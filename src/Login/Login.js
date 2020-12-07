@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import ApiContext from '../ApiContext'
+import Axios from 'axios';
 //import STORE from './dummy-store'
 import ValidationError from '../ValidationError'
 import './Login.css';
 
 class Login extends Component {
+
+    static contextType = ApiContext;
 
     constructor() {
         super()
@@ -49,12 +53,33 @@ class Login extends Component {
     }
 
 
+    // handleSubmit = (e) => {
+    //     e.preventDefault(e)
+
+    //     this.props.history.push(`/dashboard/1234`)
+    // }
+   
     handleSubmit = (e) => {
         e.preventDefault(e)
 
-        this.props.history.push(`/dashboard/1234`)
+        Axios.post("http://localhost:8000/api/users/login", {
+            email: this.state.email.value,
+            password: this.state.password.value,
+        })          
+            // .then((res) => {
+            //     if (!res.status.ok)
+            //         return res.json().then(e => Promise.reject(e))
+            //     return res.json()
+            // })
+            .then(user => {
+                this.context.addUser(user.data)
+                this.props.history.push(`/dashboard/${user.data.id}`)
+            })
+            .catch(error => {
+                console.log(error)
+                // this.setState({error: true})
+            })
     }
-   
 
     
 

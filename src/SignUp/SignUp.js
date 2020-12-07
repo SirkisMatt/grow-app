@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ApiContext from '../ApiContext'
+import Axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import ValidationError from '../ValidationError'
 import './SignUp.css'
@@ -54,25 +55,30 @@ class SignUp extends Component {
             
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault(e)
+    // handleSubmit = (e) => {
+    //     e.preventDefault(e)
 
-        //format new user to add to dummy-store
-        const newUser = {
-            id: uuidv4(),
-            username: e.target['user-name'].value,
-            email: e.target['email'].value,
-            password: e.target['password'].value,
-            date_created: new Date()
-        }
+    //     Axios.post("http://localhost:8000/api/users/login", {
+    //         email: emailReq,
+    //         password: passwordReq,
+    //     }).then[(response) => {
+    //         console.log(response)
+    //     }]
+
+    //     // //format new user to add to dummy-store
+    //     // const newUser = {
+    //     //     username: e.target['user-name'].value,
+    //     //     email: e.target['email'].value,
+    //     //     password: e.target['password'].value,
+    //     // }
       
-        //Adds newUser to dummy-store
-        this.context.addUser(newUser)
-        let userId = newUser.id
-        this.props.history.push(`/add-payment/${userId}`)
+    //     // //Adds newUser to dummy-store
+    //     // this.context.addUser(newUser)
+    //     // let userId = newUser.id
+    //     // this.props.history.push(`/add-payment/${userId}`)
       
         
-    }
+    // }
    
 
   render() {
