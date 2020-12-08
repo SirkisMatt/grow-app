@@ -46,7 +46,7 @@ class App extends Component {
       ],
       loggedIn: true
     })
-    getGoalsForUser()
+     //getGoalsForUser()
   }
 
   // getGoalsForUser = () => {
