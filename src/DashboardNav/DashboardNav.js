@@ -36,7 +36,7 @@ class DashboardNav extends Component {
                     <ul >
                         <li><Link to='/account/:userId' >Account Details</Link></li>
                         <li><Link to='/goals-completed/:userId'>Goals Completed</Link></li>
-                        <li>Log Out</li>
+                        <li><Link to='/'>Logout</Link></li>
                     </ul>
                 </div>
             </div>

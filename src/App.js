@@ -28,11 +28,6 @@ class App extends Component {
 
   componentDidMount = () => {
 
-    Promise.all([
-      fetch(`${config.API_ENDPOINT}/api/notes`)
-    ])
-
-
     //if this.state.loggedIn fetch api notes based on user that is logged in 
     this.setState({
       user: STORE.user,
