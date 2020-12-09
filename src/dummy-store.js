@@ -51,7 +51,7 @@ export default {
             "complete_by": "2020-11-014T00:00:00.000Z",
             "completed": false,
             "goal_list": "1",
-            "user_id": "1",
+            "user_id": 2,
             "goal_type_id": "4"
         },
         {
@@ -63,7 +63,7 @@ export default {
             "tree_org": "one-tree-planted",
             "complete_by": "2020-11-014T00:00:00.000Z",
             "completed": false,
-            "user_id": "1",
+            "user_id": "2",
             "goal_type_id": "1"
         },
         {
@@ -76,7 +76,7 @@ export default {
             "complete_by": "2020-11-014T00:00:00.000Z",
             "completed": false,
             "goal_list": "1",
-            "user_id": "1",
+            "user_id": "2",
             "goal_type_id": "2"
         },
         {

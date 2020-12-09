@@ -25,7 +25,8 @@ class Dashboard extends Component {
     static contextType = ApiContext;
 
     componentDidMount = () => {
-      let user = STORE.user[0]
+      let user = this.context.user[0]
+      console.log(this.context.user[0].id)
       let goalType = {}
       let goalCards = STORE.goal_cards.filter(goal => goal.user_id === user.id)
 

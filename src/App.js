@@ -22,17 +22,21 @@ class App extends Component {
 
   state = {
     user: [],
-    goal_type: [],
+    goal_types: [],
     goal_cards: [],
     goal_list: [],
     loggedIn: false
   }
 
   componentDidMount = () => {
-
+    Axios.get(`http://localhost:8000/api/goal-types`)
+    .then(goalTypes => {
+      this.setState({
+        goal_types: goalTypes
+      })
+    })
     //if this.state.loggedIn fetch api notes based on user that is logged in 
     this.setState({
-      goal_type: STORE.goal_type,
       goal_cards: STORE.goal_cards,
       goal_list: STORE.goal_list,
       loggedIn: false
@@ -46,12 +50,18 @@ class App extends Component {
       ],
       loggedIn: true
     })
-     //getGoalsForUser()
+   const userId = user.id
+    this.getGoalsForUser(userId)
   }
 
-  // getGoalsForUser = () => {
-  //   Axios.get(http://localhost:8000/api/goals)
-  // }
+  getGoalsForUser = (userId) => {
+    Axios.get(`http://localhost:8000/api/goals/${userId}`)
+    .then(goals => {
+      this.setState({
+        goal_cards: goals
+      })
+    })
+  }
 
   handleAddGoal = goal => {
     this.setState({
@@ -130,7 +140,7 @@ class App extends Component {
     console.log(this.state.user)
     const value = {
       user: this.state.user,
-      goal_type: this.state.goal_type,
+      goal_type: this.state.goal_types,
       goal_cards: this.state.goal_cards,
       goal_list: this.state.goal_list,
       addUser: this.handleAddUser,
