@@ -50,7 +50,7 @@ export default class AddGoalCard extends Component {
                         {firstGoal && <h3>Lets Get Started!</h3>}
                         <form className="add-goal" onSubmit={this.handleSubmit}>
                             <label htmlFor="goal-type">What type of goal is this?</label>
-                            <select name="GoalOptions" id="GoalOptions">
+                            <select name="GoalOptions" id="goal-options">
                                 {goalTypes.map(goal_type =>
                                     <option value={goal_type.id}key={goal_type.id}>
                                         {goal_type.title}

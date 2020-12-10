@@ -30,7 +30,7 @@
     padding: 30px;
     box-shadow: 0 1px 5px rgba(0,0,0,0.7);
     border-radius: 4px;
-    max-width: 500px;
+    max-width: 700px;
     border-radius: 10px;
     margin: auto;
     background: rgba(0,0,0,0.8);
@@ -80,5 +80,8 @@
     margin: 2em;
   }
 
+  #goal-options {
+    padding-left: 10px;
+  }
 
   

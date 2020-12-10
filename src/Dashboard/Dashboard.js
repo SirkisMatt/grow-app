@@ -13,7 +13,7 @@ class Dashboard extends Component {
         super(props)
         this.state = {
             user: {},
-            goal_type: [],
+            goal_types: [],
             goal_cards: [],
             goal_list: {},
             showModal: false
@@ -25,10 +25,16 @@ class Dashboard extends Component {
     static contextType = ApiContext;
 
     componentDidMount = () => {
-      let user = this.context.user[0]
-      console.log(this.context.user[0].id)
+      let user = {}
+      if (!this.context.user[0]) {
+        this.props.history.push(`/login`)
+      } else {
+        user = this.context.user[0]
+      }
+      
       let goalType = {}
-      let goalCards = STORE.goal_cards.filter(goal => goal.user_id === user.id)
+      console.log(this.context)
+      let goalCards = this.context.goals
 
 
       goalCards.map(goal => { 
@@ -42,7 +48,7 @@ class Dashboard extends Component {
    
       this.setState({
         user: user,
-        goal_type: STORE.goal_type,
+        goal_types: this.context.goal_types,
         goal_cards: goalCards,
         goal_list: goalType,
       })
@@ -83,6 +89,7 @@ class Dashboard extends Component {
  
   render() {
     const goalType = Object.keys(this.state.goal_list)  
+    console.log(this.state.goal_cards)
     return (
       <div className='dashboard'>
            <header className="dashboard-header">
@@ -106,6 +113,8 @@ class Dashboard extends Component {
                     closeCallback={this.toggleModal}
                     customClass="custom_modal_class"
                     userId={this.state.user.id}
+                    goalTypes={this.state.goal_types}
+                    addGoal={this.handleAddGoal}
 
                 />}
                 <AddGoalCard 
@@ -114,7 +123,7 @@ class Dashboard extends Component {
                     closeCallback={this.toggleModal}
                     customClass="custom_modal_class"
                     userId={this.state.user.id}
-                    goalTypes={this.state.goal_type}
+                    goalTypes={this.state.goal_types}
                     addGoal={this.handleAddGoal}
                 />
             </div>
