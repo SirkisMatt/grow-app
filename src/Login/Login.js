@@ -66,14 +66,18 @@ class Login extends Component {
             email: this.state.email.value,
             password: this.state.password.value,
         })          
-            // .then((res) => {
-            //     if (!res.status.ok)
-            //         return res.json().then(e => Promise.reject(e))
-            //     return res.json()
-            // })
-            .then(user => {
-                this.context.addUser(user.data)
-                this.props.history.push(`/dashboard/${user.data.id}`)
+            .then(res => {
+                if (res.status === 201) {
+                    this.context.addUser(res.data)
+                    this.getGoalsForUser(res.data.id)
+                } 
+                // if (user) {
+                //     this.props.history.push(`/dashboard/${user.data.id}`)
+                // }
+                // this.props.history.push(`/dashboard/${user.data.id}`)
+            })
+            .then(data => {
+                console.log(data)
             })
             .catch(error => {
                 console.log(error)
@@ -81,6 +85,17 @@ class Login extends Component {
             })
     }
 
+    getGoalsForUser = (userId) => {
+        Axios.get(`http://localhost:8000/api/goals/${userId}`)
+        .then(goals => {
+          console.log(goals)
+         this.context.addGoal(goals.data)
+         this.props.history.push(`/dashboard/${userId}`)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
     
 
 

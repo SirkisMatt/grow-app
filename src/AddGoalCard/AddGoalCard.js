@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { v4 as uuidv4 } from 'uuid';
+import Axios from 'axios';
 import ApiContext from '../ApiContext'
 import './AddGoalCard.css'
 
@@ -33,6 +34,18 @@ export default class AddGoalCard extends Component {
             user_id: this.props.userId,
             goal_type_id: e.target['GoalOptions'].value
         }
+
+        // Axios.post("http://localhost:8000/api/goals", {
+        //     newGoal
+        // })          
+        //     .then(user => {
+        //         this.context.addUser(user.data)
+                
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //         // this.setState({error: true})
+        //     })
 
 
 

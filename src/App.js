@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route } from 'react-router-dom';
 import STORE from './dummy-store'
 import Login from './Login/Login';
@@ -18,59 +18,79 @@ import ApiContext from './ApiContext'
 import './App.css'
 
 
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      user: [],
-      goal_types: [],
-      goals: [],
-      loggedIn: false
-      }
-  }
+function App() {
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     user: [],
+  //     goal_types: [],
+  //     goals: [],
+  //     loggedIn: false
+  //     }
+  // }
 
-  componentDidMount = () => {
+  const [user, setUser] = useState([])
+  const [goal_types, handleGoalTypes] = useState([])
+  const [goals, setGoalsForUser] = useState([])
+  const [loggedIn, handleLoggedIn] = useState(false)
+
+  useEffect(() => {
     Axios.get(`http://localhost:8000/api/goal-types`)
     .then(goalTypes => {
-      this.setState({
-        goal_types: goalTypes.data
-      })
+      handleGoalTypes(goalTypes.data)
     })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [])
+  
+
+  // componentDidMount = () => {
+  //   Axios.get(`http://localhost:8000/api/goal-types`)
+  //   .then(goalTypes => {
+  //     this.setState({
+  //       goal_types: goalTypes.data
+  //     })
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
     
+  // }
+
+  const handleAddUser = user => {
+    let userId = user.id
+    console.log(userId)
+    // Axios.get(`http://localhost:8000/api/goals/${userId}`)
+    // .then(goals => {
+    //   console.log(goals)
+    //  getGoalsForUser(goals.data)
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
+  
+    setUser(user)
+    handleLoggedIn(true)
+    
+      
+    }
+
+
+
+  // handleNavToDash = (userId) => {
+  //   console.log(window.history)
+  //   window.history.go(`/dashboard/${userId}`)
+  // }
+
+ 
+
+ const handleAddGoal = goals => {
+   setGoalsForUser(goals)
   }
 
-  handleAddUser = user => {
-    this.setState({
-      user: [
-        user
-      ],
-      loggedIn: true
-    })
-   const userId = user
-    this.getGoalsForUser(userId)
-  }
 
-  getGoalsForUser = (userId) => {
-    Axios.get(`http://localhost:8000/api/goals/${userId}`)
-    .then(goals => {
-      console.log(goals.data)
-      this.setState({
-        goals: goals.data
-      })
-    })
-  }
-
-  handleAddGoal = goal => {
-    this.setState({
-      goal_cards: [
-        ...this.state.goal_cards,
-        goal
-      ]
-    })
-  }
-
-
-  renderNavRoutes() {
+const renderNavRoutes = () => {
     return (
         <>
             {['/', '/signup', 'add-payment', 'login'].map(path => (
@@ -93,7 +113,7 @@ class App extends Component {
 }
 
 
-  renderMainRoutes() {
+ const renderMainRoutes = () => {
     return (
       <>
          <Route
@@ -133,26 +153,27 @@ class App extends Component {
     )
   }
 
-  render() {
-    console.log(this.state.goals)
+    
     const value = {
-      user: this.state.user,
-      goal_types: this.state.goal_types,
-      goals: this.state.goals,
-      goal_list: this.state.goal_list,
-      addUser: this.handleAddUser,
-      addGoal: this.handleAddGoal,
+      user,
+      goal_types,
+      goals,
+      loggedIn,
+      addUser: handleAddUser,
+      addGoal: handleAddGoal,
     }
+
+    console.log(goals)
+
     return (
       <ApiContext.Provider value={value}>
         <div className='App'>
-       {this.renderNavRoutes()}
+       {renderNavRoutes()}
 
-          <main className="App_Main">{this.renderMainRoutes()}</main>
+          <main className="App_Main">{renderMainRoutes()}</main>
         </div>
       </ApiContext.Provider>
     );
-  }
 
 }
 

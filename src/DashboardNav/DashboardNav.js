@@ -20,7 +20,7 @@ class DashboardNav extends Component {
     }
 
     render() {
-        console.log(this.state.toggle)
+        
         return (
             <div>
                 <nav role="navigation" className="dashboard-nav">
