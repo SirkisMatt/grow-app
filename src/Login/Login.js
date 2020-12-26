@@ -89,7 +89,7 @@ class Login extends Component {
         Axios.get(`http://localhost:8000/api/goals/${userId}`)
         .then(goals => {
           console.log(goals)
-         this.context.addGoal(goals.data)
+         this.context.getGoals(goals.data)
          this.props.history.push(`/dashboard/${userId}`)
         })
         .catch(err => {

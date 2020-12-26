@@ -23,10 +23,10 @@ export default class AddGoalCard extends Component {
 
         //format new user to add to dummy-store
         const newGoal = {
-            id: uuidv4(),
+            //id: uuidv4(),
             title: e.target['goal-title'].value,
             description: e.target['description'].value,
-            date_created: new Date().toString(),
+            //date_created: new Date().toString(),
             tree_bet: e.target['tree_bet'].value,
             tree_org: e.target['tree_org'].value,
             complete_by: e.target['complete_by'].value,
@@ -35,21 +35,28 @@ export default class AddGoalCard extends Component {
             goal_type_id: e.target['GoalOptions'].value
         }
 
-        // Axios.post("http://localhost:8000/api/goals", {
-        //     newGoal
-        // })          
-        //     .then(user => {
-        //         this.context.addUser(user.data)
-                
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //         // this.setState({error: true})
-        //     })
+        Axios.post("http://localhost:8000/api/goals", {
+            title: e.target['goal-title'].value,
+            description: e.target['description'].value,
+            tree_bet: e.target['tree_bet'].value,
+            tree_org: e.target['tree_org'].value,
+            complete_by: e.target['complete_by'].value,
+            completed: false,
+            user_id: this.props.userId,
+            goal_type_id: e.target['GoalOptions'].value
+        })          
+            .then(goal => {
+                console.log(goal)
+                this.context.addGoal(goal.data)
+            })
+            .catch(error => {
+                console.log(error)
+                // this.setState({error: true})
+            })
 
 
 
-        this.props.addGoal(newGoal)
+        //this.props.addGoal(newGoal)
     
     }
 
