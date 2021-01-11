@@ -21,6 +21,7 @@ function App() {
   const [goal_types, handleGoalTypes] = useState([])
   const [goals, setGoalsForUser] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
+  console.log(goals)
 
 //On render get goalTypes
   useEffect(() => {
@@ -42,12 +43,23 @@ function App() {
 
 //Adds goals when new user logs in
   const handleGetGoals = goals => {
-    setGoalsForUser(goals)
+    if (!goals.message) {
+      setGoalsForUser(goals)
+    } else {
+      setGoalsForUser([])
+    }
+    
   }
 
 //Adds goal to state
   const handleAddGoal = goal => {
+    // if (goals.length === 0)
     setGoalsForUser(goals => ([ ...goals, goal ]))
+  }
+
+//Delete goal
+  const handleDeleteGoal = id => {
+    setGoalsForUser(goals.filter(goal => goal.id !== parseInt(id)))
   }
 
   const renderNavRoutes = () => {
@@ -117,7 +129,8 @@ function App() {
       loggedIn,
       addUser: handleAddUser,
       addGoal: handleAddGoal,
-      getGoals: handleGetGoals
+      getGoals: handleGetGoals,
+      deleteGoal: handleDeleteGoal
     }
 
     return (

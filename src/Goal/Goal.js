@@ -1,12 +1,34 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import ApiContext from '../ApiContext'
+import Axios from 'axios'
 import './Goal.css'
 
 
-export default class Goal extends React.Component {
+function Goal(props) {
 
+    const value = useContext(ApiContext)
+    const { title, description, treeBet, id, complete_by} = props
 
-    render() {
-        const { title, description, dateCreated, treeBet, treeOrg} = this.props
+    const handleClickDelete = e => {
+        e.preventDefault()
+        const userId = value.user.id
+        Axios.delete(`http://localhost:8000/api/goals/${userId}/${id}`)
+        .then(res => {
+            if(res.status !== 204){
+                return res.json().then(e => Promise.reject(e))
+            }
+            return res
+          })
+          .then(() => {
+            value.deleteGoal(id)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    }
+
+    
+    if (!props.completed) {
         return (
             <div className="Card">
                 <header>
@@ -14,13 +36,26 @@ export default class Goal extends React.Component {
                 </header> 
                 {description}
                 <div className="tree-bet">
-                    <p>{treeBet} Trees at Stake</p>
-                    <p>Donate to: {treeOrg}</p>
-                    <p>Complete by: Friday 11-13-2020</p>
+                    {(treeBet > 1) ? <p>{treeBet} trees at stake</p> : <p>{treeBet} tree at stake</p>}
+                    <p>Complete by: {complete_by}</p>
                 </div>
                 <button>Completed</button>
-                <button>Cancel</button>
+                <button 
+                className='Goal_delete'
+                type='button'
+                onClick={handleClickDelete}
+                >
+                    Delete
+                </button>
             </div>
+        )} 
+    { 
+        return (
+        <div></div>
         )
     }
+
 }
+
+
+export default Goal

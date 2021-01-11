@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { v4 as uuidv4 } from 'uuid';
 import Axios from 'axios';
 import ApiContext from '../ApiContext'
 import './AddGoalCard.css'
@@ -14,61 +13,41 @@ export default class AddGoalCard extends Component {
         closeCallback: () => (false),
         goalTypes: [],
         userId: ""
-      };
+    };
 
-      static contextType = ApiContext;
+    static contextType = ApiContext;
 
-      handleSubmit = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault(e)
-
-        //format new user to add to dummy-store
-        const newGoal = {
-            //id: uuidv4(),
-            title: e.target['goal-title'].value,
-            description: e.target['description'].value,
-            //date_created: new Date().toString(),
-            tree_bet: e.target['tree_bet'].value,
-            tree_org: e.target['tree_org'].value,
-            complete_by: e.target['complete_by'].value,
-            completed: false,
-            user_id: this.props.userId,
-            goal_type_id: e.target['GoalOptions'].value
-        }
 
         Axios.post("http://localhost:8000/api/goals", {
             title: e.target['goal-title'].value,
             description: e.target['description'].value,
             tree_bet: e.target['tree_bet'].value,
-            tree_org: e.target['tree_org'].value,
             complete_by: e.target['complete_by'].value,
             completed: false,
             user_id: this.props.userId,
             goal_type_id: e.target['GoalOptions'].value
         })          
-            .then(goal => {
-                console.log(goal)
-                this.context.addGoal(goal.data)
-            })
-            .catch(error => {
-                console.log(error)
-                // this.setState({error: true})
-            })
-
-
-
-        //this.props.addGoal(newGoal)
+        .then(goal => {
+            console.log(goal)
+            this.context.addGoal(goal.data)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     
     }
 
     render() {
-        const { customClass, show, closeCallback, firstGoal } = this.props
+        const { customClass, show, closeCallback, goals } = this.props
         const { goalTypes } = this.props
         return (
             <div className={`modal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
                 <div className="overlay" onClick={closeCallback}>></div>
                     <div className="modal_content">
-                        {firstGoal && <h3>Lets Get Started!</h3>}
                         <form className="add-goal" onSubmit={this.handleSubmit}>
+                            {goals.length === 0 && <h3>Lets Get Started!</h3>}
                             <label htmlFor="goal-type">What type of goal is this?</label>
                             <select name="GoalOptions" id="goal-options">
                                 {goalTypes.map(goal_type =>
@@ -87,17 +66,16 @@ export default class AddGoalCard extends Component {
                                 <input placeholder="1" type="number" id="tree_bet" name="tree_bet" min="1"/>
                             </div>
                             <br/>
-                            <div>
+                            {/* <div>
                                 <label htmlFor="tree-org">Choose an organization: </label>
                                 <select id="tree_org" name="tree_org">
                                     <option value="one-tree-planted">one-tree-planted</option>
                                     <option value="WebForest">WebForest</option>
                                     <option value="TIST">TIST</option>
                                 </select>
-                            </div>
-                            <br/>
+                            </div> */}
                             <div>
-                                <label htmlFor="due-date">Goal complete by: </label>
+                                <label htmlFor="due-date">Complete by: </label>
                                 <input type="date" id="complete_by" name="complete_by"/>
                             </div>
                             <br/>

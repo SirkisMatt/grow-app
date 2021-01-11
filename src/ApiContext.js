@@ -7,5 +7,6 @@ export default React.createContext({
     addUser: () => {},
     addGoal: () => {},
     getGoals: () => {},
+    deleteGoal: () => {},
     userLogin: () => {}
 })

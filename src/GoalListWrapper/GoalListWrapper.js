@@ -23,9 +23,9 @@ class GoalListWrapper extends Component {
                          id={goals.id}
                          title={goals.title}
                          description={goals.description}
-                         dateCreated={goals.date_created}
+                         completed={goals.completed}
+                         complete_by={goals.complete_by}
                          treeBet={goals.tree_bet}
-                         treeOrg={goals.tree_org}
                          />
                     )}
                 </div>

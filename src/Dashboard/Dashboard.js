@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import ApiContext from '../ApiContext'
 import AddGoalCard from '../AddGoalCard/AddGoalCard'
 import GoalListWrapper from '../GoalListWrapper/GoalListWrapper'
+import GoalNotComplete from '../GoalNotComplete/GoalNotComplete'
 import 'reactjs-popup/dist/index.css';
 import './Dashboard.css'
 
@@ -12,6 +13,8 @@ function Dashboard(props) {
 
   const [goal_list, updateList] = useState({})
   const [ showModal, toggleModal ] = useState(false)
+  const [showGoalNotComplete, toggleGoalNotComplete] = useState(false)
+  const [passDueGoals, addPassDueGoals] = useState([])
 
   
   useEffect(() => {
@@ -22,10 +25,12 @@ function Dashboard(props) {
 
   useEffect(() => {
     let goalList = {}
-    const goals = value.goals
+    let goals = value.goals.filter(goal => goal.completed === false)
     
 
-    if (!goals.message) {
+    if (goals.length === 0) {
+     toggleModal(true)
+    } else {
       goals.map(goal => { 
         if (!goalList[goal.goal_type_id]) {
           goalList[goal.goal_type_id] = [goal.id]
@@ -38,8 +43,23 @@ function Dashboard(props) {
     updateList(goalList)
   }, [value.goals])
 
+  useEffect(() => {
+    let now = new Date()
+    //let goals = value.goals.map(goal => new Date(goal.complete_by))
+  
+    let passDue = value.goals.filter(goal => now >= new Date(goal.complete_by))
+    console.log(passDue)
+
+    if (passDue.length >= 0) {
+      toggleGoalNotComplete(true)
+      addPassDueGoals(passDue)
+    } 
+
+  }, [value.goals])
+
   const goalType = Object.keys(goal_list)  
   const goalTypeNumber = goalType.map(Number)
+  
   
   return (
     <div className='dashboard'>
@@ -50,17 +70,7 @@ function Dashboard(props) {
           </header>
       <div>
           <div className="dashboard-list">
-              {value.goals.message ? 
-              <AddGoalCard 
-                  firstGoal= {true}
-                  show= {true}
-                  closeCallback={() => toggleModal(!showModal)}
-                  customClass="custom_modal_class"
-                  userId={value.user.id}
-                  goalTypes={value.goal_types}
-                  //addGoal={this.handleAddGoal}
-              /> :
-              goalTypeNumber.map(goalTypeId => 
+              {goalTypeNumber.map(goalTypeId => 
                   <GoalListWrapper
                   key={goalTypeId}
                   id={goalTypeId}
@@ -69,12 +79,18 @@ function Dashboard(props) {
                   /> 
               )}
               <AddGoalCard 
-                  firstGoal= {false}
                   show= {showModal}
                   closeCallback={() => toggleModal(!showModal)}
                   customClass="custom_modal_class"
                   userId={value.user.id}
+                  goals={value.goals}
                   goalTypes={value.goal_types}
+              />
+              <GoalNotComplete
+                  show={showGoalNotComplete}
+                  closeCallback={() => toggleGoalNotComplete(!showModal)}
+                  customClass="custom_modal_class"
+                  passDueGoals={passDueGoals}
               />
           </div>
           
