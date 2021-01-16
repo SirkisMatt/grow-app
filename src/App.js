@@ -62,6 +62,17 @@ function App() {
     setGoalsForUser(goals.filter(goal => goal.id !== parseInt(id)))
   }
 
+//Patch Goal
+  const handlePatchGoal = (goalToEdit) => {
+    //get index of goal to edit
+    let index = goals.findIndex((goals => goals.id === parseInt(goalToEdit.id)))
+    //replace goal to edit
+    let goalsState = goals
+    goalsState[index] = goalToEdit
+    //setState
+    setGoalsForUser([...goals, goalsState])
+  }
+
   const renderNavRoutes = () => {
     return (
         <>
@@ -130,7 +141,8 @@ function App() {
       addUser: handleAddUser,
       addGoal: handleAddGoal,
       getGoals: handleGetGoals,
-      deleteGoal: handleDeleteGoal
+      deleteGoal: handleDeleteGoal,
+      patchGoal: handlePatchGoal
     }
 
     return (

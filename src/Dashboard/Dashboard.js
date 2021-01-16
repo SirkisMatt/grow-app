@@ -45,12 +45,12 @@ function Dashboard(props) {
 
   useEffect(() => {
     let now = new Date()
+    console.log(now)
     //let goals = value.goals.map(goal => new Date(goal.complete_by))
   
     let passDue = value.goals.filter(goal => now >= new Date(goal.complete_by))
-    console.log(passDue)
 
-    if (passDue.length >= 0) {
+    if (passDue.length > 0) {
       toggleGoalNotComplete(true)
       addPassDueGoals(passDue)
     } 
@@ -88,7 +88,7 @@ function Dashboard(props) {
               />
               <GoalNotComplete
                   show={showGoalNotComplete}
-                  closeCallback={() => toggleGoalNotComplete(!showModal)}
+                  closeCallback={() => toggleGoalNotComplete(!showGoalNotComplete)}
                   customClass="custom_modal_class"
                   passDueGoals={passDueGoals}
               />

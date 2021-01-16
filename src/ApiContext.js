@@ -8,5 +8,6 @@ export default React.createContext({
     addGoal: () => {},
     getGoals: () => {},
     deleteGoal: () => {},
+    patchGoal: () => {},
     userLogin: () => {}
 })

@@ -1,13 +1,27 @@
 import React, {useState, useContext, useEffect} from 'react';
+import DueGoal from '../DueGoal/DueGoal'
+import './GoalNotComplete.css';
 
 function GoalNotComplete(props) {
 
 
     return(
-        <div className={`modal ${props.customClass}`} style={{ display: props.show ? 'block' : 'none'}}>
-                <div className="overlay" onClick={props.closeCallback}>></div>
-                    <div className="modal_content">
-                        <form className="add-goal">
+        <div className={`modal_passdue ${props.customClass}`} style={{ display: props.show ? 'block' : 'none'}}>
+                <div className="overlay_passdue" onClick={props.closeCallback}>></div>
+                    <div className="modal_content_passdue">
+                        <form className="passdue_goals">
+                            {props.passDueGoals.length === 1 ? <p>Did you complete your Goal?</p> : <p>Did you complete your Goals?</p>}
+                            {props.passDueGoals.map((goals) =>
+                                <DueGoal 
+                                key={goals.id}
+                                id={goals.id}
+                                title={goals.title}
+                                description={goals.description}
+                                completed={goals.completed}
+                                complete_by={goals.complete_by}
+                                treeBet={goals.tree_bet}
+                                />
+                            )}
                             
                             <button onClick={props.closeCallback}>Add Goal!</button>
                         </form>
