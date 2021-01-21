@@ -13,6 +13,7 @@ import GoalsCompleted from './GoalsCompleted/GoalsCompleted'
 import Axios from 'axios'
 import ApiContext from './ApiContext'
 import './App.css'
+import DonateTreeWindow from './DonateTreeWindow/DonateTreeWindow';
 
 
 function App() {
@@ -21,22 +22,49 @@ function App() {
   const [goal_types, handleGoalTypes] = useState([])
   const [goals, setGoalsForUser] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
-  console.log(goals)
+
 
 //On render get goalTypes
   useEffect(() => {
     Axios.get(`http://localhost:8000/api/goal-types`)
     .then(goalTypes => {
       handleGoalTypes(goalTypes.data)
+      //localStorage.setItem('goalTypes', JSON.stringify(goalTypes.data))
     })
     .catch(err => {
       console.log(err)
     })
   }, [])
 
+  
+//handle page reload
+  // useEffect(() => {
+  //   const loggedInUser = localStorage.getItem("user");
+  //   const goalsForUser = localStorage.getItem("goals")
+  //   //const goalTypes = localStorage.getItem("goalTypes")
+  //   if (loggedInUser) {
+  //     const foundUser = JSON.parse(loggedInUser);
+  //     console.log(foundUser)
+  //     setUser(foundUser);
+  //   }
+  //     if (goalsForUser) {
+  //       const goals = JSON.parse(goalsForUser);
+  //       //const types = JSON.parse(goalTypes)
+  //       //handleGoalTypes(types)
+  //       setGoalsForUser(goals)
+  //     }
+  //     console.log(goals)
+
+  // }, [goal_types]);
+  
+
+  const handleLogout = () => {
+    setUser([])
+    setGoalsForUser([])
+  }
+
 //Add new user to state
   const handleAddUser = user => {
-    let userId = user.id
     setUser(user)
     handleLoggedIn(true)
   }
@@ -88,6 +116,10 @@ function App() {
             path="/dashboard/:userId"
             component={DashboardNav}
           />
+          <Route
+            path="/donate/:goalId"
+            component={DashboardNav}
+          />
         </>
     );
   }
@@ -128,6 +160,10 @@ function App() {
         path='/goals-completed/:userId'
         component={GoalsCompleted}
         />
+        <Route
+        path='/donate/:goalId/'
+        component={DonateTreeWindow}
+        />
       </>
     )
   }
@@ -142,7 +178,8 @@ function App() {
       addGoal: handleAddGoal,
       getGoals: handleGetGoals,
       deleteGoal: handleDeleteGoal,
-      patchGoal: handlePatchGoal
+      patchGoal: handlePatchGoal,
+      logout: handleLogout,
     }
 
     return (

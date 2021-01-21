@@ -79,6 +79,7 @@ class SignUp extends Component {
                 if (res.status === 201) {
                     this.context.addUser(res.data)
                     this.props.history.push(`/dashboard/${res.data.id}`)
+                    //localStorage.setItem('user', JSON.stringify(res.data))
                 } else {
                     console.log(res)
                 }

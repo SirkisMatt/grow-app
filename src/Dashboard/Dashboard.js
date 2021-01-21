@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import ApiContext from '../ApiContext'
 import AddGoalCard from '../AddGoalCard/AddGoalCard'
 import GoalListWrapper from '../GoalListWrapper/GoalListWrapper'
-import GoalNotComplete from '../GoalNotComplete/GoalNotComplete'
+import GoalsNotComplete from '../GoalsNotComplete/GoalsNotComplete'
 import 'reactjs-popup/dist/index.css';
 import './Dashboard.css'
 
@@ -45,7 +45,6 @@ function Dashboard(props) {
 
   useEffect(() => {
     let now = new Date()
-    console.log(now)
     //let goals = value.goals.map(goal => new Date(goal.complete_by))
   
     let passDue = value.goals.filter(goal => now >= new Date(goal.complete_by))
@@ -59,6 +58,7 @@ function Dashboard(props) {
 
   const goalType = Object.keys(goal_list)  
   const goalTypeNumber = goalType.map(Number)
+  console.log(value.goal_types)
   
   
   return (
@@ -86,7 +86,7 @@ function Dashboard(props) {
                   goals={value.goals}
                   goalTypes={value.goal_types}
               />
-              <GoalNotComplete
+              <GoalsNotComplete
                   show={showGoalNotComplete}
                   closeCallback={() => toggleGoalNotComplete(!showGoalNotComplete)}
                   customClass="custom_modal_class"

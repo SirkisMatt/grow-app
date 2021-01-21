@@ -28,7 +28,6 @@ function EditGoal(props) {
             goal_type_id: e.target['GoalOptions'].value
         })          
         .then(goal => {
-            console.log(goal.data)
             value.patchGoal(goal.data)
             closeCallback()
         })
@@ -41,7 +40,6 @@ function EditGoal(props) {
     function handleTitleChange(e) {
         e.preventDefault(e)
         updateTitle(e.target.value)
-        //console.log(e.target.value)
     }
 
     function handleDescriptionChange(e) {

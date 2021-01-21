@@ -9,5 +9,6 @@ export default React.createContext({
     getGoals: () => {},
     deleteGoal: () => {},
     patchGoal: () => {},
-    userLogin: () => {}
+    userLogin: () => {},
+    logout: () => {}
 })

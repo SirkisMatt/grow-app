@@ -1,0 +1,122 @@
+
+/* CARD STYLES */
+
+/* .Card {
+    border-radius: 4px;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 1px 0 rgba(9,45,66,.25);
+    padding: 8px;
+    color: #17394d;
+  }
+  
+  .Card {
+    margin-bottom: 10px;
+  }
+  
+  .Card h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  
+  .Card p {
+    margin: 0;
+    font-size: 13px;
+  }
+  
+  .Card button {
+    background-color: #eff1f3;
+    border-radius: 6px;
+    padding: 5px;
+    margin: 3px;
+    margin-top: 5px;
+    
+  } */
+
+  .modal_donate {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 990;
+  }
+  
+  .modal_donate .overlay_donate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 995;
+    background: rgba(0,0,0,0.85);
+  }
+  
+  .modal_donate .modal_content_donate {
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 90%;
+    overflow: auto;
+    background: #fff;
+    box-sizing: border-box;
+    padding: 30px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.7);
+    border-radius: 4px;
+    max-width: 700px;
+    border-radius: 10px;
+    margin: auto;
+    background: rgba(0,0,0,0.8);
+    box-sizing: border-box;
+    color: #fff;
+    
+  }
+  
+  .modal_donate .modal_content_donate > h2 {
+    font-size: 28px;
+    font-weight: 200;
+    margin: 20px 0 40px;
+    text-align: center;
+  }
+  
+  .modal_donate .modal_content_donate .buttons_wrapper {
+    padding: 20px;
+  }
+  
+  .modal_donate .close_modal {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: beige;
+    opacity: 0.5;
+    background: none;
+    border: none;
+    transition: opacity 0.2s ease;
+  }
+  
+  .modal_donate .close_modal:hover {
+    opacity: 0.9;
+  }
+
+  .modal_content_donate input[type=text] {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  .description {
+    margin-bottom: 2em;
+  }
+
+  br {
+    margin: 2em;
+  }
+
+  #goal-options {
+    padding-left: 10px;
+  }
+
+  

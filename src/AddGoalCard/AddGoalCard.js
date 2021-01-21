@@ -30,7 +30,6 @@ export default class AddGoalCard extends Component {
             goal_type_id: e.target['GoalOptions'].value
         })          
         .then(goal => {
-            console.log(goal)
             this.context.addGoal(goal.data)
         })
         .catch(error => {
@@ -40,8 +39,7 @@ export default class AddGoalCard extends Component {
     }
 
     render() {
-        const { customClass, show, closeCallback, goals } = this.props
-        const { goalTypes } = this.props
+        const { customClass, show, closeCallback, goals, goalTypes } = this.props
         return (
             <div className={`modal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
                 <div className="overlay" onClick={closeCallback}>></div>

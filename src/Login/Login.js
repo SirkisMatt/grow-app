@@ -59,6 +59,7 @@ class Login extends Component {
 
     //     this.props.history.push(`/dashboard/1234`)
     // }
+
    
     handleSubmit = (e) => {
         e.preventDefault(e)
@@ -71,14 +72,12 @@ class Login extends Component {
                 if (res.status === 201) {
                     this.context.addUser(res.data)
                     this.getGoalsForUser(res.data.id)
+                    //localStorage.setItem('user', JSON.stringify(res.data))
                 } 
                 // if (user) {
                 //     this.props.history.push(`/dashboard/${user.data.id}`)
                 // }
                 // this.props.history.push(`/dashboard/${user.data.id}`)
-            })
-            .then(data => {
-                console.log(data)
             })
             .catch(error => {
                 console.log(error)
@@ -89,9 +88,9 @@ class Login extends Component {
     getGoalsForUser = (userId) => {
         Axios.get(`http://localhost:8000/api/goals/${userId}`)
         .then(goals => {
-          console.log(goals)
          this.context.getGoals(goals.data)
          this.props.history.push(`/dashboard/${userId}`)
+         //localStorage.setItem('goals', JSON.stringify(goals.data))
         })
         .catch(err => {
           console.log(err)

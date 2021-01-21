@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa'
+import ApiContext from '../ApiContext'
 import './DashboardNav.css'
 
 
@@ -12,6 +13,15 @@ class DashboardNav extends Component {
             toggle: false
         }
     }
+
+    static contextType = ApiContext;
+
+    // logout the user
+    handleLogout = () => {
+        localStorage.clear();
+        this.context.logout()
+        this.props.history.push(`/login`)
+    };
 
     toggleNavLinks = () => {
         this.setState({
@@ -36,7 +46,7 @@ class DashboardNav extends Component {
                     <ul >
                         <li><Link to='/account/:userId' >Account Details</Link></li>
                         <li><Link to='/goals-completed/:userId'>Goals Completed</Link></li>
-                        <li>Log Out</li>
+                        <li><button onClick={this.handleLogout}>Log Out</button></li>
                     </ul>
                 </div>
             </div>

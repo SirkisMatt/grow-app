@@ -1,13 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
 import ApiContext from '../ApiContext'
 import Axios from 'axios'
+import EditGoal from '../EditGoal/EditGoal'
+import DonateTreeWindow from '../DonateTreeWindow/DonateTreeWindow'
 import './DueGoal.css'
+import { FaRoad } from 'react-icons/fa'
 
 
 function DueGoal(props) {
 
     const value = useContext(ApiContext)
-    const { title, description, treeBet, id, complete_by} = props
+    const { title, description, treeBet, id, complete_by, goal} = props
+
+    const [ showModalEdit, toggleModalEdit ] = useState(false)
+    // const [ showModalDonate, toggleModalDonate ] = useState(false)
 
     const handleClickDelete = e => {
         e.preventDefault()
@@ -38,7 +45,6 @@ function DueGoal(props) {
             completed: true,
         })          
         .then(goal => {
-            console.log(goal.data)
             value.patchGoal(goal.data)
         })
         .catch(error => {
@@ -47,10 +53,14 @@ function DueGoal(props) {
     
     }
 
-    const handleClickEdit = e => {
-        e.preventDefault()
-        console.log(e)
+    const handleToggle = () => {
+        toggleModalEdit(true)
     }
+
+    // const handleDonateTrees = () => {
+    //    //props.toggleModalDonate(true)
+    //    props.closeCallback()
+    // }
 
 
     
@@ -65,7 +75,15 @@ function DueGoal(props) {
                     <p>Complete by: {complete_by}</p>
                 </div>
 
-                <button>Grow</button>
+                <button
+                className='donate_tree_button'
+                type='button'
+                //onClick={handleDonateTrees}
+                >
+                   <Link to={`/donate/${id}`}>
+                    Grow
+                    </Link>
+                </button>
                 <button
                 className='goal_complete_toggle'
                 type='button'
@@ -76,7 +94,7 @@ function DueGoal(props) {
                 <button
                 className='goal_edit'
                 type='button'
-                onClick={handleClickEdit}
+                onClick={handleToggle}
                 >
                     Edit
                 </button>
@@ -87,6 +105,22 @@ function DueGoal(props) {
                 >
                     Delete
                 </button>
+                {showModalEdit &&
+                   <EditGoal
+                   show={showModalEdit}
+                   closeCallback={() => toggleModalEdit(!showModalEdit)}
+                   customClass="custom_modal_class"
+                   goalToEdit={goal}
+                 /> 
+                }
+                {/* {showModalDonate &&
+                    <DonateTreeWindow
+                    show={showModalDonate}
+                    closeCallback={() => toggleModalDonate(!showModalDonate)}
+                    customClass="custom_modal_class"
+                    goal={goal}
+                    />
+                } */}
             </div>
         )} 
     { 

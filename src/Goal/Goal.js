@@ -43,7 +43,6 @@ function Goal(props) {
             completed: true,
         })          
         .then(goal => {
-            console.log(goal.data)
             value.patchGoal(goal.data)
         })
         .catch(error => {

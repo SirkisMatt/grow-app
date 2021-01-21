@@ -1,22 +1,19 @@
-import React, { Component } from 'react'
+import React, { useState, } from 'react'
 
-class GoalsCompleted extends Component {
+function GoalsCompleted(props) {
 
-    handleClick = () => {
-        this.props.history.goBack()
+   const handleClick = () => {
+        props.history.goBack()
     }
 
-
-    render() {
         return (
             <div>
                  <nav>
-                    <button onClick={this.handleClick}>Back to Dashboard</button>
+                    <button onClick={handleClick}>Back to Dashboard</button>
                 </nav>
                 <h2>No goals goals completed.</h2>
             </div>
         )
-    }
 }
 
 
