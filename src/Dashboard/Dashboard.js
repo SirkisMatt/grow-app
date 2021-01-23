@@ -13,8 +13,8 @@ function Dashboard(props) {
 
   const [goal_list, updateList] = useState({})
   const [ showModal, toggleModal ] = useState(false)
-  const [showGoalNotComplete, toggleGoalNotComplete] = useState(false)
-  const [passDueGoals, addPassDueGoals] = useState([])
+  const [showGoalsNotComplete, toggleGoalsNotComplete] = useState(false)
+  //const [passDueGoals, addPassDueGoals] = useState([])
 
   
   useEffect(() => {
@@ -50,8 +50,8 @@ function Dashboard(props) {
     let passDue = value.goals.filter(goal => now >= new Date(goal.complete_by))
 
     if (passDue.length > 0) {
-      toggleGoalNotComplete(true)
-      addPassDueGoals(passDue)
+      toggleGoalsNotComplete(true)
+      value.addDueGoals(passDue)
     } 
 
   }, [value.goals])
@@ -87,10 +87,10 @@ function Dashboard(props) {
                   goalTypes={value.goal_types}
               />
               <GoalsNotComplete
-                  show={showGoalNotComplete}
-                  closeCallback={() => toggleGoalNotComplete(!showGoalNotComplete)}
+                  show={showGoalsNotComplete}
+                  closeCallback={() => toggleGoalsNotComplete(!showGoalsNotComplete)}
                   customClass="custom_modal_class"
-                  passDueGoals={passDueGoals}
+                  passDueGoals={value.dueGoals}
               />
           </div>
           

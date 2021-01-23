@@ -35,7 +35,7 @@ class DashboardNav extends Component {
             <div>
                 <nav role="navigation" className="dashboard-nav">
                     <div className="tree-count">
-                        <p><span id="tree-number"> 4 </span>Trees planted this month</p>
+                        <p><span id="tree-number"> {this.context.treesDonated} </span>Trees planted this month</p>
                     </div>
                     <div className='grow-title'>
                             <Link to='/' className='home'>Grow</Link>

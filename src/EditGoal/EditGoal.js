@@ -56,6 +56,27 @@ function EditGoal(props) {
         e.preventDefault(e)
         updateCompleteBy(e.target.value)
     }
+
+    function handleCompletedGoal(e) {
+        e.preventDefault()
+        const userId = value.user.id
+        const id = props.goalToEdit.id
+        Axios.patch(`http://localhost:8000/api/goals/${userId}/${id}`, {
+            title: title,
+            description: description,
+            tree_bet: treeBet,
+            complete_by: completeBy,
+            completed: true,
+        })          
+        .then(goal => {
+            value.patchGoal(goal.data)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    
+    }
+
         const { customClass, show, closeCallback, goalToEdit } = props
         const { goal_types } = value
         const goalType = goal_types.filter(type => type.id === goalToEdit.goal_type_id)
@@ -100,6 +121,13 @@ function EditGoal(props) {
                             <button>Save</button>
                             {/* <button onClick={closeCallback}>Cancel</button> */}
                         </form>
+                            <button
+                            className='goal_complete_toggle'
+                            type='button'
+                            onClick={handleCompletedGoal}
+                            >
+                                Completed
+                            </button>
                             <button title="Close" className="close_modal" onClick={closeCallback}>
                                 <i className="fas fa-times">X</i>
                             </button>

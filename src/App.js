@@ -21,7 +21,9 @@ function App() {
   const [user, setUser] = useState([])
   const [goal_types, handleGoalTypes] = useState([])
   const [goals, setGoalsForUser] = useState([])
+  const [ dueGoals, setDueGoals ] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
+  const [treesDonated, handleTreesDonated] = useState(0)
 
 
 //On render get goalTypes
@@ -34,7 +36,23 @@ function App() {
     .catch(err => {
       console.log(err)
     })
+
+
   }, [])
+
+  useEffect(() => {
+    Axios.get(`https://api-dev.digitalhumani.com/tree?enterpriseId=${'7997dd50'}&user=${user.email}`)
+    .then(res => {
+      if(res.status === 200) {
+        console.log(res)
+        handleTreesDonated(res.data.count)
+      }
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [goals])
+
 
   
 //handle page reload
@@ -81,8 +99,12 @@ function App() {
 
 //Adds goal to state
   const handleAddGoal = goal => {
-    // if (goals.length === 0)
     setGoalsForUser(goals => ([ ...goals, goal ]))
+  }
+
+//Adds dueGoals to state
+  const handleAddDueGoals = dueGoal => {
+    setDueGoals(dueGoal)
   }
 
 //Delete goal
@@ -118,6 +140,10 @@ function App() {
           />
           <Route
             path="/donate/:goalId"
+            component={DashboardNav}
+          />
+          <Route
+            path="/donate/"
             component={DashboardNav}
           />
         </>
@@ -161,9 +187,13 @@ function App() {
         component={GoalsCompleted}
         />
         <Route
-        path='/donate/:goalId/'
+        path='/donate'
         component={DonateTreeWindow}
         />
+        {/* <Route
+        path='/donate'
+        component={DonateTreeWindow}
+        /> */}
       </>
     )
   }
@@ -173,12 +203,15 @@ function App() {
       user,
       goal_types,
       goals,
+      dueGoals,
       loggedIn,
+      treesDonated,
       addUser: handleAddUser,
       addGoal: handleAddGoal,
       getGoals: handleGetGoals,
       deleteGoal: handleDeleteGoal,
       patchGoal: handlePatchGoal,
+      addDueGoals: handleAddDueGoals,
       logout: handleLogout,
     }
 

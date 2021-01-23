@@ -6,6 +6,7 @@ export default React.createContext({
     goals: [],
     addUser: () => {},
     addGoal: () => {},
+    addDueGoals: () => {},
     getGoals: () => {},
     deleteGoal: () => {},
     patchGoal: () => {},
