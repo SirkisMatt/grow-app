@@ -40,17 +40,26 @@ function App() {
 
   }, [])
 
+  //counter for number of trees donated
   useEffect(() => {
     Axios.get(`https://api-dev.digitalhumani.com/tree?enterpriseId=${'7997dd50'}&user=${user.email}`)
     .then(res => {
       if(res.status === 200) {
-        console.log(res)
         handleTreesDonated(res.data.count)
       }
     })
     .catch(err => {
       console.log(err)
     })
+  }, [goals])
+
+  //adds dueGoals to state
+  useEffect(() => {
+    let now = new Date()
+    let passDue = goals.filter(goal => now >= new Date(goal.complete_by))
+      if (passDue.length > 0) {
+        setDueGoals(passDue)
+      } 
   }, [goals])
 
 
@@ -111,6 +120,10 @@ function App() {
   const handleDeleteGoal = id => {
     setGoalsForUser(goals.filter(goal => goal.id !== parseInt(id)))
   }
+//Delete dueGoal
+  const handleDeleteDueGoal = id => {
+    setDueGoals(dueGoals.filter(dueGoal => dueGoal.id !== parseInt(id)))
+  }
 
 //Patch Goal
   const handlePatchGoal = (goalToEdit) => {
@@ -120,7 +133,7 @@ function App() {
     let goalsState = goals
     goalsState[index] = goalToEdit
     //setState
-    setGoalsForUser([...goals, goalsState])
+    setGoalsForUser([...goalsState])
   }
 
   const renderNavRoutes = () => {
@@ -138,14 +151,14 @@ function App() {
             path="/dashboard/:userId"
             component={DashboardNav}
           />
-          <Route
+          {/* <Route
             path="/donate/:goalId"
             component={DashboardNav}
           />
           <Route
             path="/donate/"
             component={DashboardNav}
-          />
+          /> */}
         </>
     );
   }
@@ -186,10 +199,10 @@ function App() {
         path='/goals-completed/:userId'
         component={GoalsCompleted}
         />
-        <Route
+        {/* <Route
         path='/donate'
         component={DonateTreeWindow}
-        />
+        /> */}
         {/* <Route
         path='/donate'
         component={DonateTreeWindow}
@@ -212,6 +225,7 @@ function App() {
       deleteGoal: handleDeleteGoal,
       patchGoal: handlePatchGoal,
       addDueGoals: handleAddDueGoals,
+      deleteDueGoal: handleDeleteDueGoal,
       logout: handleLogout,
     }
 

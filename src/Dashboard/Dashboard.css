@@ -60,6 +60,21 @@
   border-radius: 0.6rem;
   transition: all 0.3s ease 0s;
 }
+.overdue-button {
+  color: rgb(240, 240, 229);
+  font: inherit;
+  background-color: rgba(154, 196, 171, 0.4);
+  border: none;
+  padding: 9px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 0.6rem;
+  transition: all 0.3s ease 0s;
+}
 
 .add-goal-button:hover {
   background-color: rgba(59, 119, 57, 0.8);

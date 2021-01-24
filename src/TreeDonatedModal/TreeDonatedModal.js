@@ -7,12 +7,6 @@ function TreeDonatedModal(props) {
 
     const value = useContext(ApiContext)
 
-    const [title, updateTitle] = useState(props.goalToEdit.title)
-    const [description, updateDescription] = useState(props.goalToEdit.description)
-    const [treeBet, updateTreeBet] = useState(props.goalToEdit.tree_bet)
-    const [completeBy, updateCompleteBy] = useState(props.goalToEdit.complete_by)
-
-
 
     const handleClickDelete = e => {
         e.preventDefault()
@@ -26,8 +20,9 @@ function TreeDonatedModal(props) {
             return res
           })
           .then(() => {
+            value.deleteDueGoal(id)
             value.deleteGoal(id)
-            props.history.push('/dashboard')
+            props.toggleCallBack()
           })
           .catch(err => {
             console.log(err)
@@ -36,15 +31,15 @@ function TreeDonatedModal(props) {
 
 
 
-        const { customClass, show, closeCallback, goalToEdit } = props
-        const { goal_types } = value
-        const goalType = goal_types.filter(type => type.id === goalToEdit.goal_type_id)
+        const { customClass, show, closeCallback, goal } = props
+        //const { goal_types } = value
+        //const goalType = goal_types.filter(type => type.id === goal.goal_type_id)
 
         return (
             <div className={`modal_edit_goal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
-                <div className="overlay_edit_goal" onClick={closeCallback}>></div>
+                <div className="overlay_edit_goal" ></div>
                     <div className="modal_content_edit_goal">
-                        <h2>Trees Donated!</h2>
+                        {goal.tree_bet > 1 ? <h2>{goal.tree_bet} Trees Donated!</h2> : <h2>{goal.tree_bet} Tree Donated</h2>}
                         <p>Would you like to try for your goal again?</p>
                             <button
                             className="goal_edit_toggle"
@@ -60,9 +55,7 @@ function TreeDonatedModal(props) {
                             >
                                 Delete
                             </button>
-                            <button title="Close" className="close_modal" onClick={closeCallback}>
-                                <i className="fas fa-times">X</i>
-                            </button>
+                          
                     </div>
             </div>
         )

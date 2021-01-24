@@ -18,6 +18,7 @@ function EditGoal(props) {
         e.preventDefault()
         const userId = value.user.id
         const id = props.goalToEdit.id
+        console.log(e.target['GoalOptions'].value)
         Axios.patch(`http://localhost:8000/api/goals/${userId}/${id}`, {
             title: title,
             description: description,
@@ -29,6 +30,7 @@ function EditGoal(props) {
         })          
         .then(goal => {
             value.patchGoal(goal.data)
+            console.log(goal.data)
             closeCallback()
         })
         .catch(error => {
