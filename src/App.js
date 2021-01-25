@@ -24,7 +24,8 @@ function App() {
   const [ dueGoals, setDueGoals ] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
   const [treesDonated, handleTreesDonated] = useState(0)
-
+  
+  console.log(goals)
 
 //On render get goalTypes
   useEffect(() => {

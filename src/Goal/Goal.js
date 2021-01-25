@@ -170,7 +170,39 @@ function Goal(props) {
         )} 
     { 
         return (
-        <div></div>
+        <div className="Card">
+            <header>
+                <h3>{title}</h3>
+            </header> 
+            {description}
+            <div className="tree-bet" >
+                {(treeBet > 1) ? <p>{treeBet} trees at stake</p> : <p>{treeBet} tree at stake</p>}
+                <p style={{ color: overdue && 'red'}}>Complete by: {complete_by}</p>
+            </div>
+            <button
+                className='goal_edit'
+                type='button'
+                onClick={handleToggle}
+                >
+                    Edit
+                </button>
+                <button 
+                className='Goal_delete'
+                type='button'
+                onClick={handleClickDelete}
+                >
+                    Delete
+                </button>
+                {
+                    showModalEdit &&
+                        <EditGoal
+                        show={showModalEdit}
+                        closeCallback={() => toggleModalEdit(!showModalEdit)}
+                        customClass="custom_modal_class"
+                        goalToEdit={props.goal}
+                        /> 
+                }
+        </div>
         )
     }
 
