@@ -44,6 +44,7 @@ function DashboardNav(props) {
                 </div>
                 <div className='grow-title'>
                         <Link to='/' className='home'>Grow</Link>
+
                 </div>
                 <FaBars className="toggle-button" onClick={() => toggleNavLinks(!toggle)}/>
             </nav>

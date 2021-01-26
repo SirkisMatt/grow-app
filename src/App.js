@@ -36,8 +36,6 @@ function App() {
     .catch(err => {
       console.log(err)
     })
-
-
   }, [])
 
   //counter for number of trees donated
@@ -47,6 +45,7 @@ function App() {
       if(res.status === 200) {
         handleTreesDonated(res.data.count)
       }
+
     })
     .catch(err => {
       console.log(err)
@@ -58,7 +57,6 @@ function App() {
       if (passDue.length > 0) {
         setDueGoals(passDue)
       } 
-
   }, [goals])
 
   //handles logout by resetting state
