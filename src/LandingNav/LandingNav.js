@@ -11,7 +11,7 @@ export default function LandingNav(props) {
                 ? 
                     <div className="not-loggedin">
                         <li><Link to='/login' className='login'>Login</Link></li>
-                        <li><Link to='/signup' className="sign-up">Sign Up</Link></li>
+                        <li><button className="signup_btn"><Link to='/signup' className="sign-up">Sign Up</Link></button></li>
                     </div> 
                 :
                     <div className="account-details">

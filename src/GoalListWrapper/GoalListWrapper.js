@@ -17,15 +17,16 @@ class GoalListWrapper extends Component {
                     <h2>{this.props.header[0].title}</h2>
                 </header>
                 <div className="List-cards">
-                    {this.props.goal.map((goals) =>
+                    {this.props.goal.map((goal) =>
                          <Goal 
-                         key={goals.id}
-                         id={goals.id}
-                         title={goals.title}
-                         description={goals.description}
-                         dateCreated={goals.date_created}
-                         treeBet={goals.tree_bet}
-                         treeOrg={goals.tree_org}
+                         key={goal.id}
+                         id={goal.id}
+                         goal={goal}
+                         title={goal.title}
+                         description={goal.description}
+                         completed={goal.completed}
+                         complete_by={goal.complete_by}
+                         treeBet={goal.tree_bet}
                          />
                     )}
                 </div>

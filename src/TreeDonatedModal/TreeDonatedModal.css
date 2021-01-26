@@ -1,31 +1,4 @@
-
-.title {
-    color: beige;
-    font-size: 2.2em;
-}
-
-.username {
-    color: beige;
-    font-size: 2.2em;
-    margin-left: 2em;
-}
-
-.btn {
-    color: rgb(240, 240, 229);
-    font: inherit;
-    background-color: rgba(154, 196, 171, 0.4);
-    border: none;
-    padding: 9px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 0.6rem;
-    transition: all 0.3s ease 0s;
-  }
-
-
-  .modal_account_details {
+.modal_edit_goal {
     position: fixed;
     left: 0;
     top: 0;
@@ -34,7 +7,7 @@
     z-index: 990;
   }
   
-  .modal_account_details .overlay_account_details {
+  .modal_edit_goal .overlay_edit_goal {
     position: absolute;
     left: 0;
     top: 0;
@@ -44,7 +17,7 @@
     background: rgba(0,0,0,0.85);
   }
   
-  .modal_account_details .modal_content_account_details {
+  .modal_edit_goal .modal_content_edit_goal {
     z-index: 999;
     position: absolute;
     top: 50%;
@@ -66,18 +39,18 @@
     
   }
   
-  .modal_account_details .modal_content_account_details > h2 {
+  .modal_edit_goal .modal_content_edit_goal > h2 {
     font-size: 28px;
     font-weight: 200;
     margin: 20px 0 40px;
     text-align: center;
   }
   
-  .modal_account_details .modal_content_account_details .buttons_wrapper {
+  .modal_edit_goal .modal_content_edit_goal .buttons_wrapper {
     padding: 20px;
   }
   
-  .modal_account_details .close_modal {
+  .modal_edit_goal .close_modal {
     position: absolute;
     right: 10px;
     top: 10px;
@@ -90,11 +63,11 @@
     transition: opacity 0.2s ease;
   }
   
-  .modal_account_details .close_modal:hover {
+  .modal_edit_goal .close_modal:hover {
     opacity: 0.9;
   }
 
-  .modal_content_account_details input[type=text] {
+  .modal_content_edit_goal input[type=text] {
     margin-top: 2em;
     margin-bottom: 2em;
   }

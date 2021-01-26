@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route } from 'react-router-dom';
-import STORE from './dummy-store'
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
 import LandingPage from './LandingPage/LandingPage';
@@ -9,78 +8,137 @@ import DashboardNav from './DashboardNav/DashboardNav'
 import AccountDetails from './AccountDetails/AccountDetails'
 import LandingNav from './LandingNav/LandingNav'
 import AddPayment from './AddPayment/AddPayment'
+import EditPayment from './EditPayment/EditPayment'
 import AddGoalType from './AddGoalType/AddGoalType'
 import GoalsCompleted from './GoalsCompleted/GoalsCompleted'
-import config from './config'
-//I would wrap context in index.js
+import Axios from 'axios'
 import ApiContext from './ApiContext'
 import './App.css'
 
 
-class App extends Component {
+function App() {
 
-  state = {
-    user: [],
-    goal_type: [],
-    goal_cards: [],
-    goal_list: []
-  }
+  const [user, setUser] = useState([])
+  const [goal_types, handleGoalTypes] = useState([])
+  const [goals, setGoalsForUser] = useState([])
+  const [ dueGoals, setDueGoals ] = useState([])
+  const [loggedIn, handleLoggedIn] = useState(false)
+  const [treesDonated, handleTreesDonated] = useState(0)
 
-  componentDidMount = () => {
 
-    //if this.state.loggedIn fetch api notes based on user that is logged in 
-    this.setState({
-      user: STORE.user,
-      goal_type: STORE.goal_type,
-      goal_cards: STORE.goal_cards,
-      goal_list: STORE.goal_list,
-      loggedIn: false
+//On render get goalTypes
+  useEffect(() => {
+    Axios.get(`http://localhost:8000/api/goal-types`)
+    .then(goalTypes => {
+      handleGoalTypes(goalTypes.data)
+      //localStorage.setItem('goalTypes', JSON.stringify(goalTypes.data))
     })
-  }
-
-  handleAddUser = user => {
-    this.setState({
-      user: [
-        ...this.state.user,
-        user
-      ],
-      loggedIn: true
+    .catch(err => {
+      console.log(err)
     })
-  }
+  }, [])
 
-  handleAddGoal = goal => {
-    this.setState({
-      goal_cards: [
-        ...this.state.goal_cards,
-        goal
-      ]
+  //counter for number of trees donated
+  useEffect(() => {
+    Axios.get(`https://api-dev.digitalhumani.com/tree?enterpriseId=${'7997dd50'}&user=${user.email}`)
+    .then(res => {
+      if(res.status === 200) {
+        handleTreesDonated(res.data.count)
+      }
+
     })
+    .catch(err => {
+      console.log(err)
+    })
+
+    //adds dueGoals to state
+    let now = new Date()
+    let passDue = goals.filter(goal => now >= new Date(goal.complete_by))
+      if (passDue.length > 0) {
+        setDueGoals(passDue)
+      } 
+  }, [goals])
+
+  //handles logout by resetting state
+  const handleLogout = () => {
+    setUser([])
+    setGoalsForUser([])
+    setDueGoals([])
   }
 
-  renderNavRoutes() {
+//Add new user to state
+  const handleAddUser = user => {
+    setUser(user)
+    handleLoggedIn(true)
+  }
+
+//Adds goals when new user logs in
+  const handleGetGoals = goals => {
+    if (!goals.message) {
+      setGoalsForUser(goals)
+    } else {
+      setGoalsForUser([])
+    }
+    
+  }
+
+//Adds goal to state
+  const handleAddGoal = goal => {
+    setGoalsForUser(goals => ([ ...goals, goal ]))
+  }
+
+//Adds dueGoals to state
+  const handleAddDueGoals = dueGoal => {
+    setDueGoals(dueGoal)
+  }
+
+//Delete goal
+  const handleDeleteGoal = id => {
+    setGoalsForUser(goals.filter(goal => goal.id !== parseInt(id)))
+  }
+//Delete dueGoal
+  const handleDeleteDueGoal = id => {
+    setDueGoals(dueGoals.filter(dueGoal => dueGoal.id !== parseInt(id)))
+  }
+
+//Patch Goal
+  const handlePatchGoal = (goalToEdit) => {
+    //get index of goal to edit
+    let index = goals.findIndex((goals => goals.id === parseInt(goalToEdit.id)))
+    //replace goal to edit
+    let goalsState = goals
+    goalsState[index] = goalToEdit
+    //setState
+    setGoalsForUser([...goalsState])
+
+    //removes dueGoal if dueDate later than present 
+    let now = new Date()
+    if (now < new Date(goalToEdit.complete_by)) {
+      setDueGoals(dueGoals.filter(dueGoal => dueGoal.id !== goalToEdit.id))
+    }
+    
+  }
+
+  const renderNavRoutes = () => {
     return (
         <>
-            {['/', '/signup', 'add-payment', 'login'].map(path => (
-                <Route
-                    exact
-                    key={path}
-                    path={path}
-                    component={LandingNav}
-                />
-            ))}
-            <Route
-              path="/dashboard/:userId"
-              component={DashboardNav}
-
-          
-            />
-
+          {['/', '/signup', 'add-payment', 'login'].map(path => (
+              <Route
+                  exact
+                  key={path}
+                  path={path}
+                  component={LandingNav}
+              />
+          ))}
+          <Route
+            path="/dashboard/:userId"
+            component={DashboardNav}
+          />
         </>
     );
-}
+  }
 
-
-  renderMainRoutes() {
+ const renderMainRoutes = () => {
     return (
       <>
          <Route
@@ -105,6 +163,10 @@ class App extends Component {
         component={AddPayment}
         />
         <Route
+        path="/edit-payment"
+        component={EditPayment}
+        />
+        <Route
         path="/login"
         component={Login}
         />
@@ -119,27 +181,33 @@ class App extends Component {
       </>
     )
   }
-
-  render() {
+    
+  //context 
     const value = {
-      user: this.state.user,
-      goal_type: this.state.goal_type,
-      goal_cards: this.state.goal_cards,
-      goal_list: this.state.goal_list,
-      addUser: this.handleAddUser,
-      addGoal: this.handleAddGoal,
+      user,
+      goal_types,
+      goals,
+      dueGoals,
+      loggedIn,
+      treesDonated,
+      addUser: handleAddUser,
+      addGoal: handleAddGoal,
+      getGoals: handleGetGoals,
+      deleteGoal: handleDeleteGoal,
+      patchGoal: handlePatchGoal,
+      addDueGoals: handleAddDueGoals,
+      deleteDueGoal: handleDeleteDueGoal,
+      logout: handleLogout,
     }
+
     return (
       <ApiContext.Provider value={value}>
         <div className='App'>
-       {this.renderNavRoutes()}
-
-          <main className="App_Main">{this.renderMainRoutes()}</main>
+       {renderNavRoutes()}
+          <main className="App_Main">{renderMainRoutes()}</main>
         </div>
       </ApiContext.Provider>
     );
-  }
-
 }
 
 export default App;

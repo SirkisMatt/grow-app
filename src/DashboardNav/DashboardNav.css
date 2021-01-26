@@ -41,6 +41,7 @@
 
 .navbar-links li {
     text-decoration: none;
+    font-weight: 600;
     list-style: none;
     text-align: right;
     color: beige;
@@ -68,6 +69,23 @@
 .toggle-button:hover {
     color: white;
 }
+
+.btn {
+    color: rgb(240, 240, 229);
+    font: inherit;
+    background-color: rgba(154, 196, 171, 0.4);
+    border: none;
+    padding: 7px;
+    padding-left: 15px;
+    padding-right: 50px;
+    cursor: pointer;
+    border-radius: 0.6rem;
+    transition: all 0.3s ease 0s;
+  }
+.btn:hover {
+background-color: rgba(59, 119, 57, 0.8);
+}
+  
 
 
 .tree-count {
