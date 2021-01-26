@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import './AddPayment.css'
 
 class AddPayment extends Component {
-//   handleSubmit = (e) => {
-//     e.preventDefault(e)
-
-//     //this.props.history.push(`/dashboard/${newUser}`)
-// }
-
 
 
     render() {

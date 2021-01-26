@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import ApiContext from '../ApiContext'
 import Axios from 'axios';
-//import STORE from './dummy-store'
 import ValidationError from '../ValidationError'
 import './Login.css';
 
@@ -22,6 +21,10 @@ class Login extends Component {
             password: {
                 value: "",
                 touched: false
+            },
+            invalid: {
+                value: "Invalid email or password",
+                error: false
             }
         }
     }
@@ -53,13 +56,6 @@ class Login extends Component {
         return ("You have entered an invalid email address!")
     }
 
-
-    // handleSubmit = (e) => {
-    //     e.preventDefault(e)
-
-    //     this.props.history.push(`/dashboard/1234`)
-    // }
-
    
     handleSubmit = (e) => {
         e.preventDefault(e)
@@ -72,17 +68,22 @@ class Login extends Component {
                 if (res.status === 201) {
                     this.context.addUser(res.data)
                     this.getGoalsForUser(res.data.id)
-                    //localStorage.setItem('user', JSON.stringify(res.data))
+                    
                 } 
-                // if (user) {
-                //     this.props.history.push(`/dashboard/${user.data.id}`)
-                // }
-                // this.props.history.push(`/dashboard/${user.data.id}`)
             })
             .catch(error => {
                 console.log(error)
-                // this.setState({error: true})
+                this.invalid()
             })
+    }
+
+    invalid = () => {
+        this.setState({
+            invalid: {
+                value: "Invalid email or password",
+                error: true
+            }
+        })
     }
 
     getGoalsForUser = (userId) => {
@@ -105,6 +106,7 @@ class Login extends Component {
         <div className="login-wrap">
             <h2>Login Here</h2>
             <form className='login-form' onSubmit={this.handleSubmit}>
+                {this.state.invalid.error &&  <ValidationError message={this.state.invalid.value}/>}
                   <input placeholder="Email" type="text" name='email' id='email' onChange={e => this.handleEmailChange(e)} />
                   {this.state.email.touched && <ValidationError message={emailError}/>}
                     <input placeholder="Password" type="password" name='password' id='password' onChange={e => this.handlePasswordChange(e)}/>

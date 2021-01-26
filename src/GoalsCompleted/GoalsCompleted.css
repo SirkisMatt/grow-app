@@ -1,3 +1,15 @@
+.goals_completed_title {
+    font-size: 1.5em;
+    margin-left: .7rem;
+    color: beige;
+}
+
+/* .grow-title a {
+    text-decoration: none;
+    color: beige;
+} */
+
+
 .goals_completed_dash {
     width: 100%;
   }
@@ -35,6 +47,11 @@
   }
 
   @media all and (min-width: 600px) {
+
+    .goals_completed_title {
+        font-size: 2.1em;
+    }
+
     .dashboard-header {
         font-size: 1.3em;
         justify-content: flex-start;

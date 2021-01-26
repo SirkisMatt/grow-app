@@ -36,6 +36,24 @@
     float: right;
 }
 
+.signup_btn {
+    color: rgb(240, 240, 229);
+    font: inherit;
+    background-color: rgba(154, 196, 171, 0.4);
+    border: none;
+    padding: 7px;
+    padding-top: 2px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 0.6rem;
+    transition: all 0.3s ease 0s;
+  }
+
+  .signup_btn:hover {
+    background-color: rgba(59, 119, 57, 0.8);
+    color: beige;
+  }
+
 
 @media all and (min-width: 400px) {
 

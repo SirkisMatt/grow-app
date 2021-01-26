@@ -64,20 +64,12 @@ export default class AddGoalCard extends Component {
                                 <input placeholder="1" type="number" id="tree_bet" name="tree_bet" min="1"/>
                             </div>
                             <br/>
-                            {/* <div>
-                                <label htmlFor="tree-org">Choose an organization: </label>
-                                <select id="tree_org" name="tree_org">
-                                    <option value="one-tree-planted">one-tree-planted</option>
-                                    <option value="WebForest">WebForest</option>
-                                    <option value="TIST">TIST</option>
-                                </select>
-                            </div> */}
                             <div>
                                 <label htmlFor="due-date">Complete by: </label>
                                 <input type="date" id="complete_by" name="complete_by"/>
                             </div>
                             <br/>
-                            <button onClick={closeCallback}>Add Goal!</button>
+                            <button className="add_goal_btn" onClick={closeCallback}>Add Goal!</button>
                         </form>
                             <button title="Close" className="close_modal" onClick={closeCallback}>
                                 <i className="fas fa-times">X</i>

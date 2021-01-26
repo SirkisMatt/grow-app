@@ -59,12 +59,7 @@ class SignUp extends Component {
         if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.state.email.value))) {
             
             return "You have entered an invalid email address!"
-        };
-        //check if email already exist in dummy store
-        // if(this.context.user.some(user => user.email === this.state.email.value)) {
-        //     return "Email already taken."
-        // }
-            
+        };  
     }
 
     handleSubmit = (e) => {
@@ -83,29 +78,10 @@ class SignUp extends Component {
                 } else {
                     console.log(res)
                 }
-                // if (user) {
-                //     this.props.history.push(`/dashboard/${user.data.id}`)
-                // }
-                // this.props.history.push(`/dashboard/${user.data.id}`)
             })
             .catch(error => {
                 console.log(error)
-                // this.setState({error: true})
             })
-
-        // //format new user to add to dummy-store
-        // const newUser = {
-        //     username: e.target['user-name'].value,
-        //     email: e.target['email'].value,
-        //     password: e.target['password'].value,
-        // }
-      
-        // //Adds newUser to dummy-store
-        // this.context.addUser(newUser)
-        // let userId = newUser.id
-        // this.props.history.push(`/add-payment/${userId}`)
-      
-        
     }
    
 

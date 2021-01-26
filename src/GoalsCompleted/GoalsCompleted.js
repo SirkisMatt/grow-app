@@ -8,7 +8,6 @@ function GoalsCompleted(props) {
     const value = useContext(ApiContext)
     const [goal_list, updateList] = useState({})
 
-    console.log(props.goal)
     useEffect(() => {
         if (value.user.length === 0) {
         props.history.push(`/login`)
@@ -18,10 +17,6 @@ function GoalsCompleted(props) {
     useEffect(() => {
         let goalList = {}
         let goals = value.goals.filter(goal => goal.completed === true)
-        
-        // if(value.dueGoals.length !== 0) {
-        //   toggleGoalsNotComplete(true)
-        // }
     
         goals.map(goal => { 
         if (!goalList[goal.goal_type_id]) {
@@ -45,6 +40,7 @@ function GoalsCompleted(props) {
 
         return (
             <div className="goals_completed_dash">
+                <h1 className="goals_completed_title">Goals Completed</h1>
                 <header className="dashboard-header">
                     <button className="add-goal-button" onClick={handleClick}>
                     Back to Dashboard
@@ -60,7 +56,6 @@ function GoalsCompleted(props) {
                     /> 
                     )}
                 </div>
-                {/* <h2>No goals goals completed.</h2> */}
             </div>
         )
 }

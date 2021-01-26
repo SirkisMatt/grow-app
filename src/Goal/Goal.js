@@ -17,7 +17,7 @@ function Goal(props) {
     const [ showModalEdit, toggleModalEdit ] = useState(false)
     const [ overdue, handleOverdue ] = useState(false)
     const [ showTreeDonatedModal, toggleTreeDonatedModal ] = useState(false)
-    console.log(overdue)
+
 
     const handleClickDelete = e => {
         e.preventDefault()
@@ -49,7 +49,6 @@ function Goal(props) {
         })          
         .then(goal => {
             value.patchGoal(goal.data)
-            console.log('patch response', goal.data)
         })
         .catch(error => {
             console.log(error)
@@ -105,14 +104,14 @@ function Goal(props) {
                 {description}
                 <div className="tree-bet" >
                     {(treeBet > 1) ? <p>{treeBet} trees at stake</p> : <p>{treeBet} tree at stake</p>}
-                    <p style={{ color: overdue && 'red'}}>Complete by: {complete_by}</p>
+                    <p style={{ color: overdue && 'green'}}>Complete by: {complete_by}</p>
                 </div>
                 {overdue && 
                 <button
+                aria-label="donate_tree_button"
                 className='donate_tree_button'
                 type='button'
                 style=  {{  color: 'Green',
-                          
                         }}
                 onClick={handleDonateTrees}
                 >

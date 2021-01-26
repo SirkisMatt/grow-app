@@ -18,7 +18,6 @@ function EditGoal(props) {
         e.preventDefault()
         const userId = value.user.id
         const id = props.goalToEdit.id
-        console.log(e.target['GoalOptions'].value)
         Axios.patch(`http://localhost:8000/api/goals/${userId}/${id}`, {
             title: title,
             description: description,
@@ -30,7 +29,6 @@ function EditGoal(props) {
         })          
         .then(goal => {
             value.patchGoal(goal.data)
-            console.log(goal.data)
             closeCallback()
         })
         .catch(error => {
@@ -107,21 +105,12 @@ function EditGoal(props) {
                                 <input placeholder={goalToEdit.tree_bet} onChange={handleTreeBetChange} type="number" id="tree_bet" name="tree_bet" min="1"/>
                             </div>
                             <br/>
-                            {/* <div>
-                                <label htmlFor="tree-org">Choose an organization: </label>
-                                <select id="tree_org" name="tree_org">
-                                    <option value="one-tree-planted">one-tree-planted</option>
-                                    <option value="WebForest">WebForest</option>
-                                    <option value="TIST">TIST</option>
-                                </select>
-                            </div> */}
                             <div>
                                 <label htmlFor="due-date">Complete by: </label>
                                 <input onChange={handleCompleteBy} type="date" id="complete_by" name="complete_by" placeholder="01/13/2021"/>
                             </div>
                             <br/>
                             <button>Save</button>
-                            {/* <button onClick={closeCallback}>Cancel</button> */}
                         </form>
                             <button
                             className='goal_complete_toggle'

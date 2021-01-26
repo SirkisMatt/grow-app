@@ -8,12 +8,12 @@ import DashboardNav from './DashboardNav/DashboardNav'
 import AccountDetails from './AccountDetails/AccountDetails'
 import LandingNav from './LandingNav/LandingNav'
 import AddPayment from './AddPayment/AddPayment'
+import EditPayment from './EditPayment/EditPayment'
 import AddGoalType from './AddGoalType/AddGoalType'
 import GoalsCompleted from './GoalsCompleted/GoalsCompleted'
 import Axios from 'axios'
 import ApiContext from './ApiContext'
 import './App.css'
-import DonateTreeWindow from './DonateTreeWindow/DonateTreeWindow';
 
 
 function App() {
@@ -24,8 +24,7 @@ function App() {
   const [ dueGoals, setDueGoals ] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
   const [treesDonated, handleTreesDonated] = useState(0)
-  
-  console.log(goals)
+
 
 //On render get goalTypes
   useEffect(() => {
@@ -52,43 +51,21 @@ function App() {
     .catch(err => {
       console.log(err)
     })
-  }, [goals])
 
-  //adds dueGoals to state
-  useEffect(() => {
+    //adds dueGoals to state
     let now = new Date()
     let passDue = goals.filter(goal => now >= new Date(goal.complete_by))
       if (passDue.length > 0) {
         setDueGoals(passDue)
       } 
+
   }, [goals])
 
-
-  
-//handle page reload
-  // useEffect(() => {
-  //   const loggedInUser = localStorage.getItem("user");
-  //   const goalsForUser = localStorage.getItem("goals")
-  //   //const goalTypes = localStorage.getItem("goalTypes")
-  //   if (loggedInUser) {
-  //     const foundUser = JSON.parse(loggedInUser);
-  //     console.log(foundUser)
-  //     setUser(foundUser);
-  //   }
-  //     if (goalsForUser) {
-  //       const goals = JSON.parse(goalsForUser);
-  //       //const types = JSON.parse(goalTypes)
-  //       //handleGoalTypes(types)
-  //       setGoalsForUser(goals)
-  //     }
-  //     console.log(goals)
-
-  // }, [goal_types]);
-  
-
+  //handles logout by resetting state
   const handleLogout = () => {
     setUser([])
     setGoalsForUser([])
+    setDueGoals([])
   }
 
 //Add new user to state
@@ -135,6 +112,13 @@ function App() {
     goalsState[index] = goalToEdit
     //setState
     setGoalsForUser([...goalsState])
+
+    //removes dueGoal if dueDate later than present 
+    let now = new Date()
+    if (now < new Date(goalToEdit.complete_by)) {
+      setDueGoals(dueGoals.filter(dueGoal => dueGoal.id !== goalToEdit.id))
+    }
+    
   }
 
   const renderNavRoutes = () => {
@@ -152,14 +136,6 @@ function App() {
             path="/dashboard/:userId"
             component={DashboardNav}
           />
-          {/* <Route
-            path="/donate/:goalId"
-            component={DashboardNav}
-          />
-          <Route
-            path="/donate/"
-            component={DashboardNav}
-          /> */}
         </>
     );
   }
@@ -189,6 +165,10 @@ function App() {
         component={AddPayment}
         />
         <Route
+        path="/edit-payment"
+        component={EditPayment}
+        />
+        <Route
         path="/login"
         component={Login}
         />
@@ -200,14 +180,6 @@ function App() {
         path='/goals-completed/:userId'
         component={GoalsCompleted}
         />
-        {/* <Route
-        path='/donate'
-        component={DonateTreeWindow}
-        /> */}
-        {/* <Route
-        path='/donate'
-        component={DonateTreeWindow}
-        /> */}
       </>
     )
   }
