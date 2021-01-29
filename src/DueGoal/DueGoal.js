@@ -19,7 +19,7 @@
 //     const handleClickDelete = e => {
 //         e.preventDefault()
 //         const userId = value.user.id
-//         Axios.delete(`http://localhost:8000/api/goals/${userId}/${id}`)
+//         Axios.delete(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}/${id}`)
 //         .then(res => {
 //             if(res.status !== 204){
 //                 return res.json().then(e => Promise.reject(e))
@@ -37,7 +37,7 @@
 //     function handleCompletedGoal(e) {
 //         e.preventDefault()
 //         const userId = value.user.id
-//         Axios.patch(`http://localhost:8000/api/goals/${userId}/${id}`, {
+//         Axios.patch(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}/${id}`, {
 //             title: title,
 //             description: description,
 //             tree_bet: treeBet,

@@ -60,7 +60,7 @@ class Login extends Component {
     handleSubmit = (e) => {
         e.preventDefault(e)
 
-        Axios.post("http://localhost:8000/api/users/login", {
+        Axios.post("https://immense-lowlands-49270.herokuapp.com/api/users/login", {
             email: this.state.email.value,
             password: this.state.password.value,
         })          
@@ -87,7 +87,7 @@ class Login extends Component {
     }
 
     getGoalsForUser = (userId) => {
-        Axios.get(`http://localhost:8000/api/goals/${userId}`)
+        Axios.get(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}`)
         .then(goals => {
          this.context.getGoals(goals.data)
          this.props.history.push(`/dashboard/${userId}`)

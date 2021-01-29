@@ -12,7 +12,7 @@ function TreeDonatedModal(props) {
         e.preventDefault()
         const userId = value.user.id
         const id = props.goal.id
-        Axios.delete(`http://localhost:8000/api/goals/${userId}/${id}`)
+        Axios.delete(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}/${id}`)
         .then(res => {
             if(res.status !== 204){
                 return res.json().then(e => Promise.reject(e))

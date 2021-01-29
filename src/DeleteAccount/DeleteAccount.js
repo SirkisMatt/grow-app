@@ -11,7 +11,7 @@ function DeleteAccount(props) {
     const handleClickDelete = e => {
         e.preventDefault()
         const userId = value.user.id
-        Axios.delete(`http://localhost:8000/api/users/${userId}`)
+        Axios.delete(`https://immense-lowlands-49270.herokuapp.com/api/users/${userId}`)
         .then(res => {
             if(res.status !== 204){
                 console.log('deleted')
