@@ -20,7 +20,7 @@ export default class AddGoalCard extends Component {
     handleSubmit = (e) => {
         e.preventDefault(e)
 
-        Axios.post("http://localhost:8000/api/goals", {
+        Axios.post("https://immense-lowlands-49270.herokuapp.com/api/goals", {
             title: e.target['goal-title'].value,
             description: e.target['description'].value,
             tree_bet: e.target['tree_bet'].value,

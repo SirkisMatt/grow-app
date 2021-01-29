@@ -65,7 +65,7 @@ class SignUp extends Component {
     handleSubmit = (e) => {
         e.preventDefault(e)
 
-        Axios.post("http://localhost:8000/api/users", {
+        Axios.post("https://immense-lowlands-49270.herokuapp.com/api/users", {
             username: this.state.userName.value,
             email: this.state.email.value,
             password: this.state.password.value,

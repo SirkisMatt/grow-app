@@ -28,7 +28,7 @@ function App() {
 
 //On render get goalTypes
   useEffect(() => {
-    Axios.get(`http://localhost:8000/api/goal-types`)
+    Axios.get(`https://immense-lowlands-49270.herokuapp.com/api/goal-types`)
     .then(goalTypes => {
       handleGoalTypes(goalTypes.data)
       //localStorage.setItem('goalTypes', JSON.stringify(goalTypes.data))

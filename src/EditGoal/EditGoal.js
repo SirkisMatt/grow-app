@@ -18,7 +18,7 @@ function EditGoal(props) {
         e.preventDefault()
         const userId = value.user.id
         const id = props.goalToEdit.id
-        Axios.patch(`http://localhost:8000/api/goals/${userId}/${id}`, {
+        Axios.patch(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}/${id}`, {
             title: title,
             description: description,
             tree_bet: treeBet,
@@ -61,7 +61,7 @@ function EditGoal(props) {
         e.preventDefault()
         const userId = value.user.id
         const id = props.goalToEdit.id
-        Axios.patch(`http://localhost:8000/api/goals/${userId}/${id}`, {
+        Axios.patch(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}/${id}`, {
             title: title,
             description: description,
             tree_bet: treeBet,
