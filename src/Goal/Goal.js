@@ -3,7 +3,7 @@ import ApiContext from '../ApiContext'
 import TreeDonatedModal from '../TreeDonatedModal/TreeDonatedModal'
 import Axios from 'axios'
 import Leaf from '../Icons/Leaf'
-import {ENTERPRISEID} from '../enterpriseId'
+//import {ENTERPRISEID} from '../enterpriseId'
 import './Goal.css'
 import EditGoal from '../EditGoal/EditGoal'
 
@@ -73,7 +73,7 @@ function Goal(props) {
     const handleDonateTrees = () => {
         Axios.post(`https://api-dev.digitalhumani.com/tree`, {
          "treeCount": treeBet,
-         "enterpriseId": ENTERPRISEID,
+         "enterpriseId": "7997dd50",
          "projectId": "77111010",
          "user": value.user.email
         })
