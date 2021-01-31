@@ -27,7 +27,7 @@ function TreeDonatedModal(props) {
     }, [donated])
 
     const handleDonateTrees = () => {
-        if (props.goal.tree_bet < 2) {
+        if (props.goal.tree_bet < 5) {
             setLoading(true)
             Axios.post(`https://api-dev.digitalhumani.com/tree`, {
                 "treeCount": props.goal.tree_bet,
