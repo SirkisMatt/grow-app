@@ -15,6 +15,14 @@ export default class AddGoalCard extends Component {
         userId: ""
     };
 
+    constructor() {
+        super()
+        this.state = {
+            error: false,
+            errMessage: ''
+        }
+    }
+
     static contextType = ApiContext;
 
     handleSubmit = (e) => {
@@ -31,18 +39,36 @@ export default class AddGoalCard extends Component {
         })          
         .then(goal => {
             this.context.addGoal(goal.data)
+            this.setState({
+                error: false,
+            })
+            this.props.closeCallback()
         })
         .catch(error => {
-            console.log(error)
+            console.log(error.response)
+            if (error.response.status === 400) {
+                console.log(error.response.data.error.message)
+                this.setState({
+                    error: true,
+                    errMessage: `Title, tree bet and a complete by date required!`
+                })
+            }
         })
     
     }
 
+    handleCloseModal = () => {
+        this.setState({
+            error: false
+        })
+        this.props.closeCallback()
+    }
+
     render() {
-        const { customClass, show, closeCallback, goals, goalTypes } = this.props
+        const { customClass, show, goals, goalTypes } = this.props
         return (
             <div className={`modal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
-                <div className="overlay" onClick={closeCallback}>></div>
+                <div className="overlay" onClick={this.handleCloseModal}>></div>
                     <div className="modal_content">
                         <form className="add-goal" onSubmit={this.handleSubmit}>
                             {goals.length === 0 && <h3>Lets Get Started!</h3>}
@@ -55,6 +81,8 @@ export default class AddGoalCard extends Component {
                                 )}
                             </select>
                             <br/>
+                            {this.state.error && <p className="error_message">{this.state.errMessage}</p>}
+                            
                                 <input htmlFor="goal-title" placeholder='Whats your goal?' type="text" name='goal-title' id='goal-title' />
                                 <br/>
                             <textarea className="description" name="description" rows="10" cols="30" placeholder='description'/>
@@ -69,10 +97,13 @@ export default class AddGoalCard extends Component {
                                 <input type="date" id="complete_by" name="complete_by"/>
                             </div>
                             <br/>
-                            <button className="add_goal_btn" onClick={closeCallback}>Add Goal!</button>
+                            <button className="add_goal_btn" type='submit'>Add Goal!</button>
                         </form>
-                            <button title="Close" className="close_modal" onClick={closeCallback}>
-                                <i className="fas fa-times">X</i>
+                            <button className="cancel_btn" onClick={this.handleCloseModal}>
+                                Cancel
+                            </button>
+                            <button title="Close" className="close_modal" onClick={this.handleCloseModal}>
+                                <i className="fas fa-times"></i>
                             </button>
                     </div>
             </div>

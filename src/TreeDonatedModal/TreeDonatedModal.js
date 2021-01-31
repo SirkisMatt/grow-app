@@ -1,12 +1,74 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Axios from 'axios';
 import ApiContext from '../ApiContext'
+import {myConfig} from '../config.js'
+import DonatingSpinner from '../FontAwesome/DonatingSpinner'
 import './TreeDonatedModal.css'
 
 function TreeDonatedModal(props) {
 
     const value = useContext(ApiContext)
 
+    const [ donated, setDonation ] = useState(false)
+    const [ donatedTitle, setDonationTitle ] = useState('')
+    const [ highDonation, setHighDonation ] = useState(false)
+    const [ loading, setLoading ] = useState(false)
+
+    useEffect(() => {
+        if(!donated && props.goal.tree_bet > 1) {
+            setDonationTitle('Trees to donate')
+        } else if(!donated && props.goal.tree_bet === 1) {
+            setDonationTitle('Tree to donate')
+        } else if(props.goal.tree_bet > 1) {
+            setDonationTitle('Trees Donated')
+        } else {
+            setDonationTitle('Tree Donated')
+        }
+    }, [donated])
+
+    const handleDonateTrees = () => {
+        if (props.goal.tree_bet < 2) {
+            setLoading(true)
+            Axios.post(`https://api-dev.digitalhumani.com/tree`, {
+                "treeCount": props.goal.tree_bet,
+                "enterpriseId": myConfig.ENTERPRISE_ID,
+                "projectId": "77111010",
+                "user": value.user.email
+               })
+               .then(res => {
+                   if(res.status === 200) {
+                      setDonation(true)
+                      setLoading(false)
+                   }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            } else {
+            setHighDonation(true)
+            }
+       
+     }
+
+     const donateHighNumber = () => {
+        setLoading(true)
+        Axios.post(`https://api-dev.digitalhumani.com/tree`, {
+            "treeCount": props.goal.tree_bet,
+            "enterpriseId": myConfig.ENTERPRISE_ID,
+            "projectId": "77111010",
+            "user": value.user.email
+           })
+           .then(res => {
+               if(res.status === 200) {
+                    setLoading(false)
+                    setDonation(true)
+                    setHighDonation(false)
+               }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+     }
 
     const handleClickDelete = e => {
         e.preventDefault()
@@ -22,7 +84,7 @@ function TreeDonatedModal(props) {
           .then(() => {
             value.deleteDueGoal(id)
             value.deleteGoal(id)
-            props.toggleCallBack()
+            props.toggleCallback()
           })
           .catch(err => {
             console.log(err)
@@ -30,32 +92,76 @@ function TreeDonatedModal(props) {
     }
 
 
-
         const { customClass, show, closeCallback, goal } = props
-        //const { goal_types } = value
-        //const goalType = goal_types.filter(type => type.id === goal.goal_type_id)
 
         return (
             <div className={`modal_edit_goal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
                 <div className="overlay_edit_goal" ></div>
                     <div className="modal_content_edit_goal">
-                        {goal.tree_bet > 1 ? <h2>{goal.tree_bet} Trees Donated!</h2> : <h2>{goal.tree_bet} Tree Donated</h2>}
-                        <p>Would you like to try for your goal again?</p>
-                            <button
-                            className="goal_edit_toggle"
-                            type="button"
-                            onClick={props.toggleModalEdit}
-                            >
-                                Edit
-                            </button>
-                            <button
-                            className='goal_delete_toggle'
-                            type='button'
-                            onClick={handleClickDelete}
-                            >
-                                Delete
-                            </button>
-                          
+                       {
+                       loading 
+                       ? 
+                       <DonatingSpinner/> 
+                       : 
+                        <div>
+                            <h2>{goal.tree_bet} {donatedTitle}</h2>
+                            {!donated ? (highDonation ?
+                                    <div> 
+                                        <p>You sure you want to donate {goal.tree_bet} trees?</p>
+                                        <button
+                                        type='button'
+                                        onClick={donateHighNumber}
+                                        >
+                                            Yep I want that crisp air
+                                        </button>
+                                        <button
+                                            className="goal_edit_toggle"
+                                            type="button"
+                                            onClick={props.toggleModalEdit}
+                                            >
+                                                Edit
+                                        </button>
+                                    </div> 
+                                :
+                                    <div>
+                                        <button
+                                        aria-label="donate_tree_button"
+                                        className='donate_tree_button'
+                                        type='button'
+                                        onClick={handleDonateTrees}
+                                        >
+                                            Donate
+                                        </button>
+                                        <button
+                                        type='button'
+                                        onClick={props.toggleCallback}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                )
+                            :
+                                <div>
+                                    <p>Would you like to try for your goal again?</p>
+                                    <button
+                                    className="goal_edit_toggle"
+                                    type="button"
+                                    onClick={props.toggleModalEdit}
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                    className='goal_delete_toggle'
+                                    type='button'
+                                    onClick={handleClickDelete}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                                
+                            }
+                        </div>
+                        }
                     </div>
             </div>
         )
@@ -66,6 +172,7 @@ function TreeDonatedModal(props) {
     customClass: '',
     show: false,
     closeCallback: () => (false),
+    //toggleCallback: () => (false),
     goalTypes: [],
     userId: ""
 };

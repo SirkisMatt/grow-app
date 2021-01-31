@@ -2,7 +2,7 @@
   max-width: 350px;
   border-radius: 20px;
   margin: auto;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0);
   box-sizing: border-box;
   padding: 40px;
   color: #fff;
@@ -39,6 +39,7 @@
   opacity: 0.7;
   border-radius: 20px;
   font-size: 20px;
+  font-weight: 600;
   color: #fff;
 }
 

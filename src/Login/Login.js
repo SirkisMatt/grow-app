@@ -111,7 +111,7 @@ class Login extends Component {
                   {this.state.email.touched && <ValidationError message={emailError}/>}
                     <input placeholder="Password" type="password" name='password' id='password' onChange={e => this.handlePasswordChange(e)}/>
                     <button type='submit'>
-                        Sign In
+                        Log In
                     </button>
             </form>
             <p>Don't have an account? <Link to='/signup' className="sign-up">Sign Up</Link></p>
