@@ -120,7 +120,7 @@ function EditGoal(props) {
                                 Completed
                             </button>
                             <button title="Close" className="close_modal" onClick={closeCallback}>
-                                <i className="fas fa-times">X</i>
+                                <i className="fas fa-times"></i>
                             </button>
                     </div>
             </div>
