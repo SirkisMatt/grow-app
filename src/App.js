@@ -13,6 +13,7 @@ import AddGoalType from './AddGoalType/AddGoalType'
 import GoalsCompleted from './GoalsCompleted/GoalsCompleted'
 import Axios from 'axios'
 import ApiContext from './ApiContext'
+import {myConfig} from './config.js'
 import './App.css'
 
 
@@ -23,12 +24,12 @@ function App() {
   const [goals, setGoalsForUser] = useState([])
   const [ dueGoals, setDueGoals ] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
-  const [treesDonated, handleTreesDonated] = useState(0)
+  // const [treesDonated, handleTreesDonated] = useState(0)
 
 
 //On render get goalTypes
   useEffect(() => {
-    Axios.get(`https://immense-lowlands-49270.herokuapp.com/api/goal-types`)
+    Axios.get(`${myConfig.API_ENDPOINT}/api/goal-types`)
     .then(goalTypes => {
       handleGoalTypes(goalTypes.data)
       //localStorage.setItem('goalTypes', JSON.stringify(goalTypes.data))
@@ -37,19 +38,20 @@ function App() {
       console.log(err)
     })
   }, [])
+  console.log(goal_types)
 
   //counter for number of trees donated
   useEffect(() => {
-    Axios.get(`https://api-dev.digitalhumani.com/tree?enterpriseId=${'7997dd50'}&user=${user.email}`)
-    .then(res => {
-      if(res.status === 200) {
-        handleTreesDonated(res.data.count)
-      }
+    // Axios.get(`https://api-dev.digitalhumani.com/tree?enterpriseId=${myConfig.ENTERPRISE_ID}&user=${user.email}`)
+    // .then(res => {
+    //   if(res.status === 200) {
+    //     handleTreesDonated(res.data.count)
+    //   }
 
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
 
     //adds dueGoals to state
     let now = new Date()
@@ -189,7 +191,7 @@ function App() {
       goals,
       dueGoals,
       loggedIn,
-      treesDonated,
+      // treesDonated,
       addUser: handleAddUser,
       addGoal: handleAddGoal,
       getGoals: handleGetGoals,

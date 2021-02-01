@@ -39,9 +39,9 @@ function DashboardNav(props) {
     return (
         <div>
             <nav role="navigation" className="dashboard-nav">
-                <div className="tree-count">
+                {/* <div className="tree-count">
                     <p><span id="tree-number"> {value.treesDonated} </span>Trees planted!</p>
-                </div>
+                </div> */}
                 <div className='grow-title'>
                         <Link to='/' className='home'>Grow</Link>
 

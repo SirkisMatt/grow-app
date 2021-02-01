@@ -90,7 +90,7 @@ class SignUp extends Component {
     const emailError = this.validateEmail()
     return (
         <div className="signup-wrap">
-            <h2>Sign up Here</h2>
+            <h2>Sign up here</h2>
             <form className='signup-form' onSubmit={this.handleSubmit}>
                     <input placeholder='User Name' type="text" name='user-name' id='user-name' onChange={e => this.handleUserNameChange(e)} />
                     <input placeholder='Email' type="text" name='email' id='email' onChange={e => this.handleEmailChange(e)} />
