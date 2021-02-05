@@ -38,7 +38,6 @@ function App() {
       console.log(err)
     })
   }, [])
-  console.log(goal_types)
 
   //counter for number of trees donated
   useEffect(() => {
