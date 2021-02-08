@@ -1,0 +1,16 @@
+{
+    "short_name": "Grow",
+    "name": "Grow",
+    "icons": [
+      {
+        "src": "Raas.png",
+        "sizes": "64x64",
+        "type": "png"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+  }
+  

@@ -6,6 +6,7 @@ import Leaf from '../Icons/Leaf'
 import {myConfig} from '../config.js'
 import './Goal.css'
 import EditGoal from '../EditGoal/EditGoal'
+import CompletedModal from '../CompletedModal/CompletedModal'
 
 
 function Goal(props) {
@@ -18,7 +19,10 @@ function Goal(props) {
     const [ showModalEdit, toggleModalEdit ] = useState(false)
     const [ overdue, handleOverdue ] = useState(false)
     const [ showTreeDonatedModal, toggleTreeDonatedModal ] = useState(false)
+    const [ showCompletedModal, toggleCompletedModal ] = useState(false)
 
+    console.log("completed", showCompletedModal)
+    console.log(showModalEdit)
 
     const handleClickDelete = e => {
         e.preventDefault()
@@ -54,7 +58,7 @@ function Goal(props) {
         .catch(error => {
             console.log(error)
         })
-    
+        toggleCompletedModal(true)
     }
 
     const handleToggle = () => {
@@ -71,21 +75,9 @@ function Goal(props) {
     }, [value.dueGoals])
 
     const handleDonateTrees = () => {
-        // Axios.post(`https://api-dev.digitalhumani.com/tree`, {
-        //  "treeCount": treeBet,
-        //  "enterpriseId": myConfig.ENTERPRISE_ID,
-        //  "projectId": "77111010",
-        //  "user": value.user.email
-        // })
-        // .then(res => {
-        //     if(res.status === 200) {
-        //        toggleTreeDonatedModal(true)
-        //     }
-        //  })
-        //  .catch(error => {
-        //      console.log(error)
-        //  })
-
+        if(showCompletedModal) {
+            toggleCompletedModal(false)
+        }
          toggleTreeDonatedModal(true)
      }
 
@@ -94,10 +86,12 @@ function Goal(props) {
         toggleTreeDonatedModal(!showTreeDonatedModal)
     }
 
+    const handleCompletedGoalModalChange = () => {
+        toggleModalEdit(!showModalEdit)
+        toggleCompletedModal(!showCompletedModal)
+    }
 
-   
 
-    
     if (!props.completed) {
         return (
             <div className="Card">
@@ -167,7 +161,17 @@ function Goal(props) {
                         goalId={goal.id}
                     />
                 }
-                
+                {
+                    showCompletedModal && 
+                    <CompletedModal 
+                    show={showCompletedModal}
+                    toggleCallback={() => toggleCompletedModal(!showCompletedModal)}
+                    customClass="completed_modal"
+                    toggleModalEdit={() => handleCompletedGoalModalChange()}
+                    toggleDonate={() => handleDonateTrees()}
+                    goal={goal}
+                    />
+                }
             </div>
         )} 
     { 

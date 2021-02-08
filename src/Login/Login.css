@@ -6,7 +6,9 @@
   box-sizing: border-box;
   padding: 40px;
   color: #fff;
-  margin-top: 100px;
+  margin-top: 40px;
+  height: 100%;
+  width: auto ;
 }
 
 .login-wrap h2 {
@@ -54,4 +56,12 @@
 
 .login-wrap a:hover {
   color: #fff;
+}
+
+@media all and (min-width: 400px) {
+
+  .login-wrap {
+    margin-top: 110px;
+  }
+
 }

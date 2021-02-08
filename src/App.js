@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './Login/Login';
+import LoginNav from './LoginNav/LoginNav'
 import SignUp from './SignUp/SignUp';
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
@@ -135,6 +136,10 @@ function App() {
             path="/dashboard/:userId"
             component={DashboardNav}
           />
+          <Route
+          path="/login"
+          component={LoginNav}
+          />
         </>
     );
   }
@@ -201,13 +206,20 @@ function App() {
       logout: handleLogout,
     }
 
+    console.log(value.location)
     return (
-      <ApiContext.Provider value={value}>
-        <div className='App'>
-       {renderNavRoutes()}
-          <main className="App_Main">{renderMainRoutes()}</main>
-        </div>
-      </ApiContext.Provider>
+        <Router>
+          <ApiContext.Provider value={value}>
+            <div className='App'>
+              <div className="App_Header">
+              {renderNavRoutes()}
+              </div>
+              <div>
+                <main className="App_Main">{renderMainRoutes()}</main>
+              </div>
+            </div>
+          </ApiContext.Provider>
+        </Router>
     );
 }
 
