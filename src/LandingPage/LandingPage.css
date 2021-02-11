@@ -4,7 +4,7 @@
     sans-serif;
     /* height: 100px; */
     /* font-size: 20px; */
-    color: beige;
+    /* color: beige; */
     /* text-align: center;
     line-height: 1.5; */
   }
@@ -19,9 +19,16 @@
   
 
 
-img {
-  display: block;
+.landing-section img {
+  /* display: block; */
   height: auto;
+  min-height: 50px;
+  max-width: 100%;
+}
+
+.img_container img {
+  height: auto;
+  min-height: 50px;
   max-width: 100%;
 }
 
@@ -29,52 +36,74 @@ hr {
   width: 80%;
 }
 
-  
-  /* .landing-main-header {
-    padding: 20px 15px;
-    margin-top: 50px;
-    text-align: center;
+  .banner{
+    position: relative;
+    /* top: 0; */
+    /* left: 0; */
+    /* height: 100%; */
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    display: block;
   }
 
-  .landing-main-header h1 {
-    font-size: 2em;
+  .banner > .kauri_video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+    z-index: -100;
   }
-  .landing-main-header h3 {
-    font-size: 1.2em;
-  }
+
+  .overlay_text {
+    /* position:absolute; */
+    /* top: 30%; */
+    /* left:20%;
+    z-index:1; */
+    /* padding-top: 30px; */
+    text-align: center;
+    color: white; 
+    font: bold 24px/45px Helvetica, Sans-Serif; 
+    /* letter-spacing: -1px;   */
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    padding-bottom: 100%;
+   }
+
+   .img_container {
+     position: relative;
+   }
+
+   .overlay_second_img {
+    position: absolute;
+    text-align: right;
+    top: 20px;
+    right: 20px;
+    color: white; 
+    font: bold 24px/45px;
+    /* letter-spacing: -1px;   */
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding-left: 20px;
+    padding-right: 20px;
+   }
   
-  .landing-header {
-    padding: 10px 15px;
-    margin-top: 50px;
-  } */
+   #catch_phrase {
+     /* padding-top: 20px; */
+     font-size: 30px;
+   }
 
   
   .landing-section { 
     /* min-height: 200px; */
-    padding: 64px; 
-    overflow: auto;
+    padding: 40px; 
+    /* overflow: auto; */
    }
 
-  /* .landing-page hr {
-    width: 30%;
-    margin-top: 40px;
-    margin-bottom: 5px;
-  }
-   */
- 
-/*   
-  .landing-page p {
-    margin: 0 auto;
-    max-width: 650px;
-  }
-  
-  .landing-page p + p {
-    margin-top: 10px;
-  }
-  
-  .landing-footer {
-    margin-top: 100px;
-  } */
   .column-1,
     .column-2 {
       width: 100%;
@@ -82,27 +111,17 @@ hr {
     }
 
   @media all and (min-width: 400px) {
-/* 
-    .landing-main-header h1 {
-      font-size: 2.7em;
+
+    .banner{
+      height: 400px;
     }
 
-    .landing-main-header h3 {
-      font-size: 1.6em;
-    }
-   */
-    /* .App-list {
-      flex-direction: row;
-      align-items: flex-start;
-    } */
-
-    .large-font {
-      font-size: 48px;
-    }
-    
-    .xlarge-font {
-      font-size: 64px
-    }
+    .landing-section { 
+      padding: 0 150px 0 150px;
+      overflow: auto;
+      margin-top: 100px;
+      margin-bottom: 100px;
+     }
 
     .column-1,
     .column-2 {
@@ -120,7 +139,15 @@ hr {
     .column-2 {
       float: left;
       width: 33.33333%;
-      padding: 20px;
+      padding: 10px;
+    }
+
+    .column-1 h3 {
+      font-size: 2rem;
+    }
+
+    .column-1 p {
+      font-size: 1.2rem;
     }
   
   }

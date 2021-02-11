@@ -43,7 +43,7 @@ function DashboardNav(props) {
                     <p><span id="tree-number"> {value.treesDonated} </span>Trees planted!</p>
                 </div> */}
                 <div className='grow-title'>
-                        <Link to='/' className='home'>Grow</Link>
+                        <button className="home" onClick={handleExit}>Grow</button>
 
                 </div>
                 <FaBars className="toggle-button" onClick={() => toggleNavLinks(!toggle)}/>

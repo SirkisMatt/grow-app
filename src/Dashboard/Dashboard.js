@@ -13,6 +13,9 @@ function Dashboard(props) {
   const [goal_list, updateList] = useState({})
   const [ showModal, toggleModal ] = useState(false)
 
+  useEffect(() => {
+    console.log(props.history)
+  })
 
   
   useEffect(() => {

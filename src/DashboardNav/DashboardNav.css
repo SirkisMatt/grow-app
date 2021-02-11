@@ -1,6 +1,7 @@
 .dashboard-nav {
     text-decoration: none;
     margin: 0%;
+    margin-top: 20px;
     padding: 0%;
     width: 100%;
     display: flex;
@@ -15,10 +16,19 @@
     margin-left: 1rem;
 }
 
-.grow-title a {
+.home {
     text-decoration: none;
+    font-size: 100%;
     color: beige;
+    background-color: inherit;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
 }
+
+/* .home:hover, .home:focus {
+    background-color: black;
+} */
 
 .navbar-links {
     /* display: none; */

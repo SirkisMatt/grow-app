@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
+import { Route, useHistory } from 'react-router-dom';
 import Login from './Login/Login';
 import LoginNav from './LoginNav/LoginNav'
 import SignUp from './SignUp/SignUp';
@@ -15,6 +15,7 @@ import GoalsCompleted from './GoalsCompleted/GoalsCompleted'
 import Axios from 'axios'
 import ApiContext from './ApiContext'
 import {myConfig} from './config.js'
+import fern from './images/fern.png'
 import './App.css'
 
 
@@ -25,7 +26,11 @@ function App() {
   const [goals, setGoalsForUser] = useState([])
   const [ dueGoals, setDueGoals ] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
+  const [ className, setClassName ] = useState('')
   // const [treesDonated, handleTreesDonated] = useState(0)
+
+  let history = useHistory()
+  let pathName = history.location.pathname
 
 
 //On render get goalTypes
@@ -38,7 +43,16 @@ function App() {
     .catch(err => {
       console.log(err)
     })
+
   }, [])
+
+  useEffect(() => {
+    if(!loggedIn) {
+      setClassName('App')
+    } else {
+      setClassName('notLanding')
+    }
+  })
 
   //counter for number of trees donated
   useEffect(() => {
@@ -66,12 +80,12 @@ function App() {
     setUser([])
     setGoalsForUser([])
     setDueGoals([])
+    handleLoggedIn(false)
   }
 
 //Add new user to state
   const handleAddUser = user => {
     setUser(user)
-    handleLoggedIn(true)
   }
 
 //Adds goals when new user logs in
@@ -81,6 +95,8 @@ function App() {
     } else {
       setGoalsForUser([])
     }
+
+    handleLoggedIn(true)
     
   }
 
@@ -195,7 +211,6 @@ function App() {
       goals,
       dueGoals,
       loggedIn,
-      // treesDonated,
       addUser: handleAddUser,
       addGoal: handleAddGoal,
       getGoals: handleGetGoals,
@@ -206,20 +221,20 @@ function App() {
       logout: handleLogout,
     }
 
-    console.log(value.location)
+    
+  
+    console.log(history.location.pathname)
+    // { backgroundImage: (pathName === '/') && fern }
+    // style={{ backgroundImage: (pathName === '/') && `url(${fern})` }}
     return (
-        <Router>
           <ApiContext.Provider value={value}>
-            <div className='App'>
-              <div className="App_Header">
+            <div className={className} >
               {renderNavRoutes()}
-              </div>
               <div>
                 <main className="App_Main">{renderMainRoutes()}</main>
               </div>
             </div>
           </ApiContext.Provider>
-        </Router>
     );
 }
 

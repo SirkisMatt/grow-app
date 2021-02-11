@@ -1,15 +1,18 @@
 .landing-nav {
     text-decoration: none;
-    margin-top: 10px;
+    /* margin-top: 10px;
+    margin-bottom: 10px; */
+    background-color:rgb(44, 53, 63);
     flex-wrap: wrap;
     justify-content: space-between;
     font-size: 1.5em;  
+    padding: 10px 0 0 0;
 }
 
 .landing-nav li {
     float: left;
-    color: #f2f2f2;
-    padding: 1px 8px;
+    /* color: #f2f2f2; */
+    /* padding: 0 20px 10px 10px; */
     text-decoration: none;
     /* font-size: 30px; */
     text-align: right;
@@ -24,7 +27,7 @@
 
 .landing-nav a {
     text-decoration: none;
-    color: beige;
+    color: #fff;
 }
 
 .landing-nav .not-loggedin {
@@ -59,4 +62,13 @@
       font-size: 2em;  
     }
   
+  
+
+  .landing-nav { 
+    padding: 20px 0 0 0;
+}
+
+.landing-nav li {
+    padding: 0 20px 10px 10px;
   }
+}

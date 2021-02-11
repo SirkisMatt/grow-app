@@ -1,12 +1,23 @@
 
 
 
-.App {
+.notLanding {
   background-image: url(./images/fern.png);
   background-repeat: no-repeat; 
   background-attachment: fixed;
   min-height: 100vh;
   min-width: 100vw;
+  
+  
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.App {
+  
+  min-height: 100vh;
+  min-width: 100vw;
+  
   
   display: inline-flex;
   flex-direction: column;

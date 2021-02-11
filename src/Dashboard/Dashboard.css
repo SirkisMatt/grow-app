@@ -105,6 +105,11 @@
 
 @media all and (min-width: 600px) {
 
+  .dashboard {
+    width: 100%;
+    margin-left: 20px;
+  }
+
   .dashboard-header {
     font-size: 1.3em;
     justify-content: flex-start;

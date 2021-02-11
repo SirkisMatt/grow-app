@@ -1,14 +1,12 @@
 /* LIST STYLES */
 
 .List {
-    min-width: 218px;
+    min-width: 240px;
+    max-width: 240px;
     flex-grow: 1;
-    max-width: 290px;
   }
   
-  .List:not(:first-of-type) {
-    margin-left: 8px;
-  }
+ 
   
   .List-header h2,
   .List-cards h3 {
@@ -51,4 +49,12 @@
   
   .List-add-button:hover {
     cursor: pointer;
+  }
+
+  @media all and (min-width: 600px) {
+
+  .List:not(:first-of-type) {
+    margin-left: 20px;
+  }
+
   }

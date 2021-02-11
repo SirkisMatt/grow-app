@@ -21,8 +21,6 @@ function Goal(props) {
     const [ showTreeDonatedModal, toggleTreeDonatedModal ] = useState(false)
     const [ showCompletedModal, toggleCompletedModal ] = useState(false)
 
-    console.log("completed", showCompletedModal)
-    console.log(showModalEdit)
 
     const handleClickDelete = e => {
         e.preventDefault()
