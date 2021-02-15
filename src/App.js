@@ -26,7 +26,6 @@ function App() {
   const [goals, setGoalsForUser] = useState([])
   const [ dueGoals, setDueGoals ] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
-  const [ className, setClassName ] = useState('')
   // const [treesDonated, handleTreesDonated] = useState(0)
 
   let history = useHistory()
@@ -45,14 +44,6 @@ function App() {
     })
 
   }, [])
-
-  useEffect(() => {
-    if(!loggedIn) {
-      setClassName('App')
-    } else {
-      setClassName('notLanding')
-    }
-  })
 
   //counter for number of trees donated
   useEffect(() => {
@@ -140,7 +131,7 @@ function App() {
   const renderNavRoutes = () => {
     return (
         <>
-          {['/', '/signup', 'add-payment', 'login'].map(path => (
+          {[ '/signup', 'add-payment', 'login'].map(path => (
               <Route
                   exact
                   key={path}
@@ -163,6 +154,11 @@ function App() {
  const renderMainRoutes = () => {
     return (
       <>
+        {/* <Route
+        exact
+        path="/"
+        component={LandingNav}
+        /> */}
          <Route
         exact
         path="/"
@@ -228,9 +224,10 @@ function App() {
     // style={{ backgroundImage: (pathName === '/') && `url(${fern})` }}
     return (
           <ApiContext.Provider value={value}>
-            <div className={className} >
-              {renderNavRoutes()}
+            <div className="App" >
+              
               <div>
+              {renderNavRoutes()}
                 <main className="App_Main">{renderMainRoutes()}</main>
               </div>
             </div>

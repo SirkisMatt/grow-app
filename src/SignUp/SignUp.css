@@ -41,6 +41,7 @@
   font-size: 20px;
   font-weight: 600;
   color: #fff;
+  cursor: pointer;
 }
 
 .signup-wrap button:hover {
@@ -49,3 +50,10 @@
 
 
 
+@media all and (min-width: 400px) {
+
+  .signup-wrap {
+    margin-top: 170px;
+  }
+
+}

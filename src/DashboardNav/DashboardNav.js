@@ -4,6 +4,7 @@ import { FaBars } from 'react-icons/fa'
 import ApiContext from '../ApiContext'
 import AccountDetails from '../AccountDetails/AccountDetails'
 import DeleteAccount from '../DeleteAccount/DeleteAccount'
+import whiteTree from '../images/White_Tree.png'
 import './DashboardNav.css'
 
 
@@ -37,24 +38,22 @@ function DashboardNav(props) {
     }
 
     return (
-        <div>
-            <nav role="navigation" className="dashboard-nav">
+        <header role="navigation" className="dashboard-nav">
                 {/* <div className="tree-count">
                     <p><span id="tree-number"> {value.treesDonated} </span>Trees planted!</p>
                 </div> */}
-                <div className='grow-title'>
-                        <button className="home" onClick={handleExit}>Grow</button>
-
+                <div className='dashboard-logo'>
+                    <img src={whiteTree} className="tree_outline"/>
+                    <Link to='/' className='site-logo'>Grow</Link>
                 </div>
                 <FaBars className="toggle-button" onClick={() => toggleNavLinks(!toggle)}/>
-            </nav>
-            <div className="navbar-links" style={{display: toggle ? "inherit" : "none"}}>
+            <nav className="navbar-links" style={{display: toggle ? "inherit" : "none"}}>
                 <ul >
                     <li><button className="btn" onClick={() => toggleAccountDetails(true)}>Account Details</button></li>
                     <li><button className="btn"><Link to='/goals-completed/:userId'>Goals Completed</Link></button></li>
                     <li><button className="btn" onKeyDown={handleLogout} onClick={handleLogout}>Log Out</button></li>
                 </ul>
-            </div>
+            </nav>
             <AccountDetails
             show={showAccountDetails}
             customClass='custom_account_details'
@@ -73,7 +72,7 @@ function DashboardNav(props) {
                     handleLogout={() => handleLogout()}
                 />
             }
-        </div>
+        </header>
     )
     
 }
