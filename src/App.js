@@ -5,7 +5,7 @@ import LoginNav from './LoginNav/LoginNav'
 import SignUp from './SignUp/SignUp';
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
-import DashboardNav from './DashboardNav/DashboardNav'
+// import DashboardNav from './DashboardNav/DashboardNav'
 import AccountDetails from './AccountDetails/AccountDetails'
 import LandingNav from './LandingNav/LandingNav'
 import AddPayment from './AddPayment/AddPayment'
@@ -139,10 +139,10 @@ function App() {
                   component={LandingNav}
               />
           ))}
-          <Route
+          {/* <Route
             path="/dashboard/:userId"
             component={DashboardNav}
-          />
+          /> */}
           <Route
           path="/login"
           component={LoginNav}

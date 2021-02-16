@@ -11,7 +11,7 @@ import './DashboardNav.css'
 function DashboardNav(props) {
 
     
-    const [ toggle, toggleNavLinks ] = useState(false)
+   
     const [ showDeleteAccount, toggleDeleteAccount ] = useState(false)
     const [ showAccountDetails, toggleAccountDetails ] = useState(false)
 
@@ -43,11 +43,11 @@ function DashboardNav(props) {
                     <p><span id="tree-number"> {value.treesDonated} </span>Trees planted!</p>
                 </div> */}
                 <div className='dashboard-logo'>
-                    <img src={whiteTree} className="tree_outline"/>
-                    <Link to='/' className='site-logo'>Grow</Link>
+                    <img src={whiteTree} className="db-tree-outline"/>
+                    <Link to='/' className='db-site-logo'>Grow</Link>
                 </div>
-                <FaBars className="toggle-button" onClick={() => toggleNavLinks(!toggle)}/>
-            <nav className="navbar-links" style={{display: toggle ? "inherit" : "none"}}>
+                <FaBars className="toggle-button" onClick={props.toggleNavLinks}/>
+            <nav className="navbar-links" style={{display: props.toggle ? "inherit" : "none"}}>
                 <ul >
                     <li><button className="btn" onClick={() => toggleAccountDetails(true)}>Account Details</button></li>
                     <li><button className="btn"><Link to='/goals-completed/:userId'>Goals Completed</Link></button></li>

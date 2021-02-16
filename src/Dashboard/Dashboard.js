@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import ApiContext from '../ApiContext'
 import AddGoalCard from '../AddGoalCard/AddGoalCard'
 import GoalListWrapper from '../GoalListWrapper/GoalListWrapper'
+import DashboardNav from '../DashboardNav/DashboardNav.js'
 import 'reactjs-popup/dist/index.css';
 import './Dashboard.css'
 
@@ -10,6 +11,7 @@ function Dashboard(props) {
     
   const value = useContext(ApiContext)
 
+  const [ toggle, toggleNavLinks ] = useState(false)
   const [goal_list, updateList] = useState({})
   const [ showModal, toggleModal ] = useState(false)
 
@@ -54,11 +56,16 @@ function Dashboard(props) {
   
   return (
     <div className='dashboard'>
-          <header className="dashboard-header">
+      <DashboardNav 
+      toggleNavLinks={() => toggleNavLinks(!toggle)}
+      toggle={toggle}
+      history={props.history}
+      />
+          <div className="dashboard-header-buttons">
           <button className="add-goal-button" onClick={() => toggleModal(!showModal)}>
                       add new goal +
           </button>
-          </header>
+          </div>
       <div>
           <div className="dashboard-list">
               {goalTypeNumber.map(goalTypeId => 

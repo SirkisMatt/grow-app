@@ -1,10 +1,9 @@
 .dashboard {
-  width: 100%;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 
-.dashboard-header {
+.dashboard-header-buttons {
   font-size: 1em;
   color: beige;
   display: flex;
@@ -17,24 +16,6 @@
   flex-wrap: wrap;
 }
 
-.dashboard-header ul {
-  padding: 0px 5px;
-  list-style: none;
-}
-
-.dashboard-header li {
-  display: inline-block;
-
-}
-
-.dashboard-header li a {
-  transition: all 0.3s ease 0s;
-  text-decoration: none;
-}
-
-.dashboard-header li a:hover {
-  color: #0088a9
-}
 
 
 .dashboard-list {
@@ -107,11 +88,10 @@
 @media all and (min-width: 600px) {
 
   .dashboard {
-    width: 100%;
     margin-left: 20px;
   }
 
-  .dashboard-header {
+  .dashboard-header-buttons {
     font-size: 1.3em;
     justify-content: flex-start;
   }
@@ -124,7 +104,7 @@
 
 }
 
-.dashboard-header {
+.dashboard-header-buttons {
   font-size: 1.3em;
   
 }
