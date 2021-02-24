@@ -1,4 +1,4 @@
-import React, { useEffect, useContext  } from 'react'
+import React, { useContext  } from 'react'
 import ApiContext from '../ApiContext'
 import './AccountDetails.css'
 
@@ -6,12 +6,6 @@ import './AccountDetails.css'
 function AccountDetails(props) {
 
     const value = useContext(ApiContext)
-
-    useEffect(() => {
-        if (value.user.length === 0) {
-        props.handleLogout()
-        }
-      }, [])
 
     return (
          <div className={`modal_account_details ${props.customClass}`} style={{ display: props.show ? 'block' : 'none'}}>
@@ -40,5 +34,15 @@ function AccountDetails(props) {
     )
     
 }
+
+AccountDetails.defaultProps = {
+    show: false,
+    customClass: '',
+    toggleAccountDetails: '',
+    handleEditPayment: '',
+    handleDeleteAccount: '',
+    // handleLogout: '',
+};
+
 
 export default AccountDetails

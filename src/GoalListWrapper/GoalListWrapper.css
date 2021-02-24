@@ -53,6 +53,10 @@
 
   @media all and (min-width: 600px) {
 
+    .List-cards {
+      max-height: 600px
+    }
+
   .List:not(:first-of-type) {
     margin-left: 20px;
   }

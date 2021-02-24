@@ -20,6 +20,7 @@ function Goal(props) {
     const [ overdue, handleOverdue ] = useState(false)
     const [ showTreeDonatedModal, toggleTreeDonatedModal ] = useState(false)
     const [ showCompletedModal, toggleCompletedModal ] = useState(false)
+    
 
 
     const handleClickDelete = e => {
@@ -40,8 +41,7 @@ function Goal(props) {
           })
     }
 
-    function handleCompletedGoal(e) {
-        e.preventDefault()
+    function handleCompletedGoal() {
         const userId = value.user.id
         Axios.patch(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}/${id}`, {
             title: title,
@@ -56,7 +56,7 @@ function Goal(props) {
         .catch(error => {
             console.log(error)
         })
-        toggleCompletedModal(true)
+
     }
 
     const handleToggle = () => {
@@ -75,8 +75,10 @@ function Goal(props) {
     const handleDonateTrees = () => {
         if(showCompletedModal) {
             toggleCompletedModal(false)
+            
         }
-         toggleTreeDonatedModal(true)
+
+        toggleTreeDonatedModal(true)
      }
 
     const handleModalChange = () => {
@@ -118,21 +120,21 @@ function Goal(props) {
                 </button>
                 }
                 <button
-                className='goal_complete_toggle'
+                className='goal_btn'
                 type='button'
-                onClick={handleCompletedGoal}
+                onClick={() => toggleCompletedModal(!showCompletedModal)}
                 >
                     Completed
                 </button>
                 <button
-                className='goal_edit'
+                className='goal_btn'
                 type='button'
                 onClick={handleToggle}
                 >
                     Edit
                 </button>
                 <button 
-                className='Goal_delete'
+                className='goal_btn'
                 type='button'
                 onClick={handleClickDelete}
                 >
@@ -144,6 +146,7 @@ function Goal(props) {
                         <EditGoal
                         show={showModalEdit}
                         closeCallback={() => toggleModalEdit(!showModalEdit)}
+                        handleCompletedGoal={() => handleCompletedGoal()}
                         customClass="custom_modal_class"
                         goalToEdit={props.goal}
                         /> 
@@ -166,7 +169,7 @@ function Goal(props) {
                     toggleCallback={() => toggleCompletedModal(!showCompletedModal)}
                     customClass="completed_modal"
                     toggleModalEdit={() => handleCompletedGoalModalChange()}
-                    toggleDonate={() => handleDonateTrees()}
+                    handleCompletedGoal={() => handleCompletedGoal()}
                     goal={goal}
                     />
                 }
@@ -184,14 +187,14 @@ function Goal(props) {
                 <p style={{ color: overdue && 'red'}}>Complete by: {complete_by}</p>
             </div>
             <button
-                className='goal_edit'
+                className='goal_btn'
                 type='button'
                 onClick={handleToggle}
                 >
                     Edit
                 </button>
                 <button 
-                className='Goal_delete'
+                className='goal_btn'
                 type='button'
                 onClick={handleClickDelete}
                 >

@@ -1,11 +1,10 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import Login from './Login/Login';
 import LoginNav from './LoginNav/LoginNav'
 import SignUp from './SignUp/SignUp';
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
-// import DashboardNav from './DashboardNav/DashboardNav'
 import AccountDetails from './AccountDetails/AccountDetails'
 import LandingNav from './LandingNav/LandingNav'
 import AddPayment from './AddPayment/AddPayment'
@@ -15,7 +14,6 @@ import GoalsCompleted from './GoalsCompleted/GoalsCompleted'
 import Axios from 'axios'
 import ApiContext from './ApiContext'
 import {myConfig} from './config.js'
-import fern from './images/fern.png'
 import './App.css'
 
 
@@ -26,10 +24,7 @@ function App() {
   const [goals, setGoalsForUser] = useState([])
   const [ dueGoals, setDueGoals ] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
-  // const [treesDonated, handleTreesDonated] = useState(0)
-
-  let history = useHistory()
-  let pathName = history.location.pathname
+ 
 
 
 //On render get goalTypes
@@ -45,7 +40,7 @@ function App() {
 
   }, [])
 
-  //counter for number of trees donated
+  //counter for number of trees donated ***** API currently in BETA ***** Feature coming soon once bug fix *****
   useEffect(() => {
     // Axios.get(`https://api-dev.digitalhumani.com/tree?enterpriseId=${myConfig.ENTERPRISE_ID}&user=${user.email}`)
     // .then(res => {
@@ -139,10 +134,6 @@ function App() {
                   component={LandingNav}
               />
           ))}
-          {/* <Route
-            path="/dashboard/:userId"
-            component={DashboardNav}
-          /> */}
           <Route
           path="/login"
           component={LoginNav}
@@ -154,11 +145,6 @@ function App() {
  const renderMainRoutes = () => {
     return (
       <>
-        {/* <Route
-        exact
-        path="/"
-        component={LandingNav}
-        /> */}
          <Route
         exact
         path="/"
@@ -217,15 +203,9 @@ function App() {
       logout: handleLogout,
     }
 
-    
-  
-    console.log(history.location.pathname)
-    // { backgroundImage: (pathName === '/') && fern }
-    // style={{ backgroundImage: (pathName === '/') && `url(${fern})` }}
     return (
           <ApiContext.Provider value={value}>
             <div className="App" >
-              
               <div>
               {renderNavRoutes()}
                 <main className="App_Main">{renderMainRoutes()}</main>

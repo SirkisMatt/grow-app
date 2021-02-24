@@ -9,7 +9,7 @@
   display: flex;
   border-radius: 10px;
   padding: 0px;
-  margin-top: 30px;
+  margin-top: 5px;
   margin-bottom: 10px;
   justify-content: center;
   align-items: baseline;
@@ -31,7 +31,7 @@
 .add-goal-button {
   color: rgb(240, 240, 229);
   font: inherit;
-  background-color: rgba(154, 196, 171, 0.4);
+  background-color: rgba(8, 88, 41, 0.8);
   border: none;
   padding: 9px;
   padding-left: 15px;
@@ -94,6 +94,7 @@
   .dashboard-header-buttons {
     font-size: 1.3em;
     justify-content: flex-start;
+    margin-top: 20px;
   }
 
 

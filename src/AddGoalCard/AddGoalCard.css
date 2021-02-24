@@ -36,7 +36,8 @@
     background: rgba(0,0,0,0.8);
     box-sizing: border-box;
     color: #fff;
-    
+    width: 40%;
+    min-width: 250px;
   }
   
   .modal .modal_content > h2 {
@@ -114,4 +115,9 @@
     color: rgb(24, 177, 105);
   }
 
+  @media all and (min-width: 400px) {
+    .modal .modal_content {
+      min-width: 300px;
+    }
+  }
   

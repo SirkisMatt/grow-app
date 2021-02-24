@@ -49,9 +49,9 @@ function DashboardNav(props) {
                 <FaBars className="toggle-button" onClick={props.toggleNavLinks}/>
             <nav className="navbar-links" style={{display: props.toggle ? "inherit" : "none"}}>
                 <ul >
-                    <li><button className="btn" onClick={() => toggleAccountDetails(true)}>Account Details</button></li>
-                    <li><button className="btn"><Link to='/goals-completed/:userId'>Goals Completed</Link></button></li>
-                    <li><button className="btn" onKeyDown={handleLogout} onClick={handleLogout}>Log Out</button></li>
+                    <li><button className="nav-btn" onClick={() => toggleAccountDetails(true)}>Account Details</button></li>
+                    <li><button className="nav-btn"><Link to='/goals-completed/:userId'>Goals Completed</Link></button></li>
+                    <li><button className="nav-btn" onKeyDown={handleLogout} onClick={handleLogout}>Log Out</button></li>
                 </ul>
             </nav>
             <AccountDetails
@@ -60,7 +60,6 @@ function DashboardNav(props) {
             toggleAccountDetails={() => toggleAccountDetails(false)}
             handleEditPayment={() => handleEditPayment()}
             handleDeleteAccount={() => handleDeleteAccount()}
-            handleLogout={() => handleLogout()}
             />
             {
                 showDeleteAccount && 

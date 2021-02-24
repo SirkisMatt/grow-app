@@ -82,10 +82,11 @@ export default class AddGoalCard extends Component {
                             </select>
                             <br/>
                             {this.state.error && <p className="error_message">{this.state.errMessage}</p>}
-                            
+                                <label htmlFor="title">Title: </label>
                                 <input htmlFor="goal-title" placeholder='Whats your goal?' type="text" name='goal-title' id='goal-title' />
                                 <br/>
-                            <textarea className="description" name="description" rows="10" cols="30" placeholder='description'/>
+                                <label htmlFor="description">Description: </label>
+                                <textarea className="description" name="description" rows="10" cols="30" placeholder='Steps I can take to...'/>
                             <br/>
                             <div>
                                 <label htmlFor="tree-bet">Tree bet: </label>
@@ -98,10 +99,11 @@ export default class AddGoalCard extends Component {
                             </div>
                             <br/>
                             <button className="add_goal_btn" type='submit'>Add Goal!</button>
-                        </form>
-                            <button className="cancel_btn" onClick={this.handleCloseModal}>
+                            <button className="cancel_btn" type="button" onClick={this.handleCloseModal}>
                                 Cancel
                             </button>
+                        </form>
+                           
                             <button title="Close" className="close_modal" onClick={this.handleCloseModal}>
                                 <i className="fas fa-times"></i>
                             </button>

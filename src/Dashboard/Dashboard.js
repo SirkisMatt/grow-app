@@ -15,16 +15,13 @@ function Dashboard(props) {
   const [goal_list, updateList] = useState({})
   const [ showModal, toggleModal ] = useState(false)
 
-  useEffect(() => {
-    console.log(props.history)
-  })
+  const loggedIn = value.user.length
 
-  
   useEffect(() => {
-    if (value.user.length === 0) {
+    if (loggedIn === 0) {
     props.history.push(`/login`)
     }
-  }, [])
+  }, [loggedIn, props.history])
 
   useEffect(() => {
     let goalList = {}
@@ -61,7 +58,7 @@ function Dashboard(props) {
       toggle={toggle}
       history={props.history}
       />
-          <div className="dashboard-header-buttons">
+          <div className="dashboard-header-buttons" style={{ marginTop: toggle && '120px'}}>
           <button className="add-goal-button" onClick={() => toggleModal(!showModal)}>
                       add new goal +
           </button>

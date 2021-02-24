@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './CompletedModal.css'
 
 
@@ -12,26 +12,20 @@ function CompletedModal(props) {
                     <h2>Good Work</h2>
                         <div>
                             <p>Would you like to try for your goal again?</p>
-                            <button
-                            className="goal_donate"
-                            type="button"
-                            onClick={props.toggleDonate}
-                            >
-                                Donate Anyways
-                            </button>
+                            
                             <button
                             className="goal_edit_toggle"
                             type="button"
                             onClick={props.toggleModalEdit}
                             >
-                                Edit
+                                Yes
                             </button>
                             <button
                             className='goal_delete_toggle'
                             type='button'
-                            onClick={props.toggleCallback}
+                            onClick={props.handleCompletedGoal}
                             >
-                                Cancel
+                                No
                             </button>
                             <button title="Close" className="close_modal" onClick={props.toggleCallback}>
                                 <i className="fas fa-times"></i>
