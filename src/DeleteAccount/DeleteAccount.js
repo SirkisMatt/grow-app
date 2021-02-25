@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import Axios from 'axios';
 import ApiContext from '../ApiContext'
 import './DeleteAccount.css'

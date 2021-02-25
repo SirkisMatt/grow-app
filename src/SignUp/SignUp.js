@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ApiContext from '../ApiContext'
 import Axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
 import ValidationError from '../ValidationError'
 import './SignUp.css'
 

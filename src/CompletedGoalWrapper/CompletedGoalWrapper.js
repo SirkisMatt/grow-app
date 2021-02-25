@@ -1,21 +1,19 @@
 import React from 'react';
-import Goal from '../Goal/Goal'
-import './GoalListWrapper.css';
+import CompletedGoal from '../CompletedGoal/CompletedGoal'
+import './CompletedGoalWrapper.css';
 
-function GoalListWrapper(props) {
-
+function CompletedGoalWrapper(props) {
         
     return (
-        <section className="List">
-            <header className="List-header">
+        <section className="complete_list">
+            <header className="complete_list_header">
                 <h2>{props.header[0].title}</h2>
             </header>
-            <div className="List-cards">
+            <div className="complete_list_cards">
                 {props.goal.map((goal) =>
-                        <Goal 
+                        <CompletedGoal 
                         key={goal.id}
                         id={goal.id}
-                        goal={goal}
                         title={goal.title}
                         description={goal.description}
                         completed={goal.completed}
@@ -27,8 +25,8 @@ function GoalListWrapper(props) {
         </section>
     )       
 }
-GoalListWrapper.defaultProps = {
+CompletedGoalWrapper.defaultProps = {
     goal: []
 }
 
-export default GoalListWrapper
+export default CompletedGoalWrapper

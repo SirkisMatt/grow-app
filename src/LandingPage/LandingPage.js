@@ -1,7 +1,6 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import { Link } from 'react-router-dom';
 import './LandingPage.css'
-import Raas from '../images/Raas.png'
 import LandingNav from '../LandingNav/LandingNav'
 import growLaptop from '../images/Grow_Laptop.png'
 import growthPhone from '../images/GrowthPhone_Mock.png'
@@ -21,11 +20,9 @@ function LandingPage(props) {
     updateSize();
     return () => window.removeEventListener('resize', updateSize);
     }, []);
-    console.log(size);
 
     const [width, height] = size
 
-    console.log(width)
     return (
       <div className='landing-page'>
 

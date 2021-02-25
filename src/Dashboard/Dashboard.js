@@ -36,9 +36,9 @@ function Dashboard(props) {
     } else {
       goals.map(goal => { 
         if (!goalList[goal.goal_type_id]) {
-          goalList[goal.goal_type_id] = [goal.id]
+          return goalList[goal.goal_type_id] = [goal.id]
         } else {
-          goalList[goal.goal_type_id].push(goal.id)
+          return goalList[goal.goal_type_id].push(goal.id)
         }
       })
     }

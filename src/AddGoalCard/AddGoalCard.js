@@ -86,7 +86,7 @@ export default class AddGoalCard extends Component {
                                 <input htmlFor="goal-title" placeholder='Whats your goal?' type="text" name='goal-title' id='goal-title' />
                                 <br/>
                                 <label htmlFor="description">Description: </label>
-                                <textarea className="description" name="description" rows="10" cols="30" placeholder='Steps I can take to...'/>
+                                <textarea className="description" name="description" rows="10" cols="30" maxLength="100" placeholder='Steps I can take to...'/>
                             <br/>
                             <div>
                                 <label htmlFor="tree-bet">Tree bet: </label>

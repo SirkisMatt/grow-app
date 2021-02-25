@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import ApiContext from '../ApiContext'
-import GoalListWrapper from '../GoalListWrapper/GoalListWrapper'
+import CompletedGoalWrapper from '../CompletedGoalWrapper/CompletedGoalWrapper'
 import './GoalsCompleted.css'
 
 function GoalsCompleted(props) {
@@ -8,11 +8,13 @@ function GoalsCompleted(props) {
     const value = useContext(ApiContext)
     const [goal_list, updateList] = useState({})
 
+    const loggedIn = value.user.length
+
     useEffect(() => {
-        if (value.user.length === 0) {
+        if (loggedIn === 0) {
         props.history.push(`/login`)
         }
-      }, [])
+    }, [loggedIn, props.history])
 
     useEffect(() => {
         let goalList = {}
@@ -20,9 +22,9 @@ function GoalsCompleted(props) {
     
         goals.map(goal => { 
         if (!goalList[goal.goal_type_id]) {
-            goalList[goal.goal_type_id] = [goal.id]
+           return goalList[goal.goal_type_id] = [goal.id]
         } else {
-            goalList[goal.goal_type_id].push(goal.id)
+           return goalList[goal.goal_type_id].push(goal.id)
         }
         })
         
@@ -48,7 +50,7 @@ function GoalsCompleted(props) {
                 </header>
                 <div className="goals_completed_list">
                     {goalTypeNumber.map(goalTypeId => 
-                    <GoalListWrapper
+                    <CompletedGoalWrapper
                     key={goalTypeId}
                     id={goalTypeId}
                     header={value.goal_types.filter(item => item.id === goalTypeId)}

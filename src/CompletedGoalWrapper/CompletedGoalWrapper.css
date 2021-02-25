@@ -1,6 +1,6 @@
-/* LIST STYLES */
+/* complete_list STYLES */
 
-.List {
+.complete_list {
     min-width: 240px;
     max-width: 240px;
     flex-grow: 1;
@@ -8,28 +8,28 @@
   
  
   
-  .List-header h2,
-  .List-cards h3 {
+  .complete_list_header h2,
+  .complete_list_cards h3 {
     margin: 0;
   }
   
-  .List-header h2 {
+  .complete_list_header h2 {
     font-size: 18px;
     padding: 10px 8px 8px;
   }
   
-  .List-header,
-  .List-cards {
+  .complete_list_header,
+  .complete_list_cards {
     background-color: rgb(159, 163, 160);
     padding: 0 6px 4px;
   }
   
-  .List-header {
+  .complete_list_header {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
   
-  .List-cards {
+  .complete_list_cards {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     padding-bottom: 10px;
@@ -53,11 +53,11 @@
 
   @media all and (min-width: 600px) {
 
-    .List-cards {
+    .complete_list_cards {
       max-height: 600px;
     }
 
-  .List:not(:first-of-type) {
+  .complete_list:not(:first-of-type) {
     margin-left: 20px;
   }
 

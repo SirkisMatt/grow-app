@@ -43,7 +43,7 @@ function DashboardNav(props) {
                     <p><span id="tree-number"> {value.treesDonated} </span>Trees planted!</p>
                 </div> */}
                 <div className='dashboard-logo'>
-                    <img src={whiteTree} className="db-tree-outline"/>
+                    <img src={whiteTree} className="db-tree-outline" alt="white tree"/>
                     <Link to='/' className='db-site-logo'>Grow</Link>
                 </div>
                 <FaBars className="toggle-button" onClick={props.toggleNavLinks}/>

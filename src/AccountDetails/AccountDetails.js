@@ -12,22 +12,26 @@ function AccountDetails(props) {
          <div className="overlay_account_details" ></div>
              <div className="modal_content_account_details">
                 <h1 className="title">Account Details</h1>
-                    <nav>
-                        <button className="btn" onClick={props.toggleAccountDetails}>Back to Dashboard</button>
-                    </nav>
-                <h3 className="username">{value.user.username}</h3>
-                <button
-                className="btn"
-                onClick={props.handleEditPayment}
-                >
-                        Edit Payment
-                </button>
-                <button
-                className="btn"
-                onClick={props.handleDeleteAccount}
-                >
-                        Delete Account
-                </button>
+                <h3 className="username">Username: {value.user.username}</h3>
+                <div className="acc_btn_container">
+                    <button
+                    className="acc_details_btn"
+                    onClick={props.handleEditPayment}
+                    >
+                            Edit Payment
+                    </button>
+                    <button
+                    className="acc_details_btn"
+                    onClick={props.handleDeleteAccount}
+                    >
+                            Delete Account
+                    </button>
+                    <button 
+                    className="acc_details_btn" 
+                    onClick={props.toggleAccountDetails}>
+                        Back to Dashboard
+                    </button>
+                </div>
              </div>
             
      </div>

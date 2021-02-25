@@ -3,7 +3,6 @@ import ApiContext from '../ApiContext'
 import TreeDonatedModal from '../TreeDonatedModal/TreeDonatedModal'
 import Axios from 'axios'
 import Leaf from '../Icons/Leaf'
-import {myConfig} from '../config.js'
 import './Goal.css'
 import EditGoal from '../EditGoal/EditGoal'
 import CompletedModal from '../CompletedModal/CompletedModal'
@@ -70,7 +69,7 @@ function Goal(props) {
         } else {
             handleOverdue(false)
         }
-    }, [value.dueGoals])
+    }, [value.dueGoals, goal.id])
 
     const handleDonateTrees = () => {
         if(showCompletedModal) {
@@ -92,7 +91,6 @@ function Goal(props) {
     }
 
 
-    if (!props.completed) {
         return (
             <div className="Card">
                 <header>
@@ -174,45 +172,7 @@ function Goal(props) {
                     />
                 }
             </div>
-        )} 
-    { 
-        return (
-        <div className="Card">
-            <header>
-                <h3>{title}</h3>
-            </header> 
-            {description}
-            <div className="tree-bet" >
-                {(treeBet > 1) ? <p>{treeBet} trees at stake</p> : <p>{treeBet} tree at stake</p>}
-                <p style={{ color: overdue && 'red'}}>Complete by: {complete_by}</p>
-            </div>
-            <button
-                className='goal_btn'
-                type='button'
-                onClick={handleToggle}
-                >
-                    Edit
-                </button>
-                <button 
-                className='goal_btn'
-                type='button'
-                onClick={handleClickDelete}
-                >
-                    Delete
-                </button>
-                {
-                    showModalEdit &&
-                        <EditGoal
-                        show={showModalEdit}
-                        closeCallback={() => toggleModalEdit(!showModalEdit)}
-                        customClass="custom_modal_class"
-                        goalToEdit={props.goal}
-                        /> 
-                }
-        </div>
-        )
-    }
-
+        ) 
 }
 
 Goal.defaultProps = {

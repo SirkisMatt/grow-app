@@ -7,7 +7,7 @@ export default function LoginNav(props) {
     return (
         <nav role="navigation" className="login-nav">
             <div className='header-logo'>
-                <img src={whiteTree} className="tree_outline"/>
+                <img src={whiteTree} className="tree_outline" alt="white tree"/>
                 <Link to='/' className='site-logo'>Grow</Link>
             </div>
         </nav>
