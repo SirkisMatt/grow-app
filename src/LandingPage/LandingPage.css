@@ -3,11 +3,14 @@
   
  
 
-  .landing_main {
-    background-color: green;
-    position: relative;
-    z-index: 2;
+  .landing-page {
+    word-wrap: break-word;
+    text-rendering: optimizeLegibility;
   }
+
+  ::before, ::after {
+    box-sizing: inherit;
+}
   
   
   /* Clear floats */
@@ -18,43 +21,19 @@
   }
   
 #DigitalHumani {
-  text-decoration: none;
-  color: #215721;
+  text-decoration: underline;
+  color: #fff;
 }
 
 #DigitalHumani:hover {
-  color: #114625;
+  color: #000;
 }
 
-#growthPhone {
-  min-width: 200px;
-  width: 100%;
-  height: 100;
-}
-
-#Raas {
-  min-width: 200px;
-  width: 100%;
-  height: 100;
-}
-
-.img_container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
 
 .landing-section {
   text-align: center;
   /* margin-top: 30px; */
   margin-bottom: 50px;
-}
-
-.img_container img {
-  width: 100%;
-}
-
-hr {
-  width: 80%;
 }
 
                             /**************** Banner ******************/
@@ -71,7 +50,7 @@ hr {
     transform: translate3d(0px, 0px, 0px);
   }
 
-  .banner > .kauri_video {
+  .banner > .kauri-video {
     position: absolute;
     top: 0;
     left: 0;
@@ -86,7 +65,7 @@ hr {
                                     /*    Banner text     */
 
 
-  .overlay_text {
+  .overlay-text {
     text-align: center;
     padding-top: 6rem;
     position: relative;
@@ -118,7 +97,9 @@ hr {
    }
 
 
-   .overlay_text h3 {
+
+   #catch-phrase {
+    padding-top: 20px;
     font-family: montserrat-medium,sans-serif;
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.774);
@@ -128,14 +109,10 @@ hr {
     margin-top: 0;
     margin-bottom: 1.2rem;
     margin-left: 6px;
-   }
-
-   #catch_phrase {
-    padding-top: 20px;
     /* font-size: 30px; */
   }
 
-   .overlay_text h1 {
+   .overlay-text h1 {
     font-family: montserrat-medium,sans-serif;
     font-size: 1.6rem;
     line-height: 1.333;
@@ -143,7 +120,7 @@ hr {
     color: #fff;
    }
 
-   .signup_btn_main {
+   .signup-btn-main {
     color: rgb(240, 240, 229);
     background-color: rgba(38, 73, 52, 0.5);
     border: none;
@@ -163,59 +140,184 @@ hr {
     cursor: pointer;
   }
 
-  .signup_btn_main:hover {
+  .signup-btn-main:hover {
     background-color: rgba(44, 65, 43, 0.8);
     color: beige;
   }
-
-
-
-   .img_container {
-     position: relative;
-   }
-
-   .overlay_second_img {
-    position: absolute;
-    text-align: right;
-    top: 20px;
-    right: 20px;
-    color: white; 
-    font: bold 24px/45px;
-    letter-spacing: -1px;  
-    background: rgb(0, 0, 0); /* fallback color */
-    background: rgba(0, 0, 0, 0.7);
-    padding-left: 20px;
-    padding-right: 20px;
-   }
   
-  
-  .landing-section { 
-    /* min-height: 200px; */
-    padding: 40px; 
-    /* overflow: auto; */
-   }
-
-  .column-1,
-    .column-2 {
-      width: 100%;
-      text-align: center;
-    }
-  
-  .column-1 {
-    margin-bottom: 30px;
-  }
-
   .landing-page a {
     text-decoration: none;
     color: #fff;
 }
 
+                        /*************** About Section ***************/
+
+.about {
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+  background-color: #39b54a;
+  color: #010507;
+  position: relative;
+  z-index: 500;
+}
+
+.row {
+  width: 94%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col-full {
+  width: 100%;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 0 20px;
+}
+
+/* About Header */
+
+.section-header {
+  text-align: center;
+  position: relative;
+  margin-bottom: 1.7rem;
+  max-width: 960px;
+}
+
+.sub-head {
+  font-family: "montserrat-bold", sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.333;
+  text-transform: uppercase;
+  letter-spacing: .25rem;
+  color: #000000;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.section-header.has-bottom-sep {
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.section-header.has-bottom-sep::before {
+  content: "";
+  display: inline-block;
+  height: 1px;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.display-1 {
+  font-family: "montserrat-medium", sans-serif;
+  font-size: 2rem;
+  line-height: 1.25;
+  color: #fff;
+  margin-top: 0;
+}
+/* About section */
+
+
+.about-section {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  text-align: center;
+  max-width: 1024px;
+}
+
+/* Stats */
+
+
+.col-block {
+  width: 25%;
+}
+
+.stats-col {
+  margin: 4rem 0;
+  position: relative;
+  min-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.about-stats {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.stats-count {
+  font-family: "montserrat-bold", sans-serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stats h5 {
+  font-family: "montserrat-semibold", sans-serif;
+  margin-top: 1.8rem;
+  color: #000000;
+  font-size: 1.4rem;
+  line-height: 1.333;
+  position: relative;
+}
+
+                            /************* Footer **************/
+
+footer {
+  padding: 1rem 0 .7rem;
+  background-color: rgba(27, 20, 20);
+  font-family: "montserrat-light", sans-serif;
+  font-size: 15px;
+  line-height: 2;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+}
+.info {
+  display: flex;
+  justify-content: center;
+}
+
+.info p {
+  margin: 10px;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 14px;
+}
+
+footer a {
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  line-height: inherit;
+}
   
         /*********************************** min-width: 400px ********************************/
 
   @media all and (min-width: 400px) {
 
-   .overlay_text {
+   .overlay-text {
     text-align: left;
     padding-top: 9rem;
     position: relative;
@@ -224,7 +326,7 @@ hr {
     margin: 0 auto;
    }
 
-   .overlay_text h3 {
+   #catch-phrase {
     font-family: montserrat-medium,sans-serif;
     font-size: 1.2rem;
     color: rgba(255,255,255,.5);
@@ -236,7 +338,7 @@ hr {
     margin-left: 6px;
    }
 
-   .overlay_text h1 {
+   .overlay-text h1 {
     font-family: montserrat-medium,sans-serif;
     font-size: 2rem;
     line-height: 1.333;
@@ -244,7 +346,7 @@ hr {
     color: #fff;
    }
 
-   .signup_btn_main {
+   .signup-btn-main {
     line-height: calc(5.4rem - .4rem);
     padding: 0 10px 0 10px;
     margin: 1.3rem 2rem 2rem 0;
@@ -262,6 +364,79 @@ hr {
     width: 100%;
     height: 100;
   }
+                         /*************** About Section ***************/
+
+.about {
+  padding-top: 16rem;
+  padding-bottom: 9rem;
+}
+
+
+[class*="col-"] {
+  float: left;
+  padding: 0 20px;
+}
+
+/* About Header */
+
+.section-header {
+  margin-bottom: 3.6rem;
+  max-width: 960px;
+}
+
+.sub-head {
+  font-size: 2.4rem;
+  line-height: 1.333;
+}
+
+.section-header.has-bottom-sep {
+  padding-bottom: 2.1rem;
+}
+
+.section-header.has-bottom-sep::before {
+  height: 1px;
+  width: 550px;
+  bottom: 0;
+  left: 50%;
+}
+
+.display-1 {
+  font-size: 4rem;
+  line-height: 1.25;
+}
+/* About section */
+
+
+.about-section {
+  font-size: 1.7rem;
+  line-height: 1.75;
+  max-width: 1024px;
+}
+
+/* Stats */
+
+
+.col-block {
+  width: 25%;
+}
+
+.stats-col {
+  margin: 5.4rem 0;
+  padding: 0 2rem;
+  min-width: 250px;
+}
+
+
+.stats-count {
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.stats h5 {
+  margin-top: 1.8rem;
+  font-size: 1.8rem;
+  line-height: 1.333;
+}
 
 
 }
@@ -272,7 +447,7 @@ hr {
   @media all and (min-width: 700px) {
 
 
-    .overlay_text {
+    .overlay-text {
       text-align: left;
       padding-top: 12rem;
       position: relative;
@@ -281,7 +456,7 @@ hr {
       margin: 0 auto;
      }
   
-     .overlay_text h3 {
+     #catch-phrase {
       font-family: montserrat-medium,sans-serif;
       font-size: 1.2rem;
       color: rgba(255,255,255,.5);
@@ -293,7 +468,7 @@ hr {
       margin-left: 6px;
      }
   
-     .overlay_text h1 {
+     .overlay-text h1 {
       font-family: montserrat-medium,sans-serif;
       font-size: 3rem;
       line-height: 1.333;
@@ -308,7 +483,7 @@ hr {
       margin-bottom: 100px;
      }
 
-     .image_only {
+     .image-only {
       padding: 0 150px 0 150px;
     }
 
@@ -348,7 +523,7 @@ hr {
 
   @media all and (min-width: 1500px) {
 
-    .overlay_text {
+    .overlay-text {
       text-align: left;
       padding-top: 17rem;
       position: relative;
