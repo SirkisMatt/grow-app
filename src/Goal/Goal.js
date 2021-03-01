@@ -96,10 +96,12 @@ function Goal(props) {
                 <header>
                     <h3>{title}</h3>
                 </header> 
-                {description}
+                <p className="card-description">
+                    {description}
+                </p>
                 <div className="tree-bet" >
                     {(treeBet > 1) ? <p>{treeBet} trees at stake</p> : <p>{treeBet} tree at stake</p>}
-                    <p style={{ color: overdue && 'green'}}>Complete by: {complete_by}</p>
+                    <p className="card-complete-by" style={{ color: overdue && 'green'}}>Complete by: {complete_by}</p>
                 </div>
                 {overdue && 
                 <button

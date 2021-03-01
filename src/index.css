@@ -1,6 +1,7 @@
 
 * {
   box-sizing: border-box;
+  overflow: auto;
 }
 
 body {
@@ -12,6 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0px;
   padding: 0;
+  
 }
 
 code {

@@ -44,11 +44,13 @@ function LandingPage(props) {
             width: width
           }}>
             <LandingNav/>
-            <video autoPlay loop muted className="kauri-video" 
-          
-          >
-              <source src={kauriLoop} type="video/mp4"/>
-            </video>
+            { (width > 400 && height > 400) 
+                &&
+                <video autoPlay loop muted className="kauri-video">
+                  <source src={kauriLoop} type="video/mp4"/>
+                </video>
+            }
+           
             <div className="overlay"></div>
             <div className="shadow-overlay"></div>
             <div className="overlay-text">
