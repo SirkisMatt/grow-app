@@ -6,23 +6,23 @@ https://grow-app-five.vercel.app/
 ## Screenshots
 Landing page:
 
-![screen shot of landing page of Grow](images/landing-page.png)
+![screen shot of landing page of Grow](images/landing_page.png)
 
 Login:
 
-![screen shot of login](./images/login.png)
+![screen shot of login](images/login.png)
 
 Sign-up: 
 
-![screen shot of sign up page](./images/sign_up.png)
+![screen shot of sign up page](images/sign_up.png)
 
 Dashboard:
 
-![screen shot of dashboard](./images/dashboard.png)
+![screen shot of dashboard](images/dashboard.png)
 
 Phone:
 
-![screenshot of dashboard on phone](./images/GrowthPhone.png)
+![screenshot of dashboard on phone](images/GrowthPhone.png)
 
 ## Summary
 
