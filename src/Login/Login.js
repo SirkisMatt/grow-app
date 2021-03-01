@@ -115,6 +115,7 @@ class Login extends Component {
                     </button>
             </form>
             <p>Don't have an account? <Link to='/signup' className="sign-up">Sign Up</Link></p>
+            <p>Demo user: fern@fakeemail.com Password: password</p>
     </div>
     );
   }

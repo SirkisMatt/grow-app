@@ -12,6 +12,7 @@ export default function LandingNav(props) {
             </div>
             <nav role="navigation" className="landing-nav">
                 <ul>
+                        {/* <li>Demo user: fern@fakeemail.com Password: password</li> */}
                         <li><Link to='/login' className='login'>Login</Link></li>
                         <li><button className="signup_btn"><Link to='/signup' className="sign-up">Sign Up</Link></button></li>
                 </ul>

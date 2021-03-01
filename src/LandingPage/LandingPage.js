@@ -25,7 +25,6 @@ function LandingPage(props) {
     useEffect(() => {
       Axios.get(`https://api-dev.digitalhumani.com/enterprise/7997dd50/treeCount?startDate=2020-11-00&endDate=2030-01-01`)
       .then(res => {
-        console.log(res.data)
         setCount(res.data.count)
       })
       .catch(err => {
@@ -57,6 +56,7 @@ function LandingPage(props) {
               <h3 id="catch-phrase">Better You Better Planet</h3>
               <h1 className="desc-title">Grow lets you set goals for yourself and keeps you accountable.</h1>
               <button className="signup-btn-main"><Link to='/signup' className="sign-up">Sign Up - Start Growing</Link></button>
+              <p className="demo-user">Or use demo user: fern@fakeemail.com Password: password</p>
             </div>
         </div>
         <div className="about" >
