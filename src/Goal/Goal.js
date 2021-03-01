@@ -3,9 +3,9 @@ import ApiContext from '../ApiContext'
 import TreeDonatedModal from '../TreeDonatedModal/TreeDonatedModal'
 import Axios from 'axios'
 import Leaf from '../Icons/Leaf'
-import {myConfig} from '../config.js'
 import './Goal.css'
 import EditGoal from '../EditGoal/EditGoal'
+import CompletedModal from '../CompletedModal/CompletedModal'
 
 
 function Goal(props) {
@@ -18,6 +18,8 @@ function Goal(props) {
     const [ showModalEdit, toggleModalEdit ] = useState(false)
     const [ overdue, handleOverdue ] = useState(false)
     const [ showTreeDonatedModal, toggleTreeDonatedModal ] = useState(false)
+    const [ showCompletedModal, toggleCompletedModal ] = useState(false)
+    
 
 
     const handleClickDelete = e => {
@@ -38,8 +40,7 @@ function Goal(props) {
           })
     }
 
-    function handleCompletedGoal(e) {
-        e.preventDefault()
+    function handleCompletedGoal() {
         const userId = value.user.id
         Axios.patch(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}/${id}`, {
             title: title,
@@ -54,7 +55,7 @@ function Goal(props) {
         .catch(error => {
             console.log(error)
         })
-    
+
     }
 
     const handleToggle = () => {
@@ -68,25 +69,15 @@ function Goal(props) {
         } else {
             handleOverdue(false)
         }
-    }, [value.dueGoals])
+    }, [value.dueGoals, goal.id])
 
     const handleDonateTrees = () => {
-        // Axios.post(`https://api-dev.digitalhumani.com/tree`, {
-        //  "treeCount": treeBet,
-        //  "enterpriseId": myConfig.ENTERPRISE_ID,
-        //  "projectId": "77111010",
-        //  "user": value.user.email
-        // })
-        // .then(res => {
-        //     if(res.status === 200) {
-        //        toggleTreeDonatedModal(true)
-        //     }
-        //  })
-        //  .catch(error => {
-        //      console.log(error)
-        //  })
+        if(showCompletedModal) {
+            toggleCompletedModal(false)
+            
+        }
 
-         toggleTreeDonatedModal(true)
+        toggleTreeDonatedModal(true)
      }
 
     const handleModalChange = () => {
@@ -94,11 +85,12 @@ function Goal(props) {
         toggleTreeDonatedModal(!showTreeDonatedModal)
     }
 
+    const handleCompletedGoalModalChange = () => {
+        toggleModalEdit(!showModalEdit)
+        toggleCompletedModal(!showCompletedModal)
+    }
 
-   
 
-    
-    if (!props.completed) {
         return (
             <div className="Card">
                 <header>
@@ -126,21 +118,21 @@ function Goal(props) {
                 </button>
                 }
                 <button
-                className='goal_complete_toggle'
+                className='goal_btn'
                 type='button'
-                onClick={handleCompletedGoal}
+                onClick={() => toggleCompletedModal(!showCompletedModal)}
                 >
                     Completed
                 </button>
                 <button
-                className='goal_edit'
+                className='goal_btn'
                 type='button'
                 onClick={handleToggle}
                 >
                     Edit
                 </button>
                 <button 
-                className='Goal_delete'
+                className='goal_btn'
                 type='button'
                 onClick={handleClickDelete}
                 >
@@ -152,6 +144,7 @@ function Goal(props) {
                         <EditGoal
                         show={showModalEdit}
                         closeCallback={() => toggleModalEdit(!showModalEdit)}
+                        handleCompletedGoal={() => handleCompletedGoal()}
                         customClass="custom_modal_class"
                         goalToEdit={props.goal}
                         /> 
@@ -167,47 +160,19 @@ function Goal(props) {
                         goalId={goal.id}
                     />
                 }
-                
-            </div>
-        )} 
-    { 
-        return (
-        <div className="Card">
-            <header>
-                <h3>{title}</h3>
-            </header> 
-            {description}
-            <div className="tree-bet" >
-                {(treeBet > 1) ? <p>{treeBet} trees at stake</p> : <p>{treeBet} tree at stake</p>}
-                <p style={{ color: overdue && 'red'}}>Complete by: {complete_by}</p>
-            </div>
-            <button
-                className='goal_edit'
-                type='button'
-                onClick={handleToggle}
-                >
-                    Edit
-                </button>
-                <button 
-                className='Goal_delete'
-                type='button'
-                onClick={handleClickDelete}
-                >
-                    Delete
-                </button>
                 {
-                    showModalEdit &&
-                        <EditGoal
-                        show={showModalEdit}
-                        closeCallback={() => toggleModalEdit(!showModalEdit)}
-                        customClass="custom_modal_class"
-                        goalToEdit={props.goal}
-                        /> 
+                    showCompletedModal && 
+                    <CompletedModal 
+                    show={showCompletedModal}
+                    toggleCallback={() => toggleCompletedModal(!showCompletedModal)}
+                    customClass="completed_modal"
+                    toggleModalEdit={() => handleCompletedGoalModalChange()}
+                    handleCompletedGoal={() => handleCompletedGoal()}
+                    goal={goal}
+                    />
                 }
-        </div>
-        )
-    }
-
+            </div>
+        ) 
 }
 
 Goal.defaultProps = {

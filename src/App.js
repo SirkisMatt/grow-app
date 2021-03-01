@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { Route } from 'react-router-dom';
 import Login from './Login/Login';
+import LoginNav from './LoginNav/LoginNav'
 import SignUp from './SignUp/SignUp';
 import LandingPage from './LandingPage/LandingPage';
 import Dashboard from './Dashboard/Dashboard'
-import DashboardNav from './DashboardNav/DashboardNav'
 import AccountDetails from './AccountDetails/AccountDetails'
 import LandingNav from './LandingNav/LandingNav'
 import AddPayment from './AddPayment/AddPayment'
@@ -24,7 +24,7 @@ function App() {
   const [goals, setGoalsForUser] = useState([])
   const [ dueGoals, setDueGoals ] = useState([])
   const [loggedIn, handleLoggedIn] = useState(false)
-  // const [treesDonated, handleTreesDonated] = useState(0)
+ 
 
 
 //On render get goalTypes
@@ -37,9 +37,10 @@ function App() {
     .catch(err => {
       console.log(err)
     })
+
   }, [])
 
-  //counter for number of trees donated
+  //counter for number of trees donated ***** API currently in BETA ***** Feature coming soon once bug fix *****
   useEffect(() => {
     // Axios.get(`https://api-dev.digitalhumani.com/tree?enterpriseId=${myConfig.ENTERPRISE_ID}&user=${user.email}`)
     // .then(res => {
@@ -65,12 +66,12 @@ function App() {
     setUser([])
     setGoalsForUser([])
     setDueGoals([])
+    handleLoggedIn(false)
   }
 
 //Add new user to state
   const handleAddUser = user => {
     setUser(user)
-    handleLoggedIn(true)
   }
 
 //Adds goals when new user logs in
@@ -80,6 +81,8 @@ function App() {
     } else {
       setGoalsForUser([])
     }
+
+    handleLoggedIn(true)
     
   }
 
@@ -123,7 +126,7 @@ function App() {
   const renderNavRoutes = () => {
     return (
         <>
-          {['/', '/signup', 'add-payment', 'login'].map(path => (
+          {[ '/signup', 'add-payment', 'login'].map(path => (
               <Route
                   exact
                   key={path}
@@ -132,8 +135,8 @@ function App() {
               />
           ))}
           <Route
-            path="/dashboard/:userId"
-            component={DashboardNav}
+          path="/login"
+          component={LoginNav}
           />
         </>
     );
@@ -190,7 +193,6 @@ function App() {
       goals,
       dueGoals,
       loggedIn,
-      // treesDonated,
       addUser: handleAddUser,
       addGoal: handleAddGoal,
       getGoals: handleGetGoals,
@@ -202,12 +204,14 @@ function App() {
     }
 
     return (
-      <ApiContext.Provider value={value}>
-        <div className='App'>
-       {renderNavRoutes()}
-          <main className="App_Main">{renderMainRoutes()}</main>
-        </div>
-      </ApiContext.Provider>
+          <ApiContext.Provider value={value}>
+            <div className="App" >
+              <div>
+              {renderNavRoutes()}
+                <main className="App_Main">{renderMainRoutes()}</main>
+              </div>
+            </div>
+          </ApiContext.Provider>
     );
 }
 

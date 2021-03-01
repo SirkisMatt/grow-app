@@ -1,39 +1,21 @@
 .dashboard {
-  width: 100%;
+  margin-top: 20px;
 }
 
 
-.dashboard-header {
+.dashboard-header-buttons {
   font-size: 1em;
   color: beige;
   display: flex;
   border-radius: 10px;
   padding: 0px;
-  margin-top: 30px;
+  margin-top: 5px;
   margin-bottom: 10px;
   justify-content: center;
   align-items: baseline;
   flex-wrap: wrap;
 }
 
-.dashboard-header ul {
-  padding: 0px 5px;
-  list-style: none;
-}
-
-.dashboard-header li {
-  display: inline-block;
-
-}
-
-.dashboard-header li a {
-  transition: all 0.3s ease 0s;
-  text-decoration: none;
-}
-
-.dashboard-header li a:hover {
-  color: #0088a9
-}
 
 
 .dashboard-list {
@@ -49,7 +31,7 @@
 .add-goal-button {
   color: rgb(240, 240, 229);
   font: inherit;
-  background-color: rgba(154, 196, 171, 0.4);
+  background-color: rgba(8, 88, 41, 0.8);
   border: none;
   padding: 9px;
   padding-left: 15px;
@@ -105,9 +87,14 @@
 
 @media all and (min-width: 600px) {
 
-  .dashboard-header {
+  .dashboard {
+    margin-left: 20px;
+  }
+
+  .dashboard-header-buttons {
     font-size: 1.3em;
     justify-content: flex-start;
+    margin-top: 20px;
   }
 
 
@@ -118,7 +105,7 @@
 
 }
 
-.dashboard-header {
+.dashboard-header-buttons {
   font-size: 1.3em;
   
 }

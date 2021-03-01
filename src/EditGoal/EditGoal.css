@@ -5,6 +5,7 @@
     width: 100%;
     height: 100%;
     z-index: 990;
+    color: white;
   }
   
   .modal_edit_goal .overlay_edit_goal {
@@ -20,6 +21,7 @@
   .modal_edit_goal .modal_content_edit_goal {
     z-index: 999;
     position: absolute;
+    text-align: left;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -31,12 +33,13 @@
     box-shadow: 0 1px 5px rgba(0,0,0,0.7);
     border-radius: 4px;
     max-width: 700px;
+    min-width: 240px;
+    width: 40%;
     border-radius: 10px;
     margin: auto;
     background: rgba(0,0,0,0.8);
     box-sizing: border-box;
     color: #fff;
-    
   }
   
   .modal_edit_goal .modal_content_edit_goal > h2 {
@@ -45,6 +48,14 @@
     margin: 20px 0 40px;
     text-align: center;
   }
+
+  .select_control {
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+
+
   
   .modal_edit_goal .modal_content_edit_goal .buttons_wrapper {
     padding: 20px;
@@ -72,16 +83,77 @@
     margin-bottom: 2em;
   }
 
+  .goalType_container {
+    margin-top: 20px;
+  }
+
+  .title_container {
+    margin-top: 35px;
+  }
+
   .description {
-    margin-bottom: 2em;
+    margin-bottom: 1em;
+    width: 100%;
+  }
+
+  .due_date_container {
+    margin-top: 30px;
+    margin-bottom: 35px;
   }
 
   br {
-    margin: 2em;
+    margin: 1em;
   }
 
   #goal-options {
     padding-left: 10px;
   }
 
-  
+  .edit_goal_btn, .cancel_btn {
+    color: rgb(240, 240, 229);
+    font: inherit;
+    background-color: rgba(154, 196, 171, 0.4);
+    border: none;
+    padding: 9px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 0.6rem;
+    transition: all 0.3s ease 0s;
+  }
+
+  .edit_goal_btn:hover, .cancel_btn:hover {
+    padding: 11px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 12px;
+  }
+
+  @media all and (min-width: 400px) {
+    .modal_edit_goal .modal_content_edit_goal {
+      min-width: 350px;
+    }
+
+    .title_container {
+      margin-top: 50px;
+    }
+
+    .description_container {
+      margin-bottom: 0px;
+    }
+
+    .tree_bet_container {
+      margin-top: 30px;
+    }
+
+    .due_date_container {
+      margin-top: 50px;
+      margin-bottom: 55px;
+    }
+
+  }

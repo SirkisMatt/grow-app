@@ -1,72 +1,546 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Raleway&display=swap');
+  
+ 
+
   .landing-page {
-    font-family: "Open Sans",
-    sans-serif;
-    /* font-size: 20px; */
-    color: beige;
+    word-wrap: break-word;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::before, ::after {
+    box-sizing: inherit;
+}
+  
+  
+  /* Clear floats */
+  .landing-row:after {
+    content: "";
+    display: table;
+    clear: both
+  }
+  
+#DigitalHumani {
+  text-decoration: underline;
+  color: #fff;
+}
+
+#DigitalHumani:hover {
+  color: #000;
+}
+
+
+.landing-section {
+  text-align: center;
+  /* margin-top: 30px; */
+  margin-bottom: 50px;
+}
+
+                            /**************** Banner ******************/
+
+  .banner{
+    position: relative;
+    /* top: 30px; */
+    width: 100%;
+    /* height: 700px; */
+    overflow: hidden;
+    display: block;
+    height: 100vw;
+    width:100vw;
+    transform: translate3d(0px, 0px, 0px);
+  }
+
+  .banner > .kauri-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate3d(0px, 0px, 0px);
+    /* height: auto;
+    width: auto; */
+    z-index: 0;
+  }
+
+                                    /*    Banner text     */
+
+
+  .overlay-text {
     text-align: center;
-    line-height: 1.5;
-  }
-
-  
-  .landing-main-header {
-    padding: 20px 15px;
-    margin-top: 50px;
-  }
-
-  .landing-main-header h1 {
-    font-size: 2em;
-  }
-  .landing-main-header h3 {
-    font-size: 1.2em;
-  }
-  
-  .landing-header {
-    padding: 10px 15px;
-    margin-top: 50px;
-  }
-
-  
-  .landing-section {
-    min-height: 200px;
-    padding: 10px 15px;
- 
-  }
-
-  .landing-page hr {
-    width: 30%;
-    margin-top: 40px;
-    margin-bottom: 5px;
-  }
-  
- 
-  
-  .landing-page p {
+    padding-top: 6rem;
+    position: relative;
+    max-width: 1000px;
+    width: 94%;
     margin: 0 auto;
-    max-width: 650px;
+   }
+
+   .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .6;
+    background-color: #000;
+   }
+
+   .shadow-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .4;
+    background: -moz-linear-gradient(top,transparent 0%,rgba(0,0,0,0.8) 100%);
+    background: -webkit-linear-gradient(top,transparent 0%,rgba(0,0,0,0.8) 100%);
+    background: linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.8) 100%);
+   }
+
+
+
+   #catch-phrase {
+    padding-top: 20px;
+    font-family: montserrat-medium,sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.774);
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    margin-left: 6px;
+    /* font-size: 30px; */
+  }
+
+   .overlay-text h1 {
+    font-family: montserrat-medium,sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.333;
+    margin-top: 0;
+    color: #fff;
+   }
+
+   .signup-btn-main {
+    color: rgb(240, 240, 229);
+    background-color: rgba(38, 73, 52, 0.5);
+    border: none;
+    border-radius: 0.6rem;
+    transition: all 0.3s ease 0s;
+    display: inline-block;
+    font-family: montserrat-medium,sans-serif;
+    font-size: .9rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    line-height: calc(5.4rem - .4rem);
+    padding: 0 10px 0 10px;
+    margin: 1.5rem 0 0 0;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .signup-btn-main:hover {
+    background-color: rgba(44, 65, 43, 0.8);
+    color: beige;
   }
   
-  .landing-page p + p {
-    margin-top: 10px;
-  }
+  .landing-page a {
+    text-decoration: none;
+    color: #fff;
+}
+
+                        /*************** About Section ***************/
+
+.about {
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+  background-color: #39b54a;
+  color: #010507;
+  position: relative;
+  z-index: 500;
+}
+
+.row {
+  width: 94%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col-full {
+  width: 100%;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 0 20px;
+}
+
+/* About Header */
+
+.section-header {
+  text-align: center;
+  position: relative;
+  margin-bottom: 1.7rem;
+  max-width: 960px;
+}
+
+.sub-head {
+  font-family: "montserrat-bold", sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.333;
+  text-transform: uppercase;
+  letter-spacing: .25rem;
+  color: #000000;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.section-header.has-bottom-sep {
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.section-header.has-bottom-sep::before {
+  content: "";
+  display: inline-block;
+  height: 1px;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.display-1 {
+  font-family: "montserrat-medium", sans-serif;
+  font-size: 2rem;
+  line-height: 1.25;
+  color: #fff;
+  margin-top: 0;
+}
+/* About section */
+
+
+.about-section {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  text-align: center;
+  max-width: 1024px;
+}
+
+/* Stats */
+
+
+.col-block {
+  width: 25%;
+}
+
+.stats-col {
+  margin: 4rem 0;
+  position: relative;
+  min-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.about-stats {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.stats-count {
+  font-family: "montserrat-bold", sans-serif;
+  font-size: 4rem;
+  line-height: 1;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stats h5 {
+  font-family: "montserrat-semibold", sans-serif;
+  margin-top: 1.8rem;
+  color: #000000;
+  font-size: 1.4rem;
+  line-height: 1.333;
+  position: relative;
+}
+
+                            /************* Footer **************/
+
+footer {
+  padding: 1rem 0 .7rem;
+  background-color: rgba(27, 20, 20);
+  font-family: "montserrat-light", sans-serif;
+  font-size: 15px;
+  line-height: 2;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+}
+.info {
+  display: flex;
+  justify-content: center;
+}
+
+.info p {
+  margin: 10px;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 14px;
+}
+
+footer a {
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  line-height: inherit;
+}
   
-  .landing-footer {
-    margin-top: 100px;
-  }
+        /*********************************** min-width: 400px ********************************/
 
   @media all and (min-width: 400px) {
 
-    .landing-main-header h1 {
-      font-size: 2.7em;
+   .overlay-text {
+    text-align: left;
+    padding-top: 9rem;
+    position: relative;
+    max-width: 1000px;
+    width: 94%;
+    margin: 0 auto;
+   }
+
+   #catch-phrase {
+    font-family: montserrat-medium,sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,.5);
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    margin-left: 6px;
+   }
+
+   .overlay-text h1 {
+    font-family: montserrat-medium,sans-serif;
+    font-size: 2rem;
+    line-height: 1.333;
+    margin-top: 0;
+    color: #fff;
+   }
+
+   .signup-btn-main {
+    line-height: calc(5.4rem - .4rem);
+    padding: 0 10px 0 10px;
+    margin: 1.3rem 2rem 2rem 0;
+    font-size: 1rem;
+  }    
+
+  #growthPhone {
+    min-width: 300px;
+    width: 100%;
+    height: 100;
+  }
+  
+  #Raas {
+    min-width: 300px;
+    width: 100%;
+    height: 100;
+  }
+                         /*************** About Section ***************/
+
+.about {
+  padding-top: 16rem;
+  padding-bottom: 9rem;
+}
+
+
+[class*="col-"] {
+  float: left;
+  padding: 0 20px;
+}
+
+/* About Header */
+
+.section-header {
+  margin-bottom: 3.6rem;
+  max-width: 960px;
+}
+
+.sub-head {
+  font-size: 2.4rem;
+  line-height: 1.333;
+}
+
+.section-header.has-bottom-sep {
+  padding-bottom: 2.1rem;
+}
+
+.section-header.has-bottom-sep::before {
+  height: 1px;
+  width: 550px;
+  bottom: 0;
+  left: 50%;
+}
+
+.display-1 {
+  font-size: 4rem;
+  line-height: 1.25;
+}
+/* About section */
+
+
+.about-section {
+  font-size: 1.7rem;
+  line-height: 1.75;
+  max-width: 1024px;
+}
+
+/* Stats */
+
+
+.col-block {
+  width: 25%;
+}
+
+.stats-col {
+  margin: 5.4rem 0;
+  padding: 0 2rem;
+  min-width: 250px;
+}
+
+
+.stats-count {
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.stats h5 {
+  margin-top: 1.8rem;
+  font-size: 1.8rem;
+  line-height: 1.333;
+}
+
+
+}
+
+
+ /*********************************** min-width: 700px ********************************/
+
+  @media all and (min-width: 700px) {
+
+
+    .overlay-text {
+      text-align: left;
+      padding-top: 12rem;
+      position: relative;
+      max-width: 1000px;
+      width: 94%;
+      margin: 0 auto;
+     }
+  
+     #catch-phrase {
+      font-family: montserrat-medium,sans-serif;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      letter-spacing: .3rem;
+      position: relative;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+      margin-left: 6px;
+     }
+  
+     .overlay-text h1 {
+      font-family: montserrat-medium,sans-serif;
+      font-size: 3rem;
+      line-height: 1.333;
+      margin-top: 0;
+      color: #fff;
+     }
+
+    .landing-section { 
+      padding: 0 150px 0 100px;
+      overflow: auto;
+      /* margin-top: 100px; */
+      margin-bottom: 100px;
+     }
+
+     .image-only {
+      padding: 0 150px 0 150px;
     }
 
-    .landing-main-header h3 {
-      font-size: 1.6em;
+
+    .column-1,
+    .column-2 {
+      text-align: left;
+    }
+
+      /* 2/3 column */
+      .column-1 {
+        float: left;
+        width: 66.66666%;
+        padding: 20px;
+      }
+
+      /* 1/3 column */
+    .column-2 {
+      float: left;
+      width: 33.33333%;
+      padding: 10px;
+      margin: 0
+    }
+
+    .column-1 h3 {
+      font-size: 2rem;
+    }
+
+    .column-1 p {
+      font-size: 1.2rem;
     }
   
-    .App-list {
-      flex-direction: row;
-      align-items: flex-start;
+  }
+
+
+  /*********************************** min-width: 1500px ********************************/
+
+  @media all and (min-width: 1500px) {
+
+    .overlay-text {
+      text-align: left;
+      padding-top: 17rem;
+      position: relative;
+      max-width: 1000px;
+      width: 94%;
+      margin: 0 15rem;
+     }
+
+    .landing-section { 
+      padding: 0 400px 0 400px;
+      overflow: auto;
+      margin-bottom: 100px;
+     }
+
+     #Raas {
+      min-width: 400px;
+      margin-left: 40px;
     }
-  
+
   }

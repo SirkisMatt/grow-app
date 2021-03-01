@@ -1,4 +1,4 @@
-.modal_edit_goal {
+.modal_donate_goal {
     position: fixed;
     left: 0;
     top: 0;
@@ -7,7 +7,7 @@
     z-index: 990;
   }
   
-  .modal_edit_goal .overlay_edit_goal {
+  .modal_donate_goal .overlay_donate_goal {
     position: absolute;
     left: 0;
     top: 0;
@@ -17,7 +17,7 @@
     background: rgba(0,0,0,0.85);
   }
   
-  .modal_edit_goal .modal_content_edit_goal {
+  .modal_donate_goal .modal_content_donate_goal {
     z-index: 999;
     position: absolute;
     top: 50%;
@@ -36,21 +36,21 @@
     background: rgba(0,0,0,0.8);
     box-sizing: border-box;
     color: #fff;
-    
+    width: 240px;
   }
   
-  .modal_edit_goal .modal_content_edit_goal > h2 {
+  .modal_donate_goal .modal_content_donate_goal > h2 {
     font-size: 28px;
     font-weight: 200;
     margin: 20px 0 40px;
     text-align: center;
   }
   
-  .modal_edit_goal .modal_content_edit_goal .buttons_wrapper {
+  .modal_donate_goal .modal_content_donate_goal .buttons_wrapper {
     padding: 20px;
   }
   
-  .modal_edit_goal .close_modal {
+  .modal_donate_goal .close_modal {
     position: absolute;
     right: 10px;
     top: 10px;
@@ -63,11 +63,11 @@
     transition: opacity 0.2s ease;
   }
   
-  .modal_edit_goal .close_modal:hover {
+  .modal_donate_goal .close_modal:hover {
     opacity: 0.9;
   }
 
-  .modal_content_edit_goal input[type=text] {
+  .modal_content_donate_goal input[type=text] {
     margin-top: 2em;
     margin-bottom: 2em;
   }
@@ -84,4 +84,34 @@
     padding-left: 10px;
   }
 
-  
+  .donate_modal_button {
+    color: rgb(240, 240, 229);
+    font: inherit;
+    background-color: rgba(154, 196, 171, 0.4);
+    border: none;
+    padding: 9px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 0.6rem;
+    transition: all 0.3s ease 0s;
+  }
+
+  .donate_modal_button:hover {
+    padding: 11px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 12px;
+  }
+
+
+  @media all and (min-width: 400px) {
+
+
+
+  }

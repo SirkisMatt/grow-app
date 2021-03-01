@@ -1,14 +1,12 @@
 /* LIST STYLES */
 
 .List {
-    min-width: 218px;
+    min-width: 240px;
+    max-width: 240px;
     flex-grow: 1;
-    max-width: 290px;
   }
   
-  .List:not(:first-of-type) {
-    margin-left: 8px;
-  }
+ 
   
   .List-header h2,
   .List-cards h3 {
@@ -22,7 +20,7 @@
   
   .List-header,
   .List-cards {
-    background-color: rgb(163, 159, 159);
+    background-color: rgb(159, 163, 160);
     padding: 0 6px 4px;
   }
   
@@ -51,4 +49,16 @@
   
   .List-add-button:hover {
     cursor: pointer;
+  }
+
+  @media all and (min-width: 600px) {
+
+    .List-cards {
+      max-height: 600px;
+    }
+
+  .List:not(:first-of-type) {
+    margin-left: 20px;
+  }
+
   }

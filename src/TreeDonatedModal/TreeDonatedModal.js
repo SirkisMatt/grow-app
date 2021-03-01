@@ -24,7 +24,7 @@ function TreeDonatedModal(props) {
         } else {
             setDonationTitle('Tree Donated')
         }
-    }, [donated])
+    }, [donated, props.goal.tree_bet])
 
     const handleDonateTrees = () => {
         if (props.goal.tree_bet < 5) {
@@ -92,12 +92,12 @@ function TreeDonatedModal(props) {
     }
 
 
-        const { customClass, show, closeCallback, goal } = props
+        const { customClass, show, goal } = props
 
         return (
-            <div className={`modal_edit_goal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
-                <div className="overlay_edit_goal" ></div>
-                    <div className="modal_content_edit_goal">
+            <div className={`modal_donate_goal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
+                <div className="overlay_donate_goal" ></div>
+                    <div className="modal_content_donate_goal">
                        {
                        loading 
                        ? 
@@ -109,13 +109,14 @@ function TreeDonatedModal(props) {
                                     <div> 
                                         <p>You sure you want to donate {goal.tree_bet} trees?</p>
                                         <button
+                                        className="donate_modal_button"
                                         type='button'
                                         onClick={donateHighNumber}
                                         >
                                             Yep I want that crisp air
                                         </button>
                                         <button
-                                            className="goal_edit_toggle"
+                                            className="donate_modal_button"
                                             type="button"
                                             onClick={props.toggleModalEdit}
                                             >
@@ -125,14 +126,15 @@ function TreeDonatedModal(props) {
                                 :
                                     <div>
                                         <button
-                                        aria-label="donate_tree_button"
-                                        className='donate_tree_button'
+                                        aria-label="donate_button"
+                                        className='donate_modal_button'
                                         type='button'
                                         onClick={handleDonateTrees}
                                         >
                                             Donate
                                         </button>
                                         <button
+                                        className='donate_modal_button'
                                         type='button'
                                         onClick={props.toggleCallback}
                                         >
@@ -144,14 +146,14 @@ function TreeDonatedModal(props) {
                                 <div>
                                     <p>Would you like to try for your goal again?</p>
                                     <button
-                                    className="goal_edit_toggle"
+                                    className="donate_modal_button"
                                     type="button"
                                     onClick={props.toggleModalEdit}
                                     >
                                         Edit
                                     </button>
                                     <button
-                                    className='goal_delete_toggle'
+                                    className='donate_modal_button'
                                     type='button'
                                     onClick={handleClickDelete}
                                     >

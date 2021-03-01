@@ -12,6 +12,7 @@
 
 .goals_completed_dash {
     width: 100%;
+    margin: 0px;
   }
   
   .goals_completed_list {
@@ -34,7 +35,6 @@
   .add-goal-button {
     color: rgb(240, 240, 229);
     font: inherit;
-    background-color: rgba(154, 196, 171, 0.4);
     border: none;
     padding: 9px;
     padding-left: 15px;

@@ -4,13 +4,14 @@ import { FaBars } from 'react-icons/fa'
 import ApiContext from '../ApiContext'
 import AccountDetails from '../AccountDetails/AccountDetails'
 import DeleteAccount from '../DeleteAccount/DeleteAccount'
+import whiteTree from '../images/White_Tree.png'
 import './DashboardNav.css'
 
 
 function DashboardNav(props) {
 
     
-    const [ toggle, toggleNavLinks ] = useState(false)
+   
     const [ showDeleteAccount, toggleDeleteAccount ] = useState(false)
     const [ showAccountDetails, toggleAccountDetails ] = useState(false)
 
@@ -37,31 +38,28 @@ function DashboardNav(props) {
     }
 
     return (
-        <div>
-            <nav role="navigation" className="dashboard-nav">
+        <header role="navigation" className="dashboard-nav">
                 {/* <div className="tree-count">
                     <p><span id="tree-number"> {value.treesDonated} </span>Trees planted!</p>
                 </div> */}
-                <div className='grow-title'>
-                        <Link to='/' className='home'>Grow</Link>
-
+                <div className='dashboard-logo'>
+                    <img src={whiteTree} className="db-tree-outline" alt="white tree"/>
+                    <Link to='/' className='db-site-logo'>Grow</Link>
                 </div>
-                <FaBars className="toggle-button" onClick={() => toggleNavLinks(!toggle)}/>
-            </nav>
-            <div className="navbar-links" style={{display: toggle ? "inherit" : "none"}}>
+                <FaBars className="toggle-button" onClick={props.toggleNavLinks}/>
+            <nav className="navbar-links" style={{display: props.toggle ? "inherit" : "none"}}>
                 <ul >
-                    <li><button className="btn" onClick={() => toggleAccountDetails(true)}>Account Details</button></li>
-                    <li><button className="btn"><Link to='/goals-completed/:userId'>Goals Completed</Link></button></li>
-                    <li><button className="btn" onKeyDown={handleLogout} onClick={handleLogout}>Log Out</button></li>
+                    <li><button className="nav-btn" onClick={() => toggleAccountDetails(true)}>Account Details</button></li>
+                    <li><button className="nav-btn"><Link to='/goals-completed/:userId'>Goals Completed</Link></button></li>
+                    <li><button className="nav-btn" onKeyDown={handleLogout} onClick={handleLogout}>Log Out</button></li>
                 </ul>
-            </div>
+            </nav>
             <AccountDetails
             show={showAccountDetails}
             customClass='custom_account_details'
             toggleAccountDetails={() => toggleAccountDetails(false)}
             handleEditPayment={() => handleEditPayment()}
             handleDeleteAccount={() => handleDeleteAccount()}
-            handleLogout={() => handleLogout()}
             />
             {
                 showDeleteAccount && 
@@ -73,7 +71,7 @@ function DashboardNav(props) {
                     handleLogout={() => handleLogout()}
                 />
             }
-        </div>
+        </header>
     )
     
 }

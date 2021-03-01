@@ -1,35 +1,52 @@
 .dashboard-nav {
-    text-decoration: none;
     margin: 0%;
-    padding: 0%;
+    color: beige;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.2em;  
-    color: beige;
+    height: 80px;
+    background-color: transparent;
+    position: relative;
+    top: 10px;
+    z-index: 500;
 }
 
-.grow-title {
-    font-size: 1.5em;
-    margin-left: 1rem;
-}
-
-.grow-title a {
+.dashboard-logo {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.4rem;
+    display: inline-block;
+    position: absolute;
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+    top: 20%;
+    transform: translateY(-50%);
+    z-index: 501;
+  }
+  
+  .db-site-logo {
+    margin-left: -5px;
     text-decoration: none;
-    color: beige;
-}
+    color: #fff;
+  }
+
+
+.db-tree-outline {
+    width: 30px;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+  }
 
 .navbar-links {
     /* display: none; */
+    position: fixed;
+    margin-top: 35px;
+    /* margin-bottom: 40px; */
+    padding-bottom: 40px;
     width: 100%;
     font-size: 1.1em;  
     text-transform: uppercase;
 }
 
-/* .navbar-links:active {
-    display: flex;
-} */
 
 .navbar-links ul {
     margin: 0;
@@ -60,29 +77,35 @@
 }
 
 .toggle-button {
-    display: flex;
-    text-align: right;
-    top: .75;
-    margin-right: 1rem;
+    position: static;
+    float: right;
+    margin-right: 20px;
+    height: 28px;
+    width: 28px;
+    line-height: 42px;
+    cursor: pointer;
+    color: #e8eceaf3;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 .toggle-button:hover {
     color: white;
 }
 
-.btn {
+.nav-btn {
     color: rgb(240, 240, 229);
     font: inherit;
-    background-color: rgba(154, 196, 171, 0.4);
+    background-color: rgba(14, 22, 17, 0.8);
     border: none;
     padding: 7px;
     padding-left: 15px;
-    padding-right: 50px;
+    padding-right: 15px;
     cursor: pointer;
     border-radius: 0.6rem;
     transition: all 0.3s ease 0s;
   }
-.btn:hover {
+.nav-btn:hover {
 background-color: rgba(59, 119, 57, 0.8);
 }
   
@@ -100,21 +123,51 @@ background-color: rgba(59, 119, 57, 0.8);
   
 
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 400px) {
 
-    .dashboard-nav  {
-      font-size: 1.8em;  
-    }
-  
-    .grow-title {
-        font-size: 2em;
-        margin-right: 4rem;
-
+    .dashboard-nav {
+        margin-left: 0px;
     }
 
-    .tree-count {
-       display: flex;
+
+    .dashboard-logo {
+        font-size: 1.7rem;
       }
-    
-    
+
+    .db-tree-outline {
+        width: 38px;
+    }
+
+    .toggle-button {
+        position: fixed;
+        right: 0px;
+        top: 24px;
+        height: 38px;
+        width: 38px;
+        line-height: 42px;
+        cursor: pointer;
+        -webkit-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+    }
+
+    .navbar-links {
+        margin-top: 50px;
+        right: 2px;
+    }
+
+    .nav-btn {
+        color: rgb(240, 240, 229);
+        font: inherit;
+        border: none;
+        padding: 7px;
+        padding-left: 15px;
+        padding-right: 15px;
+        cursor: pointer;
+        border-radius: 0.6rem;
+        transition: all 0.3s ease 0s;
+      }
+    .nav-btn:hover {
+    background-color: rgba(59, 119, 57, 0.8);
+    }
+      
   }

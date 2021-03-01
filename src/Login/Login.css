@@ -1,12 +1,14 @@
 .login-wrap {
-  max-width: 350px;
+  max-width: 250px;
   border-radius: 20px;
   margin: auto;
   background: rgba(0,0,0);
   box-sizing: border-box;
-  padding: 40px;
+  padding: 25px;
   color: #fff;
-  margin-top: 100px;
+  margin-top: 80px;
+  height: 100%;
+  width: auto ;
 }
 
 .login-wrap h2 {
@@ -54,4 +56,14 @@
 
 .login-wrap a:hover {
   color: #fff;
+}
+
+@media all and (min-width: 400px) {
+
+  .login-wrap {
+    max-width: 350px;
+    padding: 40px;
+    margin-top: 170px;
+  }
+
 }

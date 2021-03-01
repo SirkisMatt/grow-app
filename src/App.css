@@ -1,7 +1,15 @@
+
+
+
 .App {
-  min-height: calc(100vh - 16px);
-  min-width: calc(100vw - 16px);
-  padding: 8px;
+  background-image: url(./images/fern.png);
+  background-repeat: no-repeat; 
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  min-width: 100vw;
+  margin: 0;
   display: inline-flex;
   flex-direction: column;
 }
+

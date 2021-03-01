@@ -1,10 +1,11 @@
 .signup-wrap {
-  max-width: 350px;
+  max-width: 250px;
   border-radius: 20px;
   margin: auto;
   background: rgba(0,0,0);
   box-sizing: border-box;
-  padding: 40px;
+  padding: 25px;
+  margin-top: 80px;
   color: #fff;
   margin-top: 100px;
 }
@@ -41,6 +42,7 @@
   font-size: 20px;
   font-weight: 600;
   color: #fff;
+  cursor: pointer;
 }
 
 .signup-wrap button:hover {
@@ -49,3 +51,12 @@
 
 
 
+@media all and (min-width: 400px) {
+
+  .signup-wrap {
+    max-width: 350px;
+    padding: 40px;
+    margin-top: 170px;
+  }
+
+}

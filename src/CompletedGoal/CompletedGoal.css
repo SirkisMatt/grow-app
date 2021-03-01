@@ -1,0 +1,37 @@
+
+/* CARD STYLES */
+
+.card_completed {
+    border-radius: 4px;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 1px 0 rgba(9,45,66,.25);
+    padding: 8px;
+    color: #17394d;
+  }
+  
+  .card_completed {
+    margin-bottom: 10px;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .card_completed h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  
+  .card_completed p {
+    margin: 0;
+    font-size: 13px;
+  }
+  
+  .goal_btn, .donate_tree_button {
+    background-color: #eff1f3;
+    border-radius: 6px;
+    padding: 5px;
+    margin: 3px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
