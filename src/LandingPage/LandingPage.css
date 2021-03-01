@@ -64,10 +64,22 @@
 
                                     /*    Banner text     */
 
+  @media (max-height: 400px) {
+    .overlay-text {
+      padding-top: 8rem;
+     }
+
+     #catch-phrase {
+      padding-top: 0px;
+      font-size: 1rem;
+      letter-spacing: .3rem;
+    }
+  }
+
 
   .overlay-text {
     text-align: center;
-    padding-top: 6rem;
+    padding-top: 12rem;
     position: relative;
     max-width: 1000px;
     width: 94%;
@@ -319,7 +331,7 @@ footer a {
 
    .overlay-text {
     text-align: left;
-    padding-top: 9rem;
+    padding-top: 7rem;
     position: relative;
     max-width: 1000px;
     width: 94%;
@@ -444,7 +456,7 @@ footer a {
 
  /*********************************** min-width: 700px ********************************/
 
-  @media all and (min-width: 700px) {
+  @media all and (min-width: 700px) and (min-height: 400px)  {
 
 
     .overlay-text {

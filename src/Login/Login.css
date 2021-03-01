@@ -1,14 +1,19 @@
 .login-wrap {
-  max-width: 250px;
+  max-width: 300px;
   border-radius: 20px;
   margin: auto;
   background: rgba(0,0,0);
   box-sizing: border-box;
   padding: 25px;
   color: #fff;
-  margin-top: 80px;
+  margin-top: 150px;
   height: 100%;
-  width: auto ;
+  width: auto;
+  align-items: left;
+}
+
+.login-form {
+  overflow: clip;
 }
 
 .login-wrap h2 {
@@ -43,6 +48,7 @@
   font-size: 20px;
   font-weight: 600;
   color: #fff;
+  cursor: pointer;
 }
 
 .login-wrap button:hover {

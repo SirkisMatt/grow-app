@@ -10,6 +10,10 @@
   margin-top: 100px;
 }
 
+.signup-form {
+  overflow: clip;
+}
+
 .signup-wrap h2 {
   text-align: center;
 }
