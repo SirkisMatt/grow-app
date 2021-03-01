@@ -128,6 +128,7 @@ function EditGoal(props) {
                         <div className="description_container">
                             <label htmlFor="description">Description: </label>
                             <br/>
+
                             <textarea className="description" name="description" onChange={handleDescriptionChange} rows="10" cols="30" defaultValue={description}/>
                         </div>
                            
