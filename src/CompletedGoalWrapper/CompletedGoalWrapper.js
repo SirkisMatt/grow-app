@@ -19,6 +19,7 @@ function CompletedGoalWrapper(props) {
                         completed={goal.completed}
                         complete_by={goal.complete_by}
                         treeBet={goal.tree_bet}
+                        goal={goal}
                         />
                 )}
             </div>

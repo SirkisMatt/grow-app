@@ -69,10 +69,11 @@ class Login extends Component {
                     this.context.addUser(res.data)
                     this.getGoalsForUser(res.data.id)
                     
-                } 
+                } else {
+                    throw Error
+                }
             })
             .catch(error => {
-                console.log(error)
                 this.invalid()
             })
     }
@@ -91,10 +92,14 @@ class Login extends Component {
         .then(goals => {
          this.context.getGoals(goals.data)
          this.props.history.push(`/dashboard/${userId}`)
-         //localStorage.setItem('goals', JSON.stringify(goals.data))
         })
         .catch(err => {
-          console.log(err)
+            this.setState({
+                invalid: {
+                    value: "There seems to be a problem fetching your account",
+                    error: true
+                }
+            })
         })
     }
     

@@ -3,6 +3,7 @@ import ApiContext from '../ApiContext'
 import Axios from 'axios'
 import './CompletedGoal.css'
 import EditGoal from '../EditGoal/EditGoal'
+import ErrorDeletedModal from '../ErrorDeletedModal/ErrorDeletedModal'
 
 
 function CompleteGoal(props) {
@@ -13,6 +14,7 @@ function CompleteGoal(props) {
     const { title, description, treeBet, id, complete_by} = props
 
     const [ showModalEdit, toggleModalEdit ] = useState(false)
+    const [deletedModalError, toggleDeletedError] = useState(false)
     
 
     const handleClickDelete = e => {
@@ -29,7 +31,7 @@ function CompleteGoal(props) {
             value.deleteGoal(id)
           })
           .catch(err => {
-            console.log(err)
+            toggleDeletedError(true)
           })
     }
 
@@ -72,6 +74,14 @@ function CompleteGoal(props) {
                         customClass="custom_modal_class"
                         goalToEdit={props.goal}
                         /> 
+                }
+                {
+                    deletedModalError &&
+                    <ErrorDeletedModal 
+                    show={deletedModalError}
+                    closeCallback={() => toggleDeletedError(false)}
+                    customClass="custom_modal_class"
+                    />
                 }
         </div>
     )

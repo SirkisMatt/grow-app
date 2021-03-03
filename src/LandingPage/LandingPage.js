@@ -11,6 +11,7 @@ function LandingPage(props) {
 
   const [size, setSize] = useState([0, 0])
   const [treeCount, setCount] = useState(0)
+  const [error, toggleError] = useState(false)
 
   useLayoutEffect(() => {
     function updateSize() {
@@ -25,10 +26,15 @@ function LandingPage(props) {
     useEffect(() => {
       Axios.get(`https://api-dev.digitalhumani.com/enterprise/7997dd50/treeCount?startDate=2020-11-00&endDate=2030-01-01`)
       .then(res => {
-        setCount(res.data.count)
+        if(res.status === 200) {
+          toggleError(false)
+          setCount(res.data.count)
+        } else {
+          throw Error
+        }
       })
       .catch(err => {
-        console.log(err)
+        toggleError(true)
       })
   
     }, [])
@@ -78,14 +84,18 @@ function LandingPage(props) {
               </p>
             </div>
           </div>
-          <div className="row about-stats stats">
-            <div className="col-block stats-col">
-              <div className="stats-count">
-                {treeCount}
+          { 
+          !error 
+          &&
+            <div className="row about-stats stats">
+              <div className="col-block stats-col">
+                <div className="stats-count">
+                  {treeCount}
+                </div>
+                <h5>Trees Planted</h5>
               </div>
-              <h5>Trees Planted</h5>
             </div>
-          </div>
+          }
         </div>
         <footer>
           <div className="row footer-main">

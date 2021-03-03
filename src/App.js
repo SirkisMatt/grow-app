@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Login from './Login/Login';
 import LoginNav from './LoginNav/LoginNav'
 import SignUp from './SignUp/SignUp';
@@ -11,6 +11,7 @@ import AddPayment from './AddPayment/AddPayment'
 import EditPayment from './EditPayment/EditPayment'
 import AddGoalType from './AddGoalType/AddGoalType'
 import GoalsCompleted from './GoalsCompleted/GoalsCompleted'
+import NotFoundPage from './NotFoundPage/NotFoundPage'
 import Axios from 'axios'
 import ApiContext from './ApiContext'
 import {myConfig} from './config.js'
@@ -26,33 +27,24 @@ function App() {
   const [loggedIn, handleLoggedIn] = useState(false)
  
 
-
 //On render get goalTypes
   useEffect(() => {
     Axios.get(`${myConfig.API_ENDPOINT}/api/goal-types`)
-    .then(goalTypes => {
-      handleGoalTypes(goalTypes.data)
-      //localStorage.setItem('goalTypes', JSON.stringify(goalTypes.data))
+    .then(res => {
+      if (res.status === 200) {
+        handleGoalTypes(res.data)
+      } else {
+        throw Error
+      }
     })
     .catch(err => {
-      console.log(err)
+      handleGoalTypes(["error"])
     })
 
   }, [])
 
   //counter for number of trees donated ***** API currently in BETA ***** Feature coming soon once bug fix *****
   useEffect(() => {
-    // Axios.get(`https://api-dev.digitalhumani.com/tree?enterpriseId=${myConfig.ENTERPRISE_ID}&user=${user.email}`)
-    // .then(res => {
-    //   if(res.status === 200) {
-    //     handleTreesDonated(res.data.count)
-    //   }
-
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
-
     //adds dueGoals to state
     let now = new Date()
     let passDue = goals.filter(goal => now >= new Date(goal.complete_by))
@@ -144,7 +136,7 @@ function App() {
 
  const renderMainRoutes = () => {
     return (
-      <>
+      <Switch>
          <Route
         exact
         path="/"
@@ -182,7 +174,8 @@ function App() {
         path='/goals-completed/:userId'
         component={GoalsCompleted}
         />
-      </>
+        <Route component={NotFoundPage} />
+      </Switch>
     )
   }
     
@@ -205,12 +198,12 @@ function App() {
 
     return (
           <ApiContext.Provider value={value}>
-            <div className="App" >
-              <div>
-              {renderNavRoutes()}
-                <main className="App_Main">{renderMainRoutes()}</main>
+              <div className="App">
+                {renderNavRoutes()}
+                <main className="App_Main">
+                  {renderMainRoutes()}
+                </main>
               </div>
-            </div>
           </ApiContext.Provider>
     );
 }

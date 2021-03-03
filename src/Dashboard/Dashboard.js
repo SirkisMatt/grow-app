@@ -27,9 +27,6 @@ function Dashboard(props) {
     let goalList = {}
     let goals = value.goals.filter(goal => goal.completed === false)
     
-    // if(value.dueGoals.length !== 0) {
-    //   toggleGoalsNotComplete(true)
-    // }
 
     if (goals.length === 0) {
      toggleModal(true)
@@ -69,7 +66,9 @@ function Dashboard(props) {
                   <GoalListWrapper
                   key={goalTypeId}
                   id={goalTypeId}
-                  header={value.goal_types.filter(item => item.id === goalTypeId)}
+                  header={
+                   (value.goal_types[0] !== 'error') ? value.goal_types.filter(item => item.id === goalTypeId) : "Error Loading Titles"
+                  }
                   goal={value.goals.filter(goal => goal_list[goalTypeId].includes(goal.id))}
                   /> 
               )}

@@ -1,27 +1,28 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Axios from 'axios';
 import ApiContext from '../ApiContext'
+import ErrorDeletedModal from '../ErrorDeletedModal/ErrorDeletedModal'
 import './DeleteAccount.css'
 
 function DeleteAccount(props) {
 
     const value = useContext(ApiContext)
 
+    const [deletedModalError, toggleDeletedError] = useState(false)
 
     const handleClickDelete = e => {
         e.preventDefault()
         const userId = value.user.id
         Axios.delete(`https://immense-lowlands-49270.herokuapp.com/api/users/${userId}`)
         .then(res => {
-            if(res.status !== 204){
-                console.log('deleted')
+            if(res.status === 204){
+                props.handleExit()
+            } else {
+                throw Error
             }
           })
-          .then(() => {
-            props.handleExit()
-          })
           .catch(err => {
-            console.log(err)
+            toggleDeletedError(true)
           })
     }
 
@@ -50,6 +51,14 @@ function DeleteAccount(props) {
                             >
                                 Delete
                             </button>
+                            {
+                                deletedModalError &&
+                                <ErrorDeletedModal 
+                                show={deletedModalError}
+                                closeCallback={() => toggleDeletedError(false)}
+                                customClass="custom_modal_class"
+                                />
+                            }
                           
                     </div>
             </div>

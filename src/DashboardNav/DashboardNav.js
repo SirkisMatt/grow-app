@@ -35,6 +35,7 @@ function DashboardNav(props) {
     const handleExit = () => {
         value.logout()
         props.history.push('/')
+        alert('account deleted')
     }
 
     return (
