@@ -6,6 +6,7 @@ import Leaf from '../Icons/Leaf'
 import './Goal.css'
 import EditGoal from '../EditGoal/EditGoal'
 import CompletedModal from '../CompletedModal/CompletedModal'
+import ErrorDeletedModal from '../ErrorDeletedModal/ErrorDeletedModal'
 
 
 function Goal(props) {
@@ -19,11 +20,13 @@ function Goal(props) {
     const [ overdue, handleOverdue ] = useState(false)
     const [ showTreeDonatedModal, toggleTreeDonatedModal ] = useState(false)
     const [ showCompletedModal, toggleCompletedModal ] = useState(false)
+    const [deletedModalError, toggleDeletedError] = useState(false)
+    const [error, toggleError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
     
 
 
-    const handleClickDelete = e => {
-        e.preventDefault()
+    const handleClickDelete = () => {
         const userId = value.user.id
         Axios.delete(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}/${id}`)
         .then(res => {
@@ -36,7 +39,7 @@ function Goal(props) {
             value.deleteGoal(id)
           })
           .catch(err => {
-            console.log(err)
+            toggleDeletedError(true)
           })
     }
 
@@ -50,10 +53,13 @@ function Goal(props) {
             completed: true,
         })          
         .then(goal => {
+            toggleError(false)
+            setErrorMessage('')
             value.patchGoal(goal.data)
         })
         .catch(error => {
-            console.log(error)
+            toggleError(true)
+            setErrorMessage('Sorry there seems to be a problem with processing your request')
         })
 
     }
@@ -157,6 +163,7 @@ function Goal(props) {
                         show={showTreeDonatedModal}
                         toggleCallback={() => toggleTreeDonatedModal(!showTreeDonatedModal)}
                         customClass="tree_donated_modal"
+                        handleClickDelete={() => handleClickDelete()}
                         toggleModalEdit={() => handleModalChange()}
                         goal={goal}
                         goalId={goal.id}
@@ -168,9 +175,19 @@ function Goal(props) {
                     show={showCompletedModal}
                     toggleCallback={() => toggleCompletedModal(!showCompletedModal)}
                     customClass="completed_modal"
+                    error={error}
+                    errorMessage={errorMessage}
                     toggleModalEdit={() => handleCompletedGoalModalChange()}
                     handleCompletedGoal={() => handleCompletedGoal()}
                     goal={goal}
+                    />
+                }
+                {
+                    deletedModalError &&
+                    <ErrorDeletedModal 
+                    show={deletedModalError}
+                    closeCallback={() => toggleDeletedError(false)}
+                    customClass="custom_modal_class"
                     />
                 }
             </div>

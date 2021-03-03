@@ -23,6 +23,10 @@ class SignUp extends Component {
             password: {
                 value: "",
                 touched: false
+            },
+            invalid: {
+                value: "Invalid email or password",
+                error: false
             }
         }
     }
@@ -73,14 +77,26 @@ class SignUp extends Component {
                 if (res.status === 201) {
                     this.context.addUser(res.data)
                     this.props.history.push(`/dashboard/${res.data.id}`)
-                    //localStorage.setItem('user', JSON.stringify(res.data))
-                } else {
-                    console.log(res)
-                }
+                } 
             })
             .catch(error => {
-                console.log(error)
+                if(error.response.status === 400) {
+                    this.invalid(error.response.data.error.message)
+                } else {
+                    this.invalid('There was a problem processing your request')
+                }
+                
             })
+    }
+
+
+    invalid = (error) => {
+        this.setState({
+            invalid: {
+                value: error,
+                error: true
+            }
+        })
     }
    
 
@@ -91,6 +107,7 @@ class SignUp extends Component {
         <div className="signup-wrap">
             <h2>Sign up here</h2>
             <form className='signup-form' onSubmit={this.handleSubmit}>
+                    {this.state.invalid.error &&  <ValidationError message={this.state.invalid.value}/>}
                     <input placeholder='User Name' type="text" name='user-name' id='user-name' onChange={e => this.handleUserNameChange(e)} />
                     <input placeholder='Email' type="text" name='email' id='email' onChange={e => this.handleEmailChange(e)} />
                     {this.state.email.touched && <ValidationError message={emailError} />}

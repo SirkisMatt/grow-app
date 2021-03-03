@@ -1,15 +1,16 @@
 
-
-
-.App {
-  background-image: url(./images/fern.png);
-  background-repeat: no-repeat; 
-  background-attachment: fixed;
+.App{
+  content:"";
+  position:fixed; 
+  top:0;
+  height:100vh; 
+  left:0;
+  overflow: auto;
+  right:0;
+  z-index:-1; 
+  background: url(./images/fern.png) center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  min-height: 100vh;
-  min-width: 100vw;
-  margin: 0;
-  display: inline-flex;
-  flex-direction: column;
 }
-

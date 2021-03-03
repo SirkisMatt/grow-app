@@ -11,6 +11,16 @@ function CompletedModal(props) {
                 <div>
                     <h2>Good Work</h2>
                         <div>
+                            {props.error && 
+                                <div>
+                                    <h3>
+                                        {props.errorMessage}
+                                    </h3>
+                                    <button title="Close"  onClick={props.toggleCallback}>
+                                            Okay
+                                    </button>
+                                </div>
+                            }
                             <p>Would you like to try for your goal again?</p>
                             
                             <button

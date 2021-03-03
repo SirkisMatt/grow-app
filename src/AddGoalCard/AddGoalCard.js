@@ -45,9 +45,7 @@ export default class AddGoalCard extends Component {
             this.props.closeCallback()
         })
         .catch(error => {
-            console.log(error.response)
             if (error.response.status === 400) {
-                console.log(error.response.data.error.message)
                 this.setState({
                     error: true,
                     errMessage: `Title, tree bet and a complete by date required!`

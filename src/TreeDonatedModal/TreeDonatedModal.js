@@ -13,6 +13,8 @@ function TreeDonatedModal(props) {
     const [ donatedTitle, setDonationTitle ] = useState('')
     const [ highDonation, setHighDonation ] = useState(false)
     const [ loading, setLoading ] = useState(false)
+    const [error, toggleError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
         if(!donated && props.goal.tree_bet > 1) {
@@ -28,6 +30,7 @@ function TreeDonatedModal(props) {
 
     const handleDonateTrees = () => {
         if (props.goal.tree_bet < 5) {
+            toggleError(false)
             setLoading(true)
             Axios.post(`https://api-dev.digitalhumani.com/tree`, {
                 "treeCount": props.goal.tree_bet,
@@ -37,12 +40,15 @@ function TreeDonatedModal(props) {
                })
                .then(res => {
                    if(res.status === 200) {
-                      setDonation(true)
-                      setLoading(false)
+                        setDonation(true)
+                        setLoading(false)
+                        setErrorMessage('')
                    }
                 })
                 .catch(error => {
-                    console.log(error)
+                    setLoading(false)
+                    toggleError(true)
+                    setErrorMessage('Sorry there seems to be a problem with processing your request')
                 })
             } else {
             setHighDonation(true)
@@ -51,6 +57,7 @@ function TreeDonatedModal(props) {
      }
 
      const donateHighNumber = () => {
+        toggleError(false)
         setLoading(true)
         Axios.post(`https://api-dev.digitalhumani.com/tree`, {
             "treeCount": props.goal.tree_bet,
@@ -66,30 +73,12 @@ function TreeDonatedModal(props) {
                }
             })
             .catch(error => {
-                console.log(error)
+                setLoading(false)
+                toggleError(true)
+                setErrorMessage('Sorry there seems to be a problem with processing your request')
             })
      }
 
-    const handleClickDelete = e => {
-        e.preventDefault()
-        const userId = value.user.id
-        const id = props.goal.id
-        Axios.delete(`https://immense-lowlands-49270.herokuapp.com/api/goals/${userId}/${id}`)
-        .then(res => {
-            if(res.status !== 204){
-                return res.json().then(e => Promise.reject(e))
-            }
-            return res
-          })
-          .then(() => {
-            value.deleteDueGoal(id)
-            value.deleteGoal(id)
-            props.toggleCallback()
-          })
-          .catch(err => {
-            console.log(err)
-          })
-    }
 
 
         const { customClass, show, goal } = props
@@ -98,6 +87,7 @@ function TreeDonatedModal(props) {
             <div className={`modal_donate_goal ${customClass}`} style={{ display: show ? 'block' : 'none'}}>
                 <div className="overlay_donate_goal" ></div>
                     <div className="modal_content_donate_goal">
+                        {error && <h3>{errorMessage}</h3>}
                        {
                        loading 
                        ? 
@@ -155,7 +145,7 @@ function TreeDonatedModal(props) {
                                     <button
                                     className='donate_modal_button'
                                     type='button'
-                                    onClick={handleClickDelete}
+                                    onClick={props.handleClickDelete}
                                     >
                                         Delete
                                     </button>

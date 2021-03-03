@@ -12,6 +12,8 @@ function EditGoal(props) {
     const [description, updateDescription] = useState(props.goalToEdit.description)
     const [treeBet, updateTreeBet] = useState(props.goalToEdit.tree_bet)
     const [completeBy, updateCompleteBy] = useState(props.goalToEdit.complete_by)
+    const [error, toggleError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
 
 
 
@@ -29,11 +31,23 @@ function EditGoal(props) {
             goal_type_id: e.target['GoalOptions'].value
         })          
         .then(goal => {
-            value.patchGoal(goal.data)
-            closeCallback()
+            if (goal.status === 201) {
+                value.patchGoal(goal.data)
+                toggleError(false)
+                setErrorMessage('')
+                closeCallback()
+            } else {
+                throw Error
+            }
         })
         .catch(error => {
-            console.log(error)
+            if (error.response.status === 400) {
+                toggleError(true)
+                setErrorMessage(error.response.data.error.message)
+            } else {
+                toggleError(true)
+                setErrorMessage('Sorry there seems to be a problem with processing your request')
+            }
         })
     
     }
@@ -71,42 +85,34 @@ function EditGoal(props) {
 
         return container
     })
+
     const firstValue = options.filter(option => option.value === goalType[0].id)
 
 
+
+    const targetHeight = 40;
+
     const customStyles = {
-        control: (provided, state) => ({
-          ...provided,
-          background: '#fff',
-          borderColor: '#9e9e9e',
-          minHeight: '38px',
-          height: '38px',
-          maxWidth: '300px',
-          boxShadow: state.isFocused ? null : null,
-          
-        }),
-    
-        valueContainer: (provided, state) => ({
-          height: '38px',
-          padding: '10px 6px'
-        }),
-    
-        input: (provided, state) => ({
-          ...provided,
-          margin: '5px',
-        }),
-        indicatorSeparator: state => ({
-          display: 'none',
-        }),
-        indicatorsContainer: (provided, state) => ({
-          ...provided,
-          height: '32px',
-        }),
-        menu: (provided, state) => ({
-            ...provided,
-            maxWidth: '300px',
-        })
-      };
+    control: base => ({
+        ...base,
+        minHeight: 'initial',
+        fontSize: '1rem',
+    }),
+    //   valueContainer: base => ({
+    //     ...base,
+    //     height: `${targetHeight - 1 - 1}px`,
+    //     padding: '0px 8px',
+    //   }),
+    clearIndicator: base => ({
+        // ...base,
+        padding: `${(targetHeight - 20 - 1 - 1) / 2}px`,
+    }),
+    dropdownIndicator: base => ({
+        ...base,
+        padding: `${(targetHeight - 20 - 1 - 1) / 2}px`,
+        zIndex: 500
+    }),
+    };
 
 
     return (
@@ -115,6 +121,7 @@ function EditGoal(props) {
                 <div className="modal_content_edit_goal">
                     <form className="edit_goal" onSubmit={handleSubmit}>
                         <div className="goalType_container">
+                                
                             <label htmlFor="goal-type">What type of goal is this?</label>
                             <div className="select_control">
                                 <Select classNamePrefix="mySelect" styles={customStyles} name="GoalOptions" defaultValue={firstValue} options={options}/>
@@ -122,6 +129,7 @@ function EditGoal(props) {
                         </div>
 
                         <div className="title_container">
+                            {error && <h3>{errorMessage}</h3>}
                             <label htmlFor="title">Title: </label>
                             <input htmlFor="goal-title" defaultValue={title} onChange={handleTitleChange} type="text" name='goal-title' id='goal-title' />
                         </div>
